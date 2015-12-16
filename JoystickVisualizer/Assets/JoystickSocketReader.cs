@@ -97,9 +97,6 @@ public class JoystickSocketReader : MonoBehaviour {
         boatSwitchGimbalOrigins = boatSwitchGimbal.transform.localEulerAngles;
         chinaHatGimbalOrigins = chinaHatGimbal.transform.localEulerAngles;
         flapsGimbalOrigins = flapsGimbal.transform.localEulerAngles;
-
-        client = new TcpClient(host, port);
-        stream = client.GetStream();
     }
 	
 	// Update is called once per frame
@@ -145,6 +142,8 @@ public class JoystickSocketReader : MonoBehaviour {
         }
         if((DateTime.Now - lastMessage).TotalSeconds > 2)
         {
+            // Messages should come every second, no message means we disconnect and try again.
+
             if(stream != null && stream.CanRead)
                 stream.Close();
 
@@ -158,7 +157,7 @@ public class JoystickSocketReader : MonoBehaviour {
                 stream = client.GetStream();
                 connectionError.SetActive(false);
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
         }
