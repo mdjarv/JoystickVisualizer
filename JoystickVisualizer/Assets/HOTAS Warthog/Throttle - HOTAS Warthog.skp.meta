@@ -1,0 +1,235 @@
+fileFormatVersion: 2
+guid: 22856e000d1717b47a41188ac8bcd6da
+timeCreated: 1450123944
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f00000030000000310000003200000033000000340000003500000036000000370000003800000039000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 84630a3d8b9c47756821f5136c91347b
+  longitude: 2.3330000000000002
+  latitude: 48.866999999999997
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 2.0418458, y: 34.0978012, z: -31.0821667}
+      lookAt: {x: 1.97658265, y: 26.7183743, z: -24.316967}
+      up: {x: -.00711042155, y: .67578119, z: .737067997}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: APU
+    100002: Autopilot Eng/Dis
+    100004: Autopilot Laste
+    100006: Boat Switch
+    100008: China Hat
+    100010: Coolie Hat
+    100012: EAC
+    100014: Flaps
+    100016: Flaps Shaft
+    100018: Flow L
+    100020: Flow R
+    100022: Group 20
+    100024: Group 22
+    100026: Group 4
+    100028: Group 50
+    100030: Group 52
+    100032: Group 6
+    100034: Ign L
+    100036: Ign R
+    100038: Left Throttle
+    100040: Left Throttle Button
+    100042: LG WRN
+    100044: Mic Switch
+    100046: Pinky Switch
+    100048: RDR ALTM
+    100050: Right Throttle
+    100052: Speedbrake
+    100054: Throttle - HOTAS Warthog
+    100056: //RootNode
+    100058: Throttle Base
+    400000: APU
+    400002: Autopilot Eng/Dis
+    400004: Autopilot Laste
+    400006: Boat Switch
+    400008: China Hat
+    400010: Coolie Hat
+    400012: EAC
+    400014: Flaps
+    400016: Flaps Shaft
+    400018: Flow L
+    400020: Flow R
+    400022: Group 20
+    400024: Group 22
+    400026: Group 4
+    400028: Group 50
+    400030: Group 52
+    400032: Group 6
+    400034: Ign L
+    400036: Ign R
+    400038: Left Throttle
+    400040: Left Throttle Button
+    400042: LG WRN
+    400044: Mic Switch
+    400046: Pinky Switch
+    400048: RDR ALTM
+    400050: Right Throttle
+    400052: Speedbrake
+    400054: Throttle - HOTAS Warthog
+    400056: //RootNode
+    400058: Throttle Base
+    2300000: APU
+    2300002: Autopilot Eng/Dis
+    2300004: Autopilot Laste
+    2300006: Boat Switch
+    2300008: China Hat
+    2300010: Coolie Hat
+    2300012: EAC
+    2300014: Flaps
+    2300016: Flaps Shaft
+    2300018: Flow L
+    2300020: Flow R
+    2300022: Group 20
+    2300024: Group 22
+    2300026: Group 4
+    2300028: Group 50
+    2300030: Group 52
+    2300032: Group 6
+    2300034: Ign L
+    2300036: Ign R
+    2300038: Left Throttle
+    2300040: Left Throttle Button
+    2300042: LG WRN
+    2300044: Mic Switch
+    2300046: Pinky Switch
+    2300048: RDR ALTM
+    2300050: Right Throttle
+    2300052: Speedbrake
+    2300054: Throttle Base
+    3300000: APU
+    3300002: Autopilot Eng/Dis
+    3300004: Autopilot Laste
+    3300006: Boat Switch
+    3300008: China Hat
+    3300010: Coolie Hat
+    3300012: EAC
+    3300014: Flaps
+    3300016: Flaps Shaft
+    3300018: Flow L
+    3300020: Flow R
+    3300022: Group 20
+    3300024: Group 22
+    3300026: Group 4
+    3300028: Group 50
+    3300030: Group 52
+    3300032: Group 6
+    3300034: Ign L
+    3300036: Ign R
+    3300038: Left Throttle
+    3300040: Left Throttle Button
+    3300042: LG WRN
+    3300044: Mic Switch
+    3300046: Pinky Switch
+    3300048: RDR ALTM
+    3300050: Right Throttle
+    3300052: Speedbrake
+    3300054: Throttle Base
+    4300000: Mesh Right Throttle
+    4300002: Mesh Group 4
+    4300004: Mesh Group 6
+    4300006: Mesh China Hat
+    4300008: Mesh Boat Switch
+    4300010: Mesh Speedbrake
+    4300012: Mesh Mic Switch
+    4300014: Mesh Coolie Hat
+    4300016: Mesh Throttle Base
+    4300018: Mesh Group 20
+    4300020: Mesh Group 22
+    4300022: Mesh Flaps
+    4300024: Mesh Flaps Shaft
+    4300026: Mesh Flow R
+    4300028: Mesh Flow L
+    4300030: Mesh Ign L
+    4300032: Mesh Ign R
+    4300034: Mesh APU
+    4300036: Mesh LG WRN
+    4300038: Mesh Autopilot Laste
+    4300040: Mesh Autopilot Eng/Dis
+    4300042: Mesh RDR ALTM
+    4300044: Mesh EAC
+    4300046: Mesh Left Throttle
+    4300048: Mesh Group 50
+    4300050: Mesh Group 52
+    4300052: Mesh Left Throttle Button
+    4300054: Mesh Pinky Switch
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0253999997
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
