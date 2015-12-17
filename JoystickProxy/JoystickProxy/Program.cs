@@ -38,7 +38,7 @@ namespace JoystickProxy
             foreach (DeviceInstance device in di.GetDevices())
             {
                 //Console.WriteLine(device.InstanceName);
-                switch(device.InstanceName)
+                switch (device.InstanceName)
                 {
                     case "Joystick - HOTAS Warthog":
                         joystick = new Joystick(di, device.ProductGuid);
@@ -49,7 +49,7 @@ namespace JoystickProxy
                 }
             }
 
-            if (joystick!= null)
+            if (joystick != null)
             {
                 Console.WriteLine("Found Warthog Joystick");
                 joystick.Properties.BufferSize = 32;
@@ -64,7 +64,7 @@ namespace JoystickProxy
 
             try
             {
-                while(true)
+                while (true)
                 {
                     listener = new TcpListener(IPAddress.Loopback, 9998);
                     Console.WriteLine("Waiting for connection...");
@@ -94,14 +94,18 @@ namespace JoystickProxy
                 stream = null;
             }
             catch (Exception) { }
-            try {
+            try
+            {
                 tcpClient.Close();
                 tcpClient = null;
-            } catch(Exception) { }
-            try {
+            }
+            catch (Exception) { }
+            try
+            {
                 listener.Stop();
                 listener = null;
-            } catch (Exception) { }
+            }
+            catch (Exception) { }
             Console.WriteLine("Disconnected");
         }
 
@@ -153,7 +157,7 @@ namespace JoystickProxy
                         sendJoystick = false;
                     }
 
-                    if(sendThrottle)
+                    if (sendThrottle)
                     {
                         byte[] throttleData = warthogThrottle.GetBytes();
                         stream.Write(throttleData, 0, throttleData.Length);

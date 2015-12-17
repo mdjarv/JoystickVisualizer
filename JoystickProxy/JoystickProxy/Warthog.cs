@@ -21,7 +21,7 @@ namespace JoystickProxy
 
         public byte[] GetBytes()
         {
-            return System.Text.Encoding.ASCII.GetBytes(this.ToString()+'\n');
+            return System.Text.Encoding.ASCII.GetBytes(this.ToString() + '\n');
         }
     }
 
