@@ -6,13 +6,15 @@ The background is set to a solid ```#1E3D5D``` (or RGB: ```31,62,93```) for chro
 
 Because of the way Unity handles joystick input, stopping any joystick input if the window is not in focus, the software is divided into two parts: The Joystick Visualizer and the Joystick Proxy.
 
-The Joystick Proxy feeds joystick state to the Joystick Visualizer over a local TCP port (9998) so that it can be visualized even if the application is not the focused window.
+The Joystick Proxy feeds joystick state to the Joystick Visualizer over local TCP port ```9998``` so that it can be visualized even if Joystick Visualizer is not the focused window.
+
+![Preview of Joystick Visualizer](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/Preview1.png)
 
 ## Usage
 
 ### Starting the Software
 
-To use, start both the Joystick Proxy and the Joystick Visualizer. The Visualizer will ask you to select a resolution, since the window will usually be downscaled I find it works best when set to 640x480 and make sure to select Windowed mode.
+To use, start both the Joystick Proxy and the Joystick Visualizer. The Visualizer will ask you to select a resolution, since the window will usually be downscaled I find it works best when set to 640x480 and make sure to keep it in Windowed mode.
 
 If the Visualizer window with the virtual joystick has a yellow lighting bolt in the upper left corner it means that it does not yet have a connection to the Proxy.
 
