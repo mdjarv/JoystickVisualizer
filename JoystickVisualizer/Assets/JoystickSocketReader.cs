@@ -143,8 +143,7 @@ public class JoystickSocketReader : MonoBehaviour {
         if((DateTime.Now - lastMessage).TotalSeconds > 2)
         {
             // Messages should come every second, no message means we disconnect and try again.
-
-            if(stream != null && stream.CanRead)
+            if (stream != null && stream.CanRead)
                 stream.Close();
 
             if(client != null && client.Connected)
@@ -153,6 +152,8 @@ public class JoystickSocketReader : MonoBehaviour {
             connectionError.SetActive(true);
             try
             {
+                lastMessage = DateTime.Now; // Reconnect attempt every other second
+
                 client = new TcpClient(host, port);
                 stream = client.GetStream();
                 connectionError.SetActive(false);
