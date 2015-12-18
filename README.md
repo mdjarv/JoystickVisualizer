@@ -36,7 +36,7 @@ Then click on Preview Stream to get a video preview of how it will look. Click o
 
 ## Credits
 
-This project was made by Mathias Djärv using the Unity 5 game engine and SharpDX for parsing joystic input.
+This project was created by me, Mathias Djärv, using the Unity 5 game engine and SharpDX for parsing joystick input.
 
 3D model of the Thrustmaster Warthog Joystick was made by Daniel S. and can be found on 3D Warehouse:
 
