@@ -6,10 +6,11 @@ using JoystickProxy;
 public class JoystickSocketReader : MonoBehaviour {
     private int HAT_ANGLE = 8;
     private int FLIP_ANGLE = 16;
+    private int[] TWO_STAGE_FLIP = { -16, 16 };
 
     private float BUTTON_PRESS = 0.22f;
 
-    private float TRIGGER1_PRESS = 8.0f;
+    private float TRIGGER1_PRESS = 10.0f;
     private float TRIGGER2_PRESS = 24.0f;
 
     private float PINKY_LEVER_PRESS = 18.0f;
@@ -71,13 +72,51 @@ public class JoystickSocketReader : MonoBehaviour {
     private Vector3 micSwitchGimbalOrigins;
     private Vector3 micSwitchGimbalPosition;
 
+    public GameObject coolieHatGimbal;
+    private Vector3 coolieHatGimbalOrigins;
+
+    public GameObject eacGimbal;
+    private Vector3 eacGimbalOrigins;
+
+    public GameObject rdrAltimGimbal;
+    private Vector3 rdrAltimGimbalOrigins;
+
+    public GameObject autopilotEngDisGimbal;
+    private Vector3 autopilotEngDisGimbalPosition;
+
+    public GameObject autopilotLasteGimbal;
+    private Vector3 autopilotLasteGimbalOrigins;
+
+    public GameObject lgWrnGimbal;
+    private Vector3 lgWrnGimbalPosition;
+
+    public GameObject apuGimbal;
+    private Vector3 apuGimbalOrigins;
+    
+    public GameObject ignLGimbal;
+    private Vector3 ignLGimbalOrigins;
+
+    public GameObject ignRGimbal;
+    private Vector3 ignRGimbalOrigins;
+
+    public GameObject engLGimbal;
+    private Vector3 engLGimbalOrigins;
+
+    public GameObject engRGimbal;
+    private Vector3 engRGimbalOrigins;
+
+    public GameObject pinkySwitchGimbal;
+    private Vector3 pinkySwitchGimbalOrigins;
+
+    public GameObject leftThrottleButton;
+    private Vector3 leftThrottleButtonPosition;
+
     private TcpClient client;
     private NetworkStream stream;
 
     private WarthogJoystick warthogJoystick;
     private WarthogThrottle warthogThrottle;
 
-    // Use this for initialization
     void Start () {
         warthogJoystick = new WarthogJoystick();
         warthogThrottle = new WarthogThrottle();
@@ -97,9 +136,21 @@ public class JoystickSocketReader : MonoBehaviour {
         boatSwitchGimbalOrigins = boatSwitchGimbal.transform.localEulerAngles;
         chinaHatGimbalOrigins = chinaHatGimbal.transform.localEulerAngles;
         flapsGimbalOrigins = flapsGimbal.transform.localEulerAngles;
+        coolieHatGimbalOrigins = coolieHatGimbal.transform.localEulerAngles;
+        eacGimbalOrigins = eacGimbal.transform.localEulerAngles;
+        rdrAltimGimbalOrigins = rdrAltimGimbal.transform.localEulerAngles;
+        autopilotEngDisGimbalPosition = autopilotEngDisGimbal.transform.localPosition;
+        autopilotLasteGimbalOrigins = autopilotLasteGimbal.transform.localEulerAngles;
+        lgWrnGimbalPosition = lgWrnGimbal.transform.localPosition;
+        apuGimbalOrigins = apuGimbal.transform.localEulerAngles;
+        ignLGimbalOrigins = ignLGimbal.transform.localEulerAngles;
+        ignRGimbalOrigins = ignRGimbal.transform.localEulerAngles;
+        engLGimbalOrigins = engLGimbal.transform.localEulerAngles;
+        engRGimbalOrigins = engRGimbal.transform.localEulerAngles;
+        pinkySwitchGimbalOrigins = pinkySwitchGimbal.transform.localEulerAngles;
+        leftThrottleButtonPosition = leftThrottleButton.transform.localPosition;
     }
 	
-	// Update is called once per frame
 	void Update () {
         if (stream != null && stream.CanRead && stream.DataAvailable)
         {
@@ -225,6 +276,45 @@ public class JoystickSocketReader : MonoBehaviour {
 
         flapsGimbal.transform.localEulerAngles = flapsGimbalOrigins;
         flapsGimbal.transform.Rotate(new Vector3(warthogThrottle.Flaps * FLIP_ANGLE, 0, 0), Space.Self);
+
+        coolieHatGimbal.transform.localEulerAngles = coolieHatGimbalOrigins;
+        coolieHatGimbal.transform.Rotate(new Vector3(warthogThrottle.CoolieSwitch.X * -HAT_ANGLE, warthogThrottle.CoolieSwitch.Y * HAT_ANGLE, 0), Space.Self);
+
+        eacGimbal.transform.localEulerAngles = eacGimbalOrigins;
+        eacGimbal.transform.Rotate(new Vector3(TWO_STAGE_FLIP[warthogThrottle.EAC], 0, 0), Space.Self);
+
+        rdrAltimGimbal.transform.localEulerAngles = rdrAltimGimbalOrigins;
+        rdrAltimGimbal.transform.Rotate(new Vector3(TWO_STAGE_FLIP[warthogThrottle.RDR_ALT], 0, 0), Space.Self);
+
+        autopilotEngDisGimbal.transform.localPosition = autopilotEngDisGimbalPosition;
+        autopilotEngDisGimbal.transform.Translate(new Vector3(0, warthogThrottle.AutopilotEngageDisengage * -BUTTON_PRESS, 0), Space.Self);
+
+        autopilotLasteGimbal.transform.localEulerAngles = autopilotLasteGimbalOrigins;
+        autopilotLasteGimbal.transform.Rotate(new Vector3(warthogThrottle.AutopilotSelect * FLIP_ANGLE, 0, 0), Space.Self);
+
+        lgWrnGimbal.transform.localPosition = lgWrnGimbalPosition;
+        lgWrnGimbal.transform.Translate(new Vector3(0, warthogThrottle.LandingGearHornSilence * -BUTTON_PRESS, 0), Space.Self);
+
+        apuGimbal.transform.localEulerAngles = apuGimbalOrigins;
+        apuGimbal.transform.Rotate(new Vector3(TWO_STAGE_FLIP[warthogThrottle.APU], 0, 0), Space.Self);
+
+        ignLGimbal.transform.localEulerAngles = ignLGimbalOrigins;
+        ignLGimbal.transform.Rotate(new Vector3(warthogThrottle.EngineOperateLeft * FLIP_ANGLE, 0, 0), Space.Self);
+
+        ignRGimbal.transform.localEulerAngles = ignRGimbalOrigins;
+        ignRGimbal.transform.Rotate(new Vector3(warthogThrottle.EngineOperateRight * FLIP_ANGLE, 0, 0), Space.Self);
+
+        engLGimbal.transform.localEulerAngles = engLGimbalOrigins;
+        engLGimbal.transform.Rotate(new Vector3(TWO_STAGE_FLIP[warthogThrottle.EngineFuelFlowLeft], 0, 0), Space.Self);
+
+        engRGimbal.transform.localEulerAngles = engRGimbalOrigins;
+        engRGimbal.transform.Rotate(new Vector3(TWO_STAGE_FLIP[warthogThrottle.EngineFuelFlowRight], 0, 0), Space.Self);
+
+        pinkySwitchGimbal.transform.localEulerAngles = pinkySwitchGimbalOrigins;
+        pinkySwitchGimbal.transform.Rotate(new Vector3(warthogThrottle.PinkySwitch * FLIP_ANGLE, 0, 0), Space.Self);
+
+        leftThrottleButton.transform.localPosition = leftThrottleButtonPosition;
+        leftThrottleButton.transform.Translate(new Vector3(0, 0, warthogThrottle.LeftThrottleButton * -BUTTON_PRESS), Space.Self);
     }
 
     void OnApplicationQuit()

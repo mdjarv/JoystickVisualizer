@@ -1,5 +1,7 @@
 # Joystick Visualizer
 
+![Joystick Visualizer Banner](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/Banner.png)
+
 Joystick Visualizer shows a 3D view of the Thrustmaster Warthog joystick and throttle that moves with the real joystick connected to the computer. The idea is to use this for some nice visuals when streaming games or record instructional videos for flight simulators.
 
 If you want to see it in action you can follow me on [Twitch](http://www.twitch.tv/papapiishu "papapiishu on Twitch"), I don't stream often but when I do it is usually DCS using this Joystick Visualizer.
