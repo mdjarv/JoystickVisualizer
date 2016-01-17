@@ -18,6 +18,9 @@ namespace JoystickProxy
         private byte[] pingMessage = System.Text.Encoding.ASCII.GetBytes("ping\n");
         private DateTime lastMessage = new DateTime();
 
+        private int messageCounter = 0;
+        private DateTime lastStatusMessage = new DateTime();
+
         private WarthogJoystick warthogJoystick = new WarthogJoystick();
         private WarthogThrottle warthogThrottle = new WarthogThrottle();
 
@@ -155,6 +158,7 @@ namespace JoystickProxy
                         stream.Write(joystickData, 0, joystickData.Length);
                         lastMessage = DateTime.Now;
                         sendJoystick = false;
+                        messageCounter++;
                     }
 
                     if (sendThrottle)
@@ -163,6 +167,7 @@ namespace JoystickProxy
                         stream.Write(throttleData, 0, throttleData.Length);
                         lastMessage = DateTime.Now;
                         sendThrottle = false;
+                        messageCounter++;
                     }
 
                     TimeSpan ts = DateTime.Now - lastMessage;
@@ -170,6 +175,14 @@ namespace JoystickProxy
                     {
                         stream.Write(pingMessage, 0, pingMessage.Length);
                         lastMessage = DateTime.Now;
+                    }
+
+                    ts = DateTime.Now - lastStatusMessage;
+                    if(ts.TotalSeconds >= 20)
+                    {
+                        Console.WriteLine(messageCounter + " messages sent");
+                        lastStatusMessage = DateTime.Now;
+                        messageCounter = 0;
                     }
                 }
                 catch (Exception)

@@ -214,9 +214,9 @@ namespace JoystickProxy
 
         public override string ToString()
         {
-            return String.Format("Joystick,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}",
-                X.ToString(FLOAT_PRECISION),
-                Y.ToString(FLOAT_PRECISION),
+            return String.Format("Joystick|{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}",
+                X.ToString(FLOAT_PRECISION, System.Globalization.CultureInfo.InvariantCulture),
+                Y.ToString(FLOAT_PRECISION, System.Globalization.CultureInfo.InvariantCulture),
                 Trigger1.ToString(),
                 Trigger2.ToString(),
                 MasterMode.ToString(),
@@ -232,7 +232,7 @@ namespace JoystickProxy
 
         public void FromString(string state)
         {
-            string[] values = state.Split(',');
+            string[] values = state.Split('|');
             if (values.Length != 14)
                 throw new Exception("Invalid Joystick state length, should be 14 but was " + values.Length);
             if (values[0] != "Joystick")
@@ -410,12 +410,12 @@ namespace JoystickProxy
 
         public override string ToString()
         {
-            return String.Format("Throttle,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24},{25},{26}",
-                LeftThrottle.ToString(FLOAT_PRECISION),
-                RightThrottle.ToString(FLOAT_PRECISION),
-                Friction.ToString(FLOAT_PRECISION),
-                SlewX.ToString(FLOAT_PRECISION),
-                SlewY.ToString(FLOAT_PRECISION),
+            return String.Format("Throttle|{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}|{19}|{20}|{21}|{22}|{23}|{24}|{25}|{26}",
+                LeftThrottle.ToString(FLOAT_PRECISION, System.Globalization.CultureInfo.InvariantCulture),
+                RightThrottle.ToString(FLOAT_PRECISION, System.Globalization.CultureInfo.InvariantCulture),
+                Friction.ToString(FLOAT_PRECISION, System.Globalization.CultureInfo.InvariantCulture),
+                SlewX.ToString(FLOAT_PRECISION, System.Globalization.CultureInfo.InvariantCulture),
+                SlewY.ToString(FLOAT_PRECISION, System.Globalization.CultureInfo.InvariantCulture),
                 SlewPush.ToString(),
                 CoolieSwitch.ToString(),
                 MicSwitch.ToString(),
@@ -442,9 +442,9 @@ namespace JoystickProxy
 
         public void FromString(string state)
         {
-            string[] values = state.Split(',');
+            string[] values = state.Split('|');
             if (values.Length != 28)
-                throw new Exception("Invalid Joystick state length, should be 28 but was " + values.Length);
+                throw new Exception("Invalid Throttle state length, should be 28 but was " + values.Length);
             if (values[0] != "Throttle")
                 throw new Exception("Invalid state: " + values[0]);
 

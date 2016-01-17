@@ -19,6 +19,9 @@ public class JoystickSocketReader : MonoBehaviour {
 
     private DateTime lastMessage = new DateTime(0);
 
+    private DateTime lastStatusMessage = new DateTime();
+    private int statusMessageCounter = 0;
+
     public GameObject connectionError;
 
     public string host = "127.0.0.1";
@@ -167,7 +170,7 @@ public class JoystickSocketReader : MonoBehaviour {
 
                 foreach (string msg in responseData.Split('\n'))
                 {
-                    string[] package = msg.Split(',');
+                    string[] package = msg.Split('|');
 
                     if(package.Length > 0)
                     {
@@ -175,14 +178,24 @@ public class JoystickSocketReader : MonoBehaviour {
                         {
                             case "Joystick":
                                 UpdateJoystick(msg);
+                                statusMessageCounter++;
                                 break;
                             case "Throttle":
                                 UpdateThrottle(msg);
+                                statusMessageCounter++;
                                 break;
                             default:
                                 break;
                         }
                     }
+                }
+
+                TimeSpan ts = DateTime.Now - lastStatusMessage;
+                if(ts.TotalSeconds >= 20)
+                {
+                    Debug.Log("[JoystickSocketReader]: " + statusMessageCounter + " messages received");
+                    statusMessageCounter = 0;
+                    lastStatusMessage = DateTime.Now;
                 }
             }
             catch (Exception e)
@@ -461,7 +474,7 @@ namespace JoystickProxy
 
         public override string ToString()
         {
-            return String.Format("Joystick,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}",
+            return String.Format("Joystick|{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}",
                 X.ToString(FLOAT_PRECISION),
                 Y.ToString(FLOAT_PRECISION),
                 Trigger1.ToString(),
@@ -479,14 +492,14 @@ namespace JoystickProxy
 
         public void FromString(string state)
         {
-            string[] values = state.Split(',');
+            string[] values = state.Split('|');
             if (values.Length != 14)
                 throw new Exception("Invalid Joystick state length, should be " + 14 + " but was " + values.Length);
             if (values[0] != "Joystick")
                 throw new Exception("Invalid state: " + values[0]);
 
-            X = float.Parse(values[1]);
-            Y = float.Parse(values[2]);
+            X = float.Parse(values[1], System.Globalization.CultureInfo.InvariantCulture);
+            Y = float.Parse(values[2], System.Globalization.CultureInfo.InvariantCulture);
             Trigger1 = int.Parse(values[3]);
             Trigger2 = int.Parse(values[4]);
             MasterMode = int.Parse(values[5]);
@@ -533,7 +546,7 @@ namespace JoystickProxy
 
         public override string ToString()
         {
-            return String.Format("Throttle,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24},{25},{26}",
+            return String.Format("Throttle|{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}|{19}|{20}|{21}|{22}|{23}|{24}|{25}|{26}",
                 LeftThrottle.ToString(FLOAT_PRECISION),
                 RightThrottle.ToString(FLOAT_PRECISION),
                 Friction.ToString(FLOAT_PRECISION),
@@ -565,17 +578,17 @@ namespace JoystickProxy
 
         public void FromString(string state)
         {
-            string[] values = state.Split(',');
+            string[] values = state.Split('|');
             if (values.Length != 28)
-                throw new Exception("Invalid Joystick state length, should be 28 but was " + values.Length);
+                throw new Exception("Invalid Throttle state length, should be 28 but was " + values.Length);
             if (values[0] != "Throttle")
                 throw new Exception("Invalid state: " + values[0]);
 
-            LeftThrottle = float.Parse(values[1]);
-            RightThrottle = float.Parse(values[2]);
-            Friction = float.Parse(values[3]);
-            SlewX = float.Parse(values[4]);
-            SlewY = float.Parse(values[5]);
+            LeftThrottle = float.Parse(values[1], System.Globalization.CultureInfo.InvariantCulture);
+            RightThrottle = float.Parse(values[2], System.Globalization.CultureInfo.InvariantCulture);
+            Friction = float.Parse(values[3], System.Globalization.CultureInfo.InvariantCulture);
+            SlewX = float.Parse(values[4], System.Globalization.CultureInfo.InvariantCulture);
+            SlewY = float.Parse(values[5], System.Globalization.CultureInfo.InvariantCulture);
             SlewPush = int.Parse(values[6]);
             CoolieSwitch.Parse(values[7]);
             MicSwitch.Parse(values[8]);
