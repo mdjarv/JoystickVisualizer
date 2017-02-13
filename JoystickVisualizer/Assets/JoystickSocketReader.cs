@@ -24,8 +24,6 @@ public class JoystickSocketReader : MonoBehaviour {
 
     public GameObject connectionError;
 
-    public GameObject ProxyConnection;
-
 	public GameObject HostInputField;
 
     public string Host = "127.0.0.1";
@@ -127,7 +125,12 @@ public class JoystickSocketReader : MonoBehaviour {
 	public void Host_Changed(string host)
 	{
 		Host = host;
-		client.Close();
+		connectionError.SetActive(false);
+		if (client != null)
+		{
+			client.Close ();
+		}
+		reconnect ();
 	}
 
     void Start () {
@@ -165,7 +168,7 @@ public class JoystickSocketReader : MonoBehaviour {
     }
 	
 	void Update () {
-		if (HostInputField.activeInHierarchy)
+		if (HostInputField.activeInHierarchy || connectionError.activeInHierarchy)
 		{
 			// If we're inputting host, don't do anything
 			return;
@@ -180,7 +183,6 @@ public class JoystickSocketReader : MonoBehaviour {
                 String responseData = String.Empty;
                 // Read the first batch of the TcpServer response bytes.
                 Int32 bytes = stream.Read(data, 0, data.Length);
-                connectionError.SetActive(false);
                 lastMessage = DateTime.Now;
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
@@ -220,29 +222,45 @@ public class JoystickSocketReader : MonoBehaviour {
                 return;
             }
         }
-        if((DateTime.Now - lastMessage).TotalSeconds > 2)
-        {
-            // Messages should come every second, no message means we disconnect and try again.
-            if (stream != null && stream.CanRead)
-                stream.Close();
+		if ((DateTime.Now - lastMessage).TotalSeconds > 2) {
+			// Messages should come every second, no message means we disconnect and try again.
+			if (stream != null && stream.CanRead)
+				stream.Close ();
 
-            if(client != null && client.Connected)
-                client.Close();
+			if (client != null && client.Connected)
+				client.Close ();
 
-            connectionError.SetActive(true);
-            try
-            {
-                lastMessage = DateTime.Now; // Reconnect attempt every other second
-
-                client = new TcpClient(Host, Port);
-                stream = client.GetStream();
-                connectionError.SetActive(false);
-            }
-            catch (Exception)
-            {
-            }
-        }
+			reconnect ();
+		}
     }
+
+	void reconnect() {
+		try
+		{
+			lastMessage = DateTime.Now; // Reconnect attempt every other second
+
+			client = new TcpClient();
+
+			var result = client.BeginConnect(Host, Port, null, null);
+			var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(1));
+			if(!success)
+			{
+				client.EndConnect(result);
+				client.Close();
+				connectionError.SetActive (true);
+				return;
+			}
+
+			client.EndConnect(result);
+
+			stream = client.GetStream();
+		}
+		catch (Exception e)
+		{
+			Debug.Log ("Error connecting to Proxy" + e.Message);
+			connectionError.SetActive (true);
+		}
+	}
 
     void UpdateJoystick(string message)
     {
