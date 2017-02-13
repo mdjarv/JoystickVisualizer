@@ -24,8 +24,12 @@ public class JoystickSocketReader : MonoBehaviour {
 
     public GameObject connectionError;
 
-    public string host = "127.0.0.1";
-    public int port = 9998;
+    public GameObject ProxyConnection;
+
+	public GameObject HostInputField;
+
+    public string Host = "127.0.0.1";
+    public int Port = 9998;
 
     public GameObject joystickGimbal;
 
@@ -120,6 +124,12 @@ public class JoystickSocketReader : MonoBehaviour {
     private WarthogJoystick warthogJoystick;
     private WarthogThrottle warthogThrottle;
 
+	public void Host_Changed(string host)
+	{
+		Host = host;
+		client.Close();
+	}
+
     void Start () {
         warthogJoystick = new WarthogJoystick();
         warthogThrottle = new WarthogThrottle();
@@ -155,6 +165,12 @@ public class JoystickSocketReader : MonoBehaviour {
     }
 	
 	void Update () {
+		if (HostInputField.activeInHierarchy)
+		{
+			// If we're inputting host, don't do anything
+			return;
+		}
+
         if (stream != null && stream.CanRead && stream.DataAvailable)
         {
             try
@@ -218,7 +234,7 @@ public class JoystickSocketReader : MonoBehaviour {
             {
                 lastMessage = DateTime.Now; // Reconnect attempt every other second
 
-                client = new TcpClient(host, port);
+                client = new TcpClient(Host, Port);
                 stream = client.GetStream();
                 connectionError.SetActive(false);
             }

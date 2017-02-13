@@ -69,7 +69,7 @@ namespace JoystickProxy
             {
                 while (true)
                 {
-                    listener = new TcpListener(IPAddress.Loopback, 9998);
+                    listener = new TcpListener(IPAddress.Any, 9998);
                     Console.WriteLine("Waiting for connection...");
                     listener.Start();
                     tcpClient = listener.AcceptTcpClient();
