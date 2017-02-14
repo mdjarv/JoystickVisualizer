@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System;
 using JoystickProxy;
+using UnityEngine.UI;
 
 public class JoystickSocketReader : MonoBehaviour {
     private int HAT_ANGLE = 8;
@@ -24,7 +25,7 @@ public class JoystickSocketReader : MonoBehaviour {
 
     public GameObject connectionError;
 
-	public GameObject HostInputField;
+	public GameObject HostInputPanel;
 
     public string Host = "127.0.0.1";
     public int Port = 9998;
@@ -122,16 +123,13 @@ public class JoystickSocketReader : MonoBehaviour {
     private WarthogJoystick warthogJoystick;
     private WarthogThrottle warthogThrottle;
 
-	public void Host_Changed(string host)
-	{
-		Host = host;
-		connectionError.SetActive(false);
-		if (client != null)
-		{
-			client.Close ();
-		}
-		reconnect ();
-	}
+    public InputField ProxyHostInputField;
+
+    public void UpdateHost()
+    {
+        Host = ProxyHostInputField.text;
+        reconnect();
+    }
 
     void Start () {
         warthogJoystick = new WarthogJoystick();
@@ -168,7 +166,7 @@ public class JoystickSocketReader : MonoBehaviour {
     }
 	
 	void Update () {
-		if (HostInputField.activeInHierarchy || connectionError.activeInHierarchy)
+		if (HostInputPanel.activeInHierarchy || connectionError.activeInHierarchy)
 		{
 			// If we're inputting host, don't do anything
 			return;
@@ -238,6 +236,11 @@ public class JoystickSocketReader : MonoBehaviour {
 		try
 		{
 			lastMessage = DateTime.Now; // Reconnect attempt every other second
+
+            try
+            {
+                client.Close();
+            } catch(Exception) {}
 
 			client = new TcpClient();
 
