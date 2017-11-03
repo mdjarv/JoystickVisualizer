@@ -11,6 +11,9 @@ public class UDPListener : MonoBehaviour {
 
     public int Port = 11000;
 
+	public delegate void StickEvent (JoystickState state);
+	public static event StickEvent StickEventListener;
+
     Dictionary<string, JoystickState> States = new Dictionary<string, JoystickState>();
 
     private UdpClient listener;
@@ -30,17 +33,16 @@ public class UDPListener : MonoBehaviour {
                 Byte[] recieveBytes = listener.Receive(ref groupEP);
                 string[] message = Encoding.ASCII.GetString(recieveBytes).Split(',');
 
-                if (!States.ContainsKey(message[0]))
+                Debug.Log("Got packet: " + String.Join(",", message));
+                if (StickEventListener != null)
                 {
-                    States.Add(message[0], new JoystickState(message[0], message[1]));
+                    StickEventListener(new JoystickState(message));
                 }
-
-                States[message[0]].Update(message);
             }
         }
         catch (Exception e)
         {
-            Debug.LogError("Failed to read from UDP socket");
+            Debug.LogError("Failed to read from UDP socket\n" + e.ToString());
         }
     }
 }

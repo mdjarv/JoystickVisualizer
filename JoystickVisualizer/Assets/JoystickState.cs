@@ -1,42 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
 
 namespace Assets
 {
-    class JoystickState
+    public class JoystickState
     {
         public string UsbID;
         public string Name;
 
-        public Dictionary<string, string> Data;
+        public Dictionary<string, int> Data = new Dictionary<string, int>();
 
-        public JoystickState(string usbID, string name)
+        public JoystickState(string[] state)
         {
-            UsbID = usbID;
-            Name = name;
-            Data = new Dictionary<string, string>();
-        }
-
-        internal void Update(string[] message)
-        {
-            for (int i = 2; i < message.Length; i++)
+            for (int i = 0; i < state.Length; i++)
             {
-                string[] state = message[i].Split('=');
+                switch(i)
+                {
+                    case 0:
+                        UsbID = state[i];
+                        break;
+                    case 1:
+                        Name = state[i];
+                        break;
+                    default:
+                        string[] keyVal = state[i].Split('=');
+                        if (keyVal.Length == 2)
+                        {
+                            Data[keyVal[0]] = Int32.Parse(keyVal[1]);
+                        }
+                        break;
 
-                Data[state[0]] = state[1];
+                }
             }
-
-            // Debug.Log(this.ToString());
         }
 
         public override string ToString()
         {
             string state = String.Format("State of {0} ({1}): ", Name, UsbID);
 
-            foreach (KeyValuePair<string, string> entry in Data)
+            foreach (KeyValuePair<string, int> entry in Data)
             {
                 state += String.Format("\n * {0} = {1}", entry.Key, entry.Value);
             }
