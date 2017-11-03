@@ -10,7 +10,7 @@ public class GUIEvents : MonoBehaviour {
 	}
 	
 	void Update () {
-        if(Input.GetButtonDown("GUI Toggle"))
+        if(Input.GetButtonDown("Toggle GUI"))
         {
             uiVisible = !uiVisible;
             foreach (Button button in buttonContainer.GetComponentsInChildren<Button>(true) )
