@@ -57,8 +57,7 @@ namespace JoystickProxy
         public Program()
         {
 
-            System.Timers.Timer deviceFinderTimer = new System.Timers.Timer();
-            deviceFinderTimer.Interval = 2000;
+            System.Timers.Timer deviceFinderTimer = new System.Timers.Timer(2000);
             deviceFinderTimer.Elapsed += DeviceFinderTimer_Elapsed;
             deviceFinderTimer.Enabled = true;
             ScanJoysticks();
@@ -70,40 +69,29 @@ namespace JoystickProxy
 
                 while (true)
                 {
-                    List<string> outgoingEvents = new List<string>();
-
                     foreach(Joystick joystick in connectedJoysticks.Values)
                     {
                         try
                         {
                             joystick.Poll();
-
                             JoystickUpdate[] updates = joystick.GetBufferedData();
 
                             if (updates.Length > 0)
                             {
                                 string usbID = GuidToUsbID(joystick.Information.ProductGuid);
-                                string events = usbID + "," + SupportedDevices[usbID];
-
+                                List<string> events = new List<string>();
+                                
                                 foreach (var state in updates)
                                 {
-                                    events += "," + state.Offset + "=" + state.Value;
+                                    events.Add(state.Offset + "=" + state.Value);
                                 }
-                                outgoingEvents.Add(events);
+
+                                SendEvent(sock, endPoint, usbID, events);
                             }
                         }
-                        catch (SharpDX.SharpDXException e)
+                        catch (SharpDX.SharpDXException)
                         {}
 
-                    }
-
-                    if (outgoingEvents.Count > 0)
-                    {
-                        string outgoingString = String.Join("\n", outgoingEvents);
-                        byte[] send_buffer = Encoding.ASCII.GetBytes(outgoingString);
-                        sock.SendTo(send_buffer, endPoint);
-
-                        Console.WriteLine(outgoingString);
                     }
 
                     Thread.Sleep(20);
@@ -127,6 +115,14 @@ namespace JoystickProxy
 
         }
 
+        private void SendEvent(Socket sock, IPEndPoint endPoint, string usbID, List<string> events)
+        {
+            string outgoingString = String.Format("{0},{1},{2}", usbID, SupportedDevices[usbID], String.Join(",", events));
+            byte[] send_buffer = Encoding.ASCII.GetBytes(outgoingString);
+            sock.SendTo(send_buffer, endPoint);
+            Console.WriteLine(outgoingString);
+        }
+
         private void DeviceFinderTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             ScanJoysticks();
@@ -135,7 +131,6 @@ namespace JoystickProxy
         private void ScanJoysticks()
         {
             Dictionary<string, Joystick> foundJoysticks = new Dictionary<string, Joystick>();
-            Joystick ignored;
 
             foreach (DeviceInstance device in di.GetDevices())
             {
@@ -152,7 +147,7 @@ namespace JoystickProxy
             {
                 connectedJoysticks[removed].Unacquire();
 
-                connectedJoysticks.TryRemove(removed, out ignored);
+                connectedJoysticks.TryRemove(removed, out Joystick ignored);
                 Console.WriteLine(SupportedDevices[removed] + " disconnected");
             }
 

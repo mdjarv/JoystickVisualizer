@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class T16000M : MonoBehaviour {
     private static string USB_ID = "044f:b10a";
-
+    //private static string USB_ID = "044f:0402";
     public GameObject Gimbal;
 
     // Use this for initialization
@@ -44,13 +44,13 @@ public class T16000M : MonoBehaviour {
         }
     }
 
-    public static int ConvertRange(
-        int value, // value to convert
-        int originalStart, int originalEnd, // original range
-        int newStart, int newEnd) // desired range
+    public static float ConvertRange(
+        double value, // value to convert
+        double originalStart, double originalEnd, // original range
+        double newStart, double newEnd) // desired range
     {
         double scale = (double)(newEnd - newStart) / (originalEnd - originalStart);
-        return (int)(newStart + ((value - originalStart) * scale));
+        return (float)(newStart + ((value - originalStart) * scale));
     }
 
 }
