@@ -33,11 +33,6 @@ public class T16000M : MonoBehaviour {
 
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
-            float angle = ConvertRange(entry.Value, 0, 65535, -30, 30);
-            Vector3 euler = Gimbal.transform.eulerAngles;
-            Vector3 localEuler = Gimbal.transform.localEulerAngles;
-            //Quaternion q; // = Quaternion.EulerRotation;
-
             switch (entry.Key)
             {
                 case "RotationZ":
@@ -47,14 +42,14 @@ public class T16000M : MonoBehaviour {
                     break;
                 case "X":
                     // Rotate Z between -30 and 30
-                    Gimbal.transform.eulerAngles = new Vector3(euler.x, euler.y, ConvertRange(entry.Value, 0, 65535, -30, 30));
+                    Gimbal.transform.eulerAngles = new Vector3(Gimbal.transform.eulerAngles.x, Gimbal.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, -30, 30));
 
                     //q = Quaternion.AngleAxis(angle, Vector3.forward);
                     //Gimbal.transform.eulerAngles = q.eulerAngles;
                     break;
                 case "Y":
                     // Rotate X between -30 and 30
-                    Gimbal.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -30, 30), euler.y, euler.z);
+                    Gimbal.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -30, 30), Gimbal.transform.eulerAngles.y, Gimbal.transform.eulerAngles.z);
 
                     //q = Quaternion.AngleAxis(angle, Vector3.right);
                     //Gimbal.transform.eulerAngles = q.eulerAngles;
