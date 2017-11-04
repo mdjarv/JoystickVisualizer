@@ -14,8 +14,6 @@ public class UDPListener : MonoBehaviour {
 	public delegate void StickEvent (JoystickState state);
 	public static event StickEvent StickEventListener;
 
-    Dictionary<string, JoystickState> States = new Dictionary<string, JoystickState>();
-
     private UdpClient listener;
 
     // Use this for initialization
@@ -33,7 +31,7 @@ public class UDPListener : MonoBehaviour {
                 Byte[] recieveBytes = listener.Receive(ref groupEP);
                 string[] message = Encoding.ASCII.GetString(recieveBytes).Split(',');
 
-                Debug.Log("Got packet: " + String.Join(",", message));
+                //Debug.Log("Got packet: " + String.Join(",", message));
                 if (StickEventListener != null)
                 {
                     StickEventListener(new JoystickState(message));

@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class T16000M : MonoBehaviour {
     private static string USB_ID = "044f:b10a";
-    //private static string USB_ID = "044f:0402";
+    
+    //private static string USB_ID = "044f:0402"; // TM Stick (test)
+    //private static string USB_ID = "044f:0404"; // TM Throttle (test)
+
     public GameObject Gimbal;
+    public GameObject StickHandle;
 
     // Use this for initialization
     void Start()
@@ -26,19 +30,34 @@ public class T16000M : MonoBehaviour {
             return;
         }
 
-        Debug.Log("T-16000M got new state");
 
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
+            float angle = ConvertRange(entry.Value, 0, 65535, -30, 30);
+            Vector3 euler = Gimbal.transform.eulerAngles;
+            Vector3 localEuler = Gimbal.transform.localEulerAngles;
+            //Quaternion q; // = Quaternion.EulerRotation;
+
             switch (entry.Key)
             {
+                case "RotationZ":
+                    StickHandle.transform.localEulerAngles = new Vector3(StickHandle.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, -30, 30), StickHandle.transform.localEulerAngles.z);
+                    //q = Quaternion.AngleAxis(angle, Vector3.up);
+                    //Gimbal.transform.eulerAngles = q.eulerAngles;
+                    break;
                 case "X":
                     // Rotate Z between -30 and 30
-                    Gimbal.transform.eulerAngles = new Vector3(Gimbal.transform.eulerAngles.x, Gimbal.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, -30, 30));
+                    Gimbal.transform.eulerAngles = new Vector3(euler.x, euler.y, ConvertRange(entry.Value, 0, 65535, -30, 30));
+
+                    //q = Quaternion.AngleAxis(angle, Vector3.forward);
+                    //Gimbal.transform.eulerAngles = q.eulerAngles;
                     break;
                 case "Y":
                     // Rotate X between -30 and 30
-                    Gimbal.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -30, 30), Gimbal.transform.eulerAngles.y, Gimbal.transform.eulerAngles.z);
+                    Gimbal.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -30, 30), euler.y, euler.z);
+
+                    //q = Quaternion.AngleAxis(angle, Vector3.right);
+                    //Gimbal.transform.eulerAngles = q.eulerAngles;
                     break;
             }
         }
