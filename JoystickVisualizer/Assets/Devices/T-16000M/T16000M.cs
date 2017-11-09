@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class T16000M : MonoBehaviour {
-    private static string USB_ID = "044f:b10a";
+    public const string USB_ID = "044f:b10a";
     
     //private static string USB_ID = "044f:0402"; // TM Stick (test)
     //private static string USB_ID = "044f:0404"; // TM Throttle (test)

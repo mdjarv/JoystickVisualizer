@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TMWarthogThrottle : MonoBehaviour {
-    private static string USB_ID = "044f:0404";
+    public const string USB_ID = "044f:0404";
 
-    public GameObject Gimbal;
+    public GameObject Model;
+    public GameObject GimbalLeft;
+    public GameObject GimbalRight;
+    public GameObject GimbalFriction;
 
     // Use this for initialization
     void Start()
@@ -26,17 +29,34 @@ public class TMWarthogThrottle : MonoBehaviour {
             return;
         }
 
+        Model.SetActive(true);
+
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
             switch (entry.Key)
             {
-                case "X":
+                case "RotationZ": // Left Throttle
                     // Rotate Z between -30 and 30
-                    Gimbal.transform.eulerAngles = new Vector3(Gimbal.transform.eulerAngles.x, Gimbal.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, 30, -30));
+                    GimbalLeft.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
                     break;
-                case "Y":
+                case "Z": // Right Throttle
                     // Rotate X between -30 and 30
-                    Gimbal.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 30, -30), Gimbal.transform.eulerAngles.y, Gimbal.transform.eulerAngles.z);
+                    GimbalRight.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
+                    break;
+                case "Buttons29": // Left Throttle Idle/Off
+                    if (entry.Value == 0)
+                        GimbalLeft.transform.eulerAngles = new Vector3(-25, GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
+                    else
+                        GimbalLeft.transform.eulerAngles = new Vector3(-35, GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
+                    break;
+                case "Buttons28": // Left Throttle Idle/Off
+                    if (entry.Value == 0)
+                        GimbalRight.transform.eulerAngles = new Vector3(-25, GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
+                    else
+                        GimbalRight.transform.eulerAngles = new Vector3(-35, GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
+                    break;
+                case "Sliders0": // Friction
+                    GimbalFriction.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -40), GimbalFriction.transform.eulerAngles.y, GimbalFriction.transform.eulerAngles.z);
                     break;
             }
         }

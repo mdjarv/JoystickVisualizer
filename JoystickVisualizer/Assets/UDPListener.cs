@@ -11,7 +11,7 @@ public class UDPListener : MonoBehaviour {
 
     public int Port = 11000;
 
-	public delegate void StickEvent (JoystickState state);
+    public delegate void StickEvent (JoystickState state);
 	public static event StickEvent StickEventListener;
 
     private UdpClient listener;
@@ -30,7 +30,7 @@ public class UDPListener : MonoBehaviour {
                 IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, Port);
                 Byte[] recieveBytes = listener.Receive(ref groupEP);
                 string[] message = Encoding.ASCII.GetString(recieveBytes).Split(',');
-
+                
                 //Debug.Log("Got packet: " + String.Join(",", message));
                 if (StickEventListener != null)
                 {

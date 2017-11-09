@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TMWarthogJoystick : MonoBehaviour {
-    private static string USB_ID = "044f:0402";
+    public const string USB_ID = "044f:0402";
 
+    public GameObject Model;
     public GameObject Gimbal;
 
     // Use this for initialization
@@ -26,17 +27,19 @@ public class TMWarthogJoystick : MonoBehaviour {
             return;
         }
 
+        Model.SetActive(true);
+
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
             switch (entry.Key)
             {
                 case "X":
                     // Rotate Z between -30 and 30
-                    Gimbal.transform.eulerAngles = new Vector3(Gimbal.transform.eulerAngles.x, Gimbal.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, 30, -30));
+                    Gimbal.transform.eulerAngles = new Vector3(Gimbal.transform.eulerAngles.x, Gimbal.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, 20, -20));
                     break;
                 case "Y":
                     // Rotate X between -30 and 30
-                    Gimbal.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 30, -30), Gimbal.transform.eulerAngles.y, Gimbal.transform.eulerAngles.z);
+                    Gimbal.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), Gimbal.transform.eulerAngles.y, Gimbal.transform.eulerAngles.z);
                     break;
             }
         }
