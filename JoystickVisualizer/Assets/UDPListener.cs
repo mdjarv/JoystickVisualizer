@@ -16,9 +16,21 @@ public class UDPListener : MonoBehaviour {
 
     private UdpClient listener;
 
+    public GameObject[] ControllerModels;
+
     // Use this for initialization
     void Start () {
         listener = new UdpClient(Port);
+        // Hide all models at the start
+
+        if (ControllerModels == null || ControllerModels.Length == 0)
+            ControllerModels = GameObject.FindGameObjectsWithTag("ControllerModel");
+
+        foreach(GameObject model in ControllerModels)
+        {
+            model.SetActive(false);
+        }
+
     }
 	
 	// Update is called once per frame

@@ -17,6 +17,7 @@ namespace JoystickProxy
 {
     class Program
     {
+        private bool Debug = true;
         private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
         private static IPAddress host;
         private static int port;
@@ -52,20 +53,28 @@ namespace JoystickProxy
             return Regex.Replace(guid.ToString(), @"(^....)(....).*$", "$2:$1");
         }
 
+        private string GetUsbId(Joystick joystick)
+        {
+            return GuidToUsbID(joystick.Information.ProductGuid);
+        }
+
         private DirectInput di = new DirectInput();
+        private Socket sock;
+        private IPEndPoint endPoint;
 
         public Program()
         {
 
-            System.Timers.Timer deviceFinderTimer = new System.Timers.Timer(2000);
-            deviceFinderTimer.Elapsed += DeviceFinderTimer_Elapsed;
-            deviceFinderTimer.Enabled = true;
-            ScanJoysticks();
 
             try
             {
-                Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                IPEndPoint endPoint = new IPEndPoint(host, port);
+                sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                endPoint = new IPEndPoint(host, port);
+
+                System.Timers.Timer deviceFinderTimer = new System.Timers.Timer(2000);
+                deviceFinderTimer.Elapsed += DeviceFinderTimer_Elapsed;
+                deviceFinderTimer.Enabled = true;
+                ScanJoysticks();
 
                 while (true)
                 {
@@ -78,7 +87,7 @@ namespace JoystickProxy
 
                             if (updates.Length > 0)
                             {
-                                string usbID = GuidToUsbID(joystick.Information.ProductGuid);
+                                string usbID = GetUsbId(joystick);
                                 List<string> events = new List<string>();
                                 
                                 foreach (var state in updates)
@@ -117,10 +126,16 @@ namespace JoystickProxy
 
         private void SendEvent(Socket sock, IPEndPoint endPoint, string usbID, List<string> events)
         {
+            if (sock == null || endPoint == null)
+                return;
+
             string outgoingString = String.Format("{0},{1},{2}", usbID, SupportedDevices[usbID], String.Join(",", events));
             byte[] send_buffer = Encoding.ASCII.GetBytes(outgoingString);
             sock.SendTo(send_buffer, endPoint);
-            Console.WriteLine(outgoingString);
+            if (Debug)
+            {
+                Console.WriteLine(outgoingString);
+            }
         }
 
         private void DeviceFinderTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -161,6 +176,8 @@ namespace JoystickProxy
                 if (connectedJoysticks.TryAdd(added, foundJoysticks[added]))
                 {
                     Console.WriteLine(SupportedDevices[added] + " connected");
+                    List<string> events = new List<string>();
+                    SendEvent(sock, endPoint, GetUsbId(foundJoysticks[added]), events);
                 }
             }
         }
