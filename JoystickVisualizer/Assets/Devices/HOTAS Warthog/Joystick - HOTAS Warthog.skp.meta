@@ -1,0 +1,229 @@
+fileFormatVersion: 2
+guid: 149c3bcbe04f90247984337a9a71220a
+timeCreated: 1510079451
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000002000000021000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 9b7957fcd054636e64410e9d2de11b7e
+  longitude: -105.242139
+  latitude: 40.018309
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -8.032257, y: 82.006905, z: -111.07265}
+      lookAt: {x: -7.165347, y: 75.24023, z: -99.042336}
+      up: {x: 0.03516634, y: 0.87212855, z: 0.4880115}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: CMS
+    100002: DMS
+    100004: Group 10
+    100006: Group 12
+    100008: Group 4
+    100010: Group 6
+    100012: Group 8
+    100014: //RootNode
+    100016: Joystick - HOTAS Warthog 1
+    100018: Master Mode
+    100020: Pickle
+    100022: Pinky Button
+    100024: Pinky Lever
+    100026: TM Warthog Base
+    100028: TMS
+    100030: Trigger
+    100032: Trim
+    100034: Warthog Stick Handle
+    400000: CMS
+    400002: DMS
+    400004: Group 10
+    400006: Group 12
+    400008: Group 4
+    400010: Group 6
+    400012: Group 8
+    400014: //RootNode
+    400016: Joystick - HOTAS Warthog 1
+    400018: Master Mode
+    400020: Pickle
+    400022: Pinky Button
+    400024: Pinky Lever
+    400026: TM Warthog Base
+    400028: TMS
+    400030: Trigger
+    400032: Trim
+    400034: Warthog Stick Handle
+    2300000: CMS
+    2300002: DMS
+    2300004: Group 10
+    2300006: Group 12
+    2300008: Group 4
+    2300010: Group 6
+    2300012: Group 8
+    2300014: Master Mode
+    2300016: Pickle
+    2300018: Pinky Button
+    2300020: Pinky Lever
+    2300022: TM Warthog Base
+    2300024: TMS
+    2300026: Trigger
+    2300028: Trim
+    2300030: Warthog Stick Handle
+    3300000: CMS
+    3300002: DMS
+    3300004: Group 10
+    3300006: Group 12
+    3300008: Group 4
+    3300010: Group 6
+    3300012: Group 8
+    3300014: Master Mode
+    3300016: Pickle
+    3300018: Pinky Button
+    3300020: Pinky Lever
+    3300022: TM Warthog Base
+    3300024: TMS
+    3300026: Trigger
+    3300028: Trim
+    3300030: Warthog Stick Handle
+    4300000: Mesh Warthog Stick Handle
+    4300002: Mesh Group 4
+    4300004: Mesh Group 6
+    4300006: Mesh Group 8
+    4300008: Mesh Group 10
+    4300010: Mesh Group 12
+    4300012: Mesh Pinky Button
+    4300014: Mesh Pinky Lever
+    4300016: Mesh CMS
+    4300018: Mesh Trigger
+    4300020: Mesh Pickle
+    4300022: Mesh Master Mode
+    4300024: Mesh DMS
+    4300026: Mesh Trim
+    4300028: Mesh TMS
+    4300030: Mesh TM Warthog Base
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_Aluminum_Anodized
+    second: {fileID: 2100000, guid: 64316eb7d719f0044a5555cbc2128d50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _1
+    second: {fileID: 2100000, guid: 10622d7b219e9c64496249c54713b05d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _2
+    second: {fileID: 2100000, guid: 791a3a72c0061ef4caeaf2c870fbe187, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _3
+    second: {fileID: 2100000, guid: 340ca14c279254349850688a2bc1bdad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _4
+    second: {fileID: 2100000, guid: d367729c58cd3ac4d9af073fc374947d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _5
+    second: {fileID: 2100000, guid: 7e3682a8d4ed80146a8756e713c6c7d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _6
+    second: {fileID: 2100000, guid: 840f24417477e804796e13423de068a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _defaultMat
+    second: {fileID: 2100000, guid: bb8a7ea0530a00040aaa42d837dfa046, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -5,80 +5,105 @@ using System.Net.Sockets;
 using System.Net;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Text;
+using System.Linq;
+using System.Linq.Expressions;
+using IniParser;
+using IniParser.Model;
+using System.Collections.Concurrent;
 
 namespace JoystickProxy
 {
     class Program
     {
+        private bool Debug = true;
+        private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
+        private static IPAddress host;
+        private static int port;
+
         static void Main(string[] args)
         {
+            var parser = new FileIniDataParser();
+            IniData data = parser.ReadFile("settings.ini");
+
+            host = IPAddress.Parse(data["Config"]["Host"]);
+            port = Int32.Parse(data["Config"]["Port"]);
+
+            Console.WriteLine("JoystickProxy");
+            Console.WriteLine("=============");
+            Console.WriteLine("Outgoing destination: " + host + ":" + port);
+            Console.WriteLine("Supported Devices:");
+
+            foreach(KeyData supportedDevice in data["Devices"])
+            {
+                SupportedDevices.Add(supportedDevice.KeyName, supportedDevice.Value);
+                Console.WriteLine(" * " + supportedDevice.Value);
+            }
+
+            // TODO Validate config and handle errors nicely
+            Console.WriteLine("");
             new Program();
         }
 
-        private byte[] pingMessage = System.Text.Encoding.ASCII.GetBytes("ping\n");
-        private DateTime lastMessage = new DateTime();
+        private ConcurrentDictionary<string, Joystick> connectedJoysticks = new ConcurrentDictionary<string, Joystick>();
 
-        private int messageCounter = 0;
-        private DateTime lastStatusMessage = new DateTime();
+        private string GuidToUsbID(Guid guid)
+        {
+            return Regex.Replace(guid.ToString(), @"(^....)(....).*$", "$2:$1");
+        }
 
-        private WarthogJoystick warthogJoystick = new WarthogJoystick();
-        private WarthogThrottle warthogThrottle = new WarthogThrottle();
+        private string GetUsbId(Joystick joystick)
+        {
+            return GuidToUsbID(joystick.Information.ProductGuid);
+        }
 
-        private Joystick joystick;
-        private Joystick throttle;
-
-        private TcpClient tcpClient;
-        private NetworkStream stream;
-        private TcpListener listener;
+        private DirectInput di = new DirectInput();
+        private Socket sock;
+        private IPEndPoint endPoint;
 
         public Program()
         {
-            Console.WriteLine("Reading devices...");
 
-            DirectInput di = new DirectInput();
-
-
-            foreach (DeviceInstance device in di.GetDevices())
-            {
-                //Console.WriteLine(device.InstanceName);
-                switch (device.InstanceName)
-                {
-                    case "Joystick - HOTAS Warthog":
-                        joystick = new Joystick(di, device.ProductGuid);
-                        break;
-                    case "Throttle - HOTAS Warthog":
-                        throttle = new Joystick(di, device.ProductGuid);
-                        break;
-                }
-            }
-
-            if (joystick != null)
-            {
-                Console.WriteLine("Found Warthog Joystick");
-                joystick.Properties.BufferSize = 32;
-                joystick.Acquire();
-            }
-            if (throttle != null)
-            {
-                Console.WriteLine("Found Warthog Throttle");
-                throttle.Properties.BufferSize = 32;
-                throttle.Acquire();
-            }
 
             try
             {
+                sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                endPoint = new IPEndPoint(host, port);
+
+                System.Timers.Timer deviceFinderTimer = new System.Timers.Timer(2000);
+                deviceFinderTimer.Elapsed += DeviceFinderTimer_Elapsed;
+                deviceFinderTimer.Enabled = true;
+                ScanJoysticks();
+
                 while (true)
                 {
-                    listener = new TcpListener(IPAddress.Any, 9998);
-                    Console.WriteLine("Waiting for connection...");
-                    listener.Start();
-                    tcpClient = listener.AcceptTcpClient();
-                    stream = tcpClient.GetStream();
+                    foreach(Joystick joystick in connectedJoysticks.Values)
+                    {
+                        try
+                        {
+                            joystick.Poll();
+                            JoystickUpdate[] updates = joystick.GetBufferedData();
 
-                    Console.WriteLine("Connected!");
+                            if (updates.Length > 0)
+                            {
+                                string usbID = GetUsbId(joystick);
+                                List<string> events = new List<string>();
+                                
+                                foreach (var state in updates)
+                                {
+                                    events.Add(state.Offset + "=" + state.Value);
+                                }
 
-                    PollController();
-                    Disconnect();
+                                SendEvent(sock, endPoint, usbID, events);
+                            }
+                        }
+                        catch (SharpDX.SharpDXException)
+                        {}
+
+                    }
+
+                    Thread.Sleep(20);
                 }
             }
             catch (Exception e)
@@ -86,113 +111,75 @@ namespace JoystickProxy
                 Console.WriteLine("Error: " + e.ToString());
                 Console.ReadLine();
             }
+            
+
+            foreach (Joystick joystick in connectedJoysticks.Values)
+            {
+                Console.WriteLine("Closing connection to " + joystick.Information.InstanceName);
+                joystick.Unacquire();
+            }
+
+            Console.WriteLine("\nPress any key to close");
+            Console.ReadLine();
 
         }
 
-        private void Disconnect()
+        private void SendEvent(Socket sock, IPEndPoint endPoint, string usbID, List<string> events)
         {
-            try
+            if (sock == null || endPoint == null)
+                return;
+
+            string outgoingString = String.Format("{0},{1},{2}", usbID, SupportedDevices[usbID], String.Join(",", events));
+            byte[] send_buffer = Encoding.ASCII.GetBytes(outgoingString);
+            sock.SendTo(send_buffer, endPoint);
+            if (Debug)
             {
-                stream.Close();
-                stream = null;
+                Console.WriteLine(outgoingString);
             }
-            catch (Exception) { }
-            try
-            {
-                tcpClient.Close();
-                tcpClient = null;
-            }
-            catch (Exception) { }
-            try
-            {
-                listener.Stop();
-                listener = null;
-            }
-            catch (Exception) { }
-            Console.WriteLine("Disconnected");
         }
 
-        private void PollController()
+        private void DeviceFinderTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            JoystickUpdate[] updates;
-            bool sendJoystick = false;
-            bool sendThrottle = false;
+            ScanJoysticks();
+        }
 
-            while (true)
+        private void ScanJoysticks()
+        {
+            Dictionary<string, Joystick> foundJoysticks = new Dictionary<string, Joystick>();
+
+            foreach (DeviceInstance device in di.GetDevices())
             {
-                if (joystick != null)
+                string usbId = GuidToUsbID(device.ProductGuid);
+
+                if (SupportedDevices.ContainsKey(usbId))
                 {
-                    joystick.Poll();
-
-                    updates = joystick.GetBufferedData();
-                    if (updates.Length > 0)
-                    {
-                        sendJoystick = true;
-                        foreach (var state in updates)
-                        {
-                            warthogJoystick.UpdateState(state.Offset, state.Value);
-                        }
-                    }
+                    foundJoysticks.Add(usbId, new Joystick(di, device.ProductGuid));
                 }
-
-                if (throttle != null)
-                {
-                    throttle.Poll();
-                    updates = throttle.GetBufferedData();
-                    if (updates.Length > 0)
-                    {
-                        sendThrottle = true;
-                        foreach (var state in updates)
-                        {
-                            warthogThrottle.UpdateState(state.Offset, state.Value);
-                        }
-                    }
-                }
-
-
-                try
-                {
-                    if (sendJoystick)
-                    {
-                        byte[] joystickData = warthogJoystick.GetBytes();
-                        stream.Write(joystickData, 0, joystickData.Length);
-                        lastMessage = DateTime.Now;
-                        sendJoystick = false;
-                        messageCounter++;
-                    }
-
-                    if (sendThrottle)
-                    {
-                        byte[] throttleData = warthogThrottle.GetBytes();
-                        stream.Write(throttleData, 0, throttleData.Length);
-                        lastMessage = DateTime.Now;
-                        sendThrottle = false;
-                        messageCounter++;
-                    }
-
-                    TimeSpan ts = DateTime.Now - lastMessage;
-                    if (ts.TotalSeconds > 1)
-                    {
-                        stream.Write(pingMessage, 0, pingMessage.Length);
-                        lastMessage = DateTime.Now;
-                    }
-
-                    ts = DateTime.Now - lastStatusMessage;
-                    if(ts.TotalSeconds >= 20)
-                    {
-                        Console.WriteLine(messageCounter + " messages sent");
-                        lastStatusMessage = DateTime.Now;
-                        messageCounter = 0;
-                    }
-                }
-                catch (Exception)
-                {
-                    return;
-                }
-
-                Thread.Sleep(20);
             }
 
+            // Find removed devices
+            foreach(string removed in connectedJoysticks.Keys.Except(foundJoysticks.Keys))
+            {
+                connectedJoysticks[removed].Unacquire();
+
+                connectedJoysticks.TryRemove(removed, out Joystick ignored);
+                Console.WriteLine(SupportedDevices[removed] + " disconnected");
+            }
+
+            // Find added devices
+
+            foreach (string added in foundJoysticks.Keys.Except(connectedJoysticks.Keys))
+            {
+                foundJoysticks[added].Properties.BufferSize = 32;
+                foundJoysticks[added].Acquire();
+
+                if (connectedJoysticks.TryAdd(added, foundJoysticks[added]))
+                {
+                    Console.WriteLine(SupportedDevices[added] + " connected");
+                    List<string> events = new List<string>();
+                    SendEvent(sock, endPoint, GetUsbId(foundJoysticks[added]), events);
+                }
+            }
         }
     }
 }

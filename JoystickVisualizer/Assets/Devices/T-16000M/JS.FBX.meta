@@ -1,0 +1,175 @@
+fileFormatVersion: 2
+guid: 28cb2bc1f3d7e0f49874521951ce3e35
+timeCreated: 1509547923
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Box001
+    100002: Cylinder001
+    100004: Cylinder002
+    100006: //RootNode
+    100008: Object001
+    100010: Object002
+    100012: Object003
+    100014: Object004
+    100016: Object005
+    100018: Object006
+    100020: Object007
+    100022: Object008
+    100024: Object009
+    100026: Object010
+    100028: Object011
+    100030: Object012
+    100032: Object013
+    100034: Pyramid001
+    100036: Sphere001
+    100038: Sphere002
+    400000: Box001
+    400002: Cylinder001
+    400004: Cylinder002
+    400006: //RootNode
+    400008: Object001
+    400010: Object002
+    400012: Object003
+    400014: Object004
+    400016: Object005
+    400018: Object006
+    400020: Object007
+    400022: Object008
+    400024: Object009
+    400026: Object010
+    400028: Object011
+    400030: Object012
+    400032: Object013
+    400034: Pyramid001
+    400036: Sphere001
+    400038: Sphere002
+    2300000: Box001
+    2300002: Cylinder001
+    2300004: Cylinder002
+    2300006: Object001
+    2300008: Object002
+    2300010: Object003
+    2300012: Object004
+    2300014: Object005
+    2300016: Object006
+    2300018: Object007
+    2300020: Object008
+    2300022: Object009
+    2300024: Object010
+    2300026: Object011
+    2300028: Object012
+    2300030: Object013
+    2300032: Pyramid001
+    2300034: Sphere001
+    2300036: Sphere002
+    3300000: Box001
+    3300002: Cylinder001
+    3300004: Cylinder002
+    3300006: Object001
+    3300008: Object002
+    3300010: Object003
+    3300012: Object004
+    3300014: Object005
+    3300016: Object006
+    3300018: Object007
+    3300020: Object008
+    3300022: Object009
+    3300024: Object010
+    3300026: Object011
+    3300028: Object012
+    3300030: Object013
+    3300032: Pyramid001
+    3300034: Sphere001
+    3300036: Sphere002
+    4300000: Cylinder001
+    4300002: Sphere001
+    4300004: Sphere002
+    4300006: Pyramid001
+    4300008: Cylinder002
+    4300010: Object001
+    4300012: Box001
+    4300014: Object002
+    4300016: Object003
+    4300018: Object004
+    4300020: Object005
+    4300022: Object006
+    4300024: Object007
+    4300026: Object008
+    4300028: Object009
+    4300030: Object010
+    4300032: Object011
+    4300034: Object012
+    4300036: Object013
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
