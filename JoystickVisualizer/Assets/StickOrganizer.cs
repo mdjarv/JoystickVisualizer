@@ -39,7 +39,7 @@ public class StickOrganizer : MonoBehaviour {
 
             for (int i=0; i < activeControllers.Count; i++)
             {
-                activeControllers[i].transform.Translate(Vector3.right * ((i * OFFSET) - center));
+                activeControllers[i].transform.position = new Vector3((i * OFFSET) - center, activeControllers[i].transform.position.y, activeControllers[i].transform.position.z);
             }
         }
     }

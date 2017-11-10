@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class T16000M : MonoBehaviour {
     public const string USB_ID = "044f:b10a";
-    
+
     //private static string USB_ID = "044f:0402"; // TM Stick (test)
     //private static string USB_ID = "044f:0404"; // TM Throttle (test)
+
+    public GameObject Model;
 
     public GameObject Gimbal;
     public GameObject StickHandle;
@@ -30,6 +32,7 @@ public class T16000M : MonoBehaviour {
             return;
         }
 
+        Model.SetActive(true);
 
         foreach (KeyValuePair<string, int> entry in state.Data)
         {

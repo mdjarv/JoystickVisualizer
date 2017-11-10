@@ -7,9 +7,13 @@ public class TMWarthogThrottle : MonoBehaviour {
     public const string USB_ID = "044f:0404";
 
     public GameObject Model;
+
     public GameObject GimbalLeft;
     public GameObject GimbalRight;
+
     public GameObject GimbalFriction;
+
+    public GameObject GimbalAPU;
 
     // Use this for initialization
     void Start()
@@ -43,17 +47,20 @@ public class TMWarthogThrottle : MonoBehaviour {
                     // Rotate X between -30 and 30
                     GimbalRight.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
                     break;
+                case "Buttons19": // Right Throttle Idle/Off
+                    GimbalAPU.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : 30.0f);
+                    break;
+                case "Buttons28": // Right Throttle Idle/Off
+                    if (entry.Value == 0)
+                        GimbalRight.transform.eulerAngles = new Vector3(-25, GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
+                    else
+                        GimbalRight.transform.eulerAngles = new Vector3(-35, GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
+                    break;
                 case "Buttons29": // Left Throttle Idle/Off
                     if (entry.Value == 0)
                         GimbalLeft.transform.eulerAngles = new Vector3(-25, GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
                     else
                         GimbalLeft.transform.eulerAngles = new Vector3(-35, GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
-                    break;
-                case "Buttons28": // Left Throttle Idle/Off
-                    if (entry.Value == 0)
-                        GimbalRight.transform.eulerAngles = new Vector3(-25, GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
-                    else
-                        GimbalRight.transform.eulerAngles = new Vector3(-35, GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
                     break;
                 case "Sliders0": // Friction
                     GimbalFriction.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -40), GimbalFriction.transform.eulerAngles.y, GimbalFriction.transform.eulerAngles.z);
