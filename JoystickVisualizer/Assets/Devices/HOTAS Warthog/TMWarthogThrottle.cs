@@ -25,6 +25,14 @@ public class TMWarthogThrottle : MonoBehaviour {
     public GameObject AutopilotEngage;
     public GameObject AutopilotLaste;
 
+    public GameObject PinkySwitch;
+    public GameObject LeftThrottleButton;
+
+    public GameObject MicSwitch;
+    public GameObject SpeedBrake;
+    public GameObject BoatSwitch;
+    public GameObject ChinaHat;
+    public GameObject CoolieHat;
 
     // Use this for initialization
     void Start()
@@ -59,7 +67,7 @@ public class TMWarthogThrottle : MonoBehaviour {
                     // Rotate X between -30 and 30
                     GimbalRight.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
                     break;
-
+                    
                 case "Buttons28": // Right Throttle Idle/Off
                     if (entry.Value == 0)
                         GimbalRight.transform.eulerAngles = new Vector3(-25, GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
@@ -76,6 +84,33 @@ public class TMWarthogThrottle : MonoBehaviour {
 
                 case "Sliders0": // Friction
                     GimbalFriction.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -40), GimbalFriction.transform.eulerAngles.y, GimbalFriction.transform.eulerAngles.z);
+                    break;
+
+
+
+                case "Buttons5":
+                    MicSwitch.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : 10.0f);
+                    break;
+                case "Buttons3":
+                    MicSwitch.transform.localEulerAngles = Vector3.down * ((entry.Value == 0) ? 0.0f : 10.0f);
+                    break;
+                case "Buttons2":
+                    MicSwitch.transform.localEulerAngles = Vector3.forward * ((entry.Value == 0) ? 0.0f : 10.0f);
+                    break;
+                case "Buttons4":
+                    MicSwitch.transform.localEulerAngles = Vector3.back * ((entry.Value == 0) ? 0.0f : 10.0f);
+                    break;
+
+
+                case "Buttons6":
+                    SpeedBrake.transform.localPosition = Vector3.forward * ((entry.Value == 0) ? 0.0f : 0.005f);
+                    break;
+                case "Buttons7":
+                    SpeedBrake.transform.localPosition = Vector3.back * ((entry.Value == 0) ? 0.0f : 0.005f);
+                    break;
+
+                case "Buttons14":
+                    LeftThrottleButton.transform.localPosition = Vector3.back * ((entry.Value == 0) ? 0.0f : 0.005f);
                     break;
 
                 case "Buttons15":
@@ -132,6 +167,13 @@ public class TMWarthogThrottle : MonoBehaviour {
                     break;
                 case "Buttons22":
                     Flaps.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : -20.0f);
+                    break;
+
+                case "Buttons12":
+                    PinkySwitch.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : 20.0f);
+                    break;
+                case "Buttons13":
+                    PinkySwitch.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : -20.0f);
                     break;
             }
         }
