@@ -6,6 +6,7 @@ using UnityEngine;
 public class StickOrganizer : MonoBehaviour {
     private const float OFFSET = 20.0f;
 
+    public GameObject NoDevicesText;
     public GameObject[] ControllerModels;
 
     private List<GameObject> activeControllers = new List<GameObject>();
@@ -33,6 +34,8 @@ public class StickOrganizer : MonoBehaviour {
 
         if (oldLength != activeControllers.Count)
         {
+            NoDevicesText.SetActive(activeControllers.Count == 0);
+
             Debug.Log("Active controller count changed from "+ oldLength + " to " + activeControllers.Count + ", reorganizing models");
             
             float center = ((activeControllers.Count-1) * OFFSET) / 2;
