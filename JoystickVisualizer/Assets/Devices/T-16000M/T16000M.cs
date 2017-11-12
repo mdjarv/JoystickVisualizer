@@ -38,6 +38,11 @@ public class T16000M : MonoBehaviour {
         {
             switch (entry.Key)
             {
+                case "Connected":
+                    if (Model.activeInHierarchy)
+                        Model.SetActive(entry.Value == 1);
+                    break;
+
                 case "RotationZ":
                     StickHandle.transform.localEulerAngles = new Vector3(StickHandle.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, -30, 30), StickHandle.transform.localEulerAngles.z);
                     //q = Quaternion.AngleAxis(angle, Vector3.up);

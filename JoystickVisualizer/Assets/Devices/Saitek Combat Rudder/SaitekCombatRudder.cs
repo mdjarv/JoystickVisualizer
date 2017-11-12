@@ -38,6 +38,11 @@ public class SaitekCombatRudder : MonoBehaviour {
         {
             switch (entry.Key)
             {
+                case "Connected":
+                    if (Model.activeInHierarchy)
+                        Model.SetActive(entry.Value == 1);
+                    break;
+
                 case "RotationZ": // Pedal Position -0.05 0.05
                     LeftPedal.transform.position = new Vector3(LeftPedal.transform.position.x, LeftPedal.transform.position.y, ConvertRange(entry.Value, 0, 65535, 3, -3));
                     RightPedal.transform.position = new Vector3(RightPedal.transform.position.x, RightPedal.transform.position.y, ConvertRange(entry.Value, 0, 65535, -3, 3));

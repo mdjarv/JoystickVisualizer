@@ -164,6 +164,9 @@ namespace JoystickProxy
 
                 connectedJoysticks.TryRemove(removed, out Joystick ignored);
                 Console.WriteLine(SupportedDevices[removed] + " disconnected");
+                List<string> events = new List<string>();
+                events.Add("Connected=0");
+                SendEvent(sock, endPoint, removed, events);
             }
 
             // Find added devices
@@ -177,7 +180,8 @@ namespace JoystickProxy
                 {
                     Console.WriteLine(SupportedDevices[added] + " connected");
                     List<string> events = new List<string>();
-                    SendEvent(sock, endPoint, GetUsbId(foundJoysticks[added]), events);
+                    events.Add("Connected=1");
+                    SendEvent(sock, endPoint, added, events);
                 }
             }
         }

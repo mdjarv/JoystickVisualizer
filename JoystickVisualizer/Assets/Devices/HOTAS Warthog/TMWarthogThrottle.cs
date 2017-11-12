@@ -58,6 +58,11 @@ public class TMWarthogThrottle : MonoBehaviour {
         {
             switch (entry.Key)
             {
+                case "Connected":
+                    if(Model.activeInHierarchy)
+                        Model.SetActive(entry.Value == 1);
+                    break;
+
                 case "RotationZ": // Left Throttle
                     // Rotate Z between -30 and 30
                     GimbalLeft.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);

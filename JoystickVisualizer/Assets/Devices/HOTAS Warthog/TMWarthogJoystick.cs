@@ -43,6 +43,11 @@ public class TMWarthogJoystick : MonoBehaviour {
         {
             switch (entry.Key)
             {
+                case "Connected":
+                    if (Model.activeInHierarchy)
+                        Model.SetActive(entry.Value == 1);
+                    break;
+
                 case "X":
                     // Rotate Z between -30 and 30
                     StickGimbal.transform.eulerAngles = new Vector3(StickGimbal.transform.eulerAngles.x, StickGimbal.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, 20, -20));
