@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TMWarthogThrottle : MonoBehaviour {
     public const string USB_ID = "044f:0404";
-
+    private const float FLIP_SWITCH_ROTATION = 20.0f;
     public GameObject Model;
 
     public GameObject GimbalLeft;
@@ -103,14 +103,61 @@ public class TMWarthogThrottle : MonoBehaviour {
 
 
                 case "Buttons6":
-                    SpeedBrake.transform.localPosition = Vector3.forward * ((entry.Value == 0) ? 0.0f : 0.005f);
+                    SpeedBrake.transform.localPosition = Vector3.forward * ((entry.Value == 0) ? 0.0f : 0.4f);
                     break;
                 case "Buttons7":
-                    SpeedBrake.transform.localPosition = Vector3.back * ((entry.Value == 0) ? 0.0f : 0.005f);
+                    SpeedBrake.transform.localPosition = Vector3.back * ((entry.Value == 0) ? 0.0f : 0.4f);
+                    break;
+
+                case "Buttons8":
+                    BoatSwitch.transform.localEulerAngles = Vector3.down * ((entry.Value == 0) ? 0.0f : FLIP_SWITCH_ROTATION);
+                    break;
+                case "Buttons9":
+                    BoatSwitch.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : FLIP_SWITCH_ROTATION);
+                    break;
+
+                case "Buttons10":
+                    ChinaHat.transform.localEulerAngles = Vector3.down * ((entry.Value == 0) ? 0.0f : FLIP_SWITCH_ROTATION);
+                    break;
+                case "Buttons11":
+                    ChinaHat.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : FLIP_SWITCH_ROTATION);
+                    break;
+
+                case "PointOfViewControllers0":
+                    switch(entry.Value)
+                    {
+                        case -1: // zero
+                            CoolieHat.transform.localEulerAngles = Vector3.zero;
+                            break;
+                        case 0: // up
+                            CoolieHat.transform.localEulerAngles = Vector3.left * 10.0f;
+                            break;
+                        case 4500: // up/right
+                            CoolieHat.transform.localEulerAngles = Vector3.left * 10.0f + Vector3.up * 10.0f;
+                            break;
+                        case 9000: // right
+                            CoolieHat.transform.localEulerAngles = Vector3.up * 10.0f;
+                            break;
+                        case 13500: // down/right
+                            CoolieHat.transform.localEulerAngles = Vector3.up * 10.0f + Vector3.right * 10.0f;
+                            break;
+                        case 18000: // down
+                            CoolieHat.transform.localEulerAngles = Vector3.right * 10.0f;
+                            break;
+                        case 22500: // down/left
+                            CoolieHat.transform.localEulerAngles = Vector3.right * 10.0f + Vector3.down * 10.0f;
+                            break;
+                        case 27000: // left
+                            CoolieHat.transform.localEulerAngles = Vector3.down * 10.0f;
+                            break;
+                        case 31500: // up/left
+                            CoolieHat.transform.localEulerAngles = Vector3.down * 10.0f + Vector3.left * 10.0f;
+                            break;
+                    }
                     break;
 
                 case "Buttons14":
-                    LeftThrottleButton.transform.localPosition = Vector3.back * ((entry.Value == 0) ? 0.0f : 0.005f);
+                    LeftThrottleButton.transform.localPosition = Vector3.back * ((entry.Value == 0) ? 0.0f : 0.003f);
                     break;
 
                 case "Buttons15":
@@ -122,17 +169,17 @@ public class TMWarthogThrottle : MonoBehaviour {
                     break;
 
                 case "Buttons17":
-                    IgnL.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : -20.0f);
+                    IgnL.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : -FLIP_SWITCH_ROTATION);
                     break;
                 case "Buttons30":
-                    IgnL.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : 20.0f);
+                    IgnL.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : FLIP_SWITCH_ROTATION);
                     break;
 
                 case "Buttons18":
-                    IgnR.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : -20.0f);
+                    IgnR.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : -FLIP_SWITCH_ROTATION);
                     break;
                 case "Buttons31":
-                    IgnR.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : 20.0f);
+                    IgnR.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : FLIP_SWITCH_ROTATION);
                     break;
 
                 case "Buttons19":
@@ -156,24 +203,24 @@ public class TMWarthogThrottle : MonoBehaviour {
                     break;
 
                 case "Buttons26":
-                    AutopilotLaste.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : 20.0f);
+                    AutopilotLaste.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : FLIP_SWITCH_ROTATION);
                     break;
                 case "Buttons27":
-                    AutopilotLaste.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : -20.0f);
+                    AutopilotLaste.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : -FLIP_SWITCH_ROTATION);
                     break;
 
                 case "Buttons21":
-                    Flaps.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : 20.0f);
+                    Flaps.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : FLIP_SWITCH_ROTATION);
                     break;
                 case "Buttons22":
-                    Flaps.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : -20.0f);
+                    Flaps.transform.eulerAngles = Vector3.right * ((entry.Value == 0) ? 0.0f : -FLIP_SWITCH_ROTATION);
                     break;
 
                 case "Buttons12":
-                    PinkySwitch.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : 20.0f);
+                    PinkySwitch.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : FLIP_SWITCH_ROTATION);
                     break;
                 case "Buttons13":
-                    PinkySwitch.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : -20.0f);
+                    PinkySwitch.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : -FLIP_SWITCH_ROTATION);
                     break;
             }
         }
