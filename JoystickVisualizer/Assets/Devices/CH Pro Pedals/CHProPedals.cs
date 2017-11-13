@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CHProPedals : MonoBehaviour {
-    public const string USB_ID = "068e:0501";
+    public const string USB_ID = "068e:00f2";
     // public const string USB_ID = "06a3:0764";
 
     public GameObject Model;
