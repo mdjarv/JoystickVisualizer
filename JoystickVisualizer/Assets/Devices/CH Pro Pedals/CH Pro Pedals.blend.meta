@@ -1,41 +1,53 @@
 fileFormatVersion: 2
-guid: 63a77232e813b3244a31efc7abea18c4
-timeCreated: 1510592756
+guid: 172c90bd899a31f4892781dedd7eee36
+timeCreated: 1510599941
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Left Fixture
-    100004: Left Pedal
-    100006: Right Fixture
-    100008: Right Pedal
+    100002: Left_Fixture
+    100004: Left_Pedal
+    100006: Right_Fixture
+    100008: Right_Pedal
     400000: //RootNode
-    400002: Left Fixture
-    400004: Left Pedal
-    400006: Right Fixture
-    400008: Right Pedal
+    400002: Left_Fixture
+    400004: Left_Pedal
+    400006: Right_Fixture
+    400008: Right_Pedal
     2300000: //RootNode
-    2300002: Left Fixture
-    2300004: Left Pedal
-    2300006: Right Fixture
-    2300008: Right Pedal
+    2300002: Left_Fixture
+    2300004: Left_Pedal
+    2300006: Right_Fixture
+    2300008: Right_Pedal
     3300000: //RootNode
-    3300002: Left Fixture
-    3300004: Left Pedal
-    3300006: Right Fixture
-    3300008: Right Pedal
+    3300002: Left_Fixture
+    3300004: Left_Pedal
+    3300006: Right_Fixture
+    3300008: Right_Pedal
     4300000: Base
-    4300002: Right Fixture
-    4300004: Right Pedal
-    4300006: Left Fixture
-    4300008: Left Pedal
+    4300002: Right_Fixture
+    4300004: Right_Pedal
+    4300006: Left_Fixture
+    4300008: Left_Pedal
+    7400000: Default Take
+    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 5c9a5d5aea12fbb42a6f349995743a89, type: 2}
+      name: Black_Plastic
+    second: {fileID: 2100000, guid: 071add58b01785949b6f3859871532cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark_Grey_Plastic
+    second: {fileID: 2100000, guid: 11e0f7a753d051748abb01eddeff3a2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_Grey_Plastic
+    second: {fileID: 2100000, guid: eef6c8a50f0b924408ce94d70f96d7be, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -107,7 +119,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

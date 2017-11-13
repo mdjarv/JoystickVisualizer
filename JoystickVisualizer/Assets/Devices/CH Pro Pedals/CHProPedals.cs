@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CHProPedals : MonoBehaviour {
     public const string USB_ID = "068e:0501";
+    // public const string USB_ID = "06a3:0764";
 
     public GameObject Model;
 
@@ -44,15 +45,15 @@ public class CHProPedals : MonoBehaviour {
                     break;
 
                 case "RotationZ": // Pedal Position -0.05 0.05
-                    LeftPedal.transform.localPosition = new Vector3(LeftPedal.transform.localPosition.x, LeftPedal.transform.localPosition.y, ConvertRange(entry.Value, 0, 65535, -0.62f, 0.62f));
-                    RightPedal.transform.localPosition = new Vector3(RightPedal.transform.localPosition.x, RightPedal.transform.localPosition.y, ConvertRange(entry.Value, 0, 65535, 0.62f, -0.62f));
+                    LeftPedal.transform.localPosition = new Vector3(LeftPedal.transform.localPosition.x, LeftPedal.transform.localPosition.y, ConvertRange(entry.Value, 0, 65535, -75.0f, 75.0));
+                    RightPedal.transform.localPosition = new Vector3(RightPedal.transform.localPosition.x, RightPedal.transform.localPosition.y, ConvertRange(entry.Value, 0, 65535, 75.0f, -75.0f));
                     break;
                 case "X": // Left brake
                     // Rotate Z between 0 and 20
-                    LeftPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 0, 30), -180, 0);
+                    LeftPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 0, -30), 0, 0);
                     break;
                 case "Y": // Right brake
-                    RightPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 0, 30), -180, 0);
+                    RightPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 0, -30), 0, 0);
                     break;
             }
         }
