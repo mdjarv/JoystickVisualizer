@@ -28,6 +28,7 @@ public class CameraControls : MonoBehaviour {
             GetComponent<Rigidbody>().freezeRotation = true;
         }
     }
+
     void LateUpdate()
     {
         if (target)
@@ -39,6 +40,25 @@ public class CameraControls : MonoBehaviour {
             }
             rotationYAxis += velocityX;
             rotationXAxis -= velocityY;
+
+            if (Input.GetButton("Camera Front"))
+            {
+                rotationYAxis = 0;
+                rotationXAxis = 15;
+            }
+
+            if (Input.GetButton("Camera Top"))
+            {
+                rotationYAxis = 0;
+                rotationXAxis = 90;
+            }
+
+            if (Input.GetButton("Camera Side"))
+            {
+                rotationYAxis = 90;
+                rotationXAxis = 0;
+            }
+
             rotationXAxis = ClampAngle(rotationXAxis, yMinLimit, yMaxLimit);
             //Quaternion fromRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
             Quaternion toRotation = Quaternion.Euler(rotationXAxis, rotationYAxis, 0);
