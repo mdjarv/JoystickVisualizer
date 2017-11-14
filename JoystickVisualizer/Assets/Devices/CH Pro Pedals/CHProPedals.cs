@@ -44,7 +44,7 @@ public class CHProPedals : MonoBehaviour {
                         Model.SetActive(entry.Value == 1);
                     break;
 
-                case "RotationZ": // Pedal Position -0.05 0.05
+                case "Z": // Pedal Position -0.05 0.05
                     LeftPedal.transform.localPosition = new Vector3(LeftPedal.transform.localPosition.x, LeftPedal.transform.localPosition.y, ConvertRange(entry.Value, 0, 65535, -75.0f, 75.0));
                     RightPedal.transform.localPosition = new Vector3(RightPedal.transform.localPosition.x, RightPedal.transform.localPosition.y, ConvertRange(entry.Value, 0, 65535, 75.0f, -75.0f));
                     break;
