@@ -63,17 +63,20 @@ public class SaitekX52Throttle : MonoBehaviour {
                         Model.SetActive(entry.Value == 1);
                     break;
 
-                case "RotationZ": // Left Throttle
-                    // Rotate Z between -30 and 30
+                case "Z": // Right Throttle
+                    // Rotate X between -30 and 30
                     GimbalLeft.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
                     GimbalRight.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
                     break;
 
-                case "Z": // Right Throttle
-                    // Rotate X between -30 and 30
-                    // GimbalRight.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
+
+
+                /*
+                case "RotationZ": // Left Throttle
+                    // Rotate Z between -30 and 30
+                    GimbalLeft.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
                     break;
-                    
+
                 case "Buttons28": // Right Throttle Idle/Off
                     if (entry.Value == 0)
                         GimbalRight.transform.eulerAngles = new Vector3(-25, GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
@@ -228,6 +231,7 @@ public class SaitekX52Throttle : MonoBehaviour {
                 case "Buttons13":
                     PinkySwitch.transform.localEulerAngles = Vector3.up * ((entry.Value == 0) ? 0.0f : -FLIP_SWITCH_ROTATION);
                     break;
+                */
             }
         }
     }
