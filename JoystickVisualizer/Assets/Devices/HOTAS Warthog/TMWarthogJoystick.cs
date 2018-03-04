@@ -9,7 +9,8 @@ public class TMWarthogJoystick : MonoBehaviour {
 
     public Boolean ButtonIndicator = false;
 
-    public GameObject Particles;
+    public GameObject IndicatorOn;
+    public GameObject IndicatorOff;
 
     public GameObject Model;
     public GameObject StickGimbal;
@@ -66,19 +67,19 @@ public class TMWarthogJoystick : MonoBehaviour {
 
                 case "Buttons10":
                     DMS.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 0.0f : 10.0f), DMS.transform.localEulerAngles.y, DMS.transform.localEulerAngles.z);
-                    SpawnIndicator(DMS);
+                    SpawnIndicator(DMS, entry.Value > 0);
                     break;
                 case "Buttons11":
                     DMS.transform.localEulerAngles = new Vector3(DMS.transform.localEulerAngles.x, ((entry.Value == 0) ? 0.0f : -10.0f), DMS.transform.localEulerAngles.z);
-                    SpawnIndicator(DMS);
+                    SpawnIndicator(DMS, entry.Value > 0);
                     break;
                 case "Buttons12":
                     DMS.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 0.0f : -10.0f), DMS.transform.localEulerAngles.y, DMS.transform.localEulerAngles.z);
-                    SpawnIndicator(DMS);
+                    SpawnIndicator(DMS, entry.Value > 0);
                     break;
                 case "Buttons13":
                     DMS.transform.localEulerAngles = new Vector3(DMS.transform.localEulerAngles.x, ((entry.Value == 0) ? 0.0f : 10.0f), DMS.transform.localEulerAngles.z);
-                    SpawnIndicator(DMS);
+                    SpawnIndicator(DMS, entry.Value > 0);
                     break;
 
                 case "Buttons14":
@@ -112,31 +113,31 @@ public class TMWarthogJoystick : MonoBehaviour {
 
                 case "Buttons1":
                     Pickle.transform.localPosition = new Vector3(Pickle.transform.localPosition.x, Pickle.transform.localPosition.y, ((entry.Value == 0) ? 0.0f : 0.25f));
-                    SpawnIndicator(Pickle);
+                    SpawnIndicator(Pickle, entry.Value > 0);
                     break;
 
                 case "Buttons4":
                     MasterMode.transform.localPosition = new Vector3(((entry.Value == 0) ? 0.0f : -0.20f), MasterMode.transform.localPosition.y, MasterMode.transform.localPosition.z);
-                    SpawnIndicator(MasterMode);
+                    SpawnIndicator(MasterMode, entry.Value > 0);
                     break;
 
                 case "Buttons2":
                     PinkyButton.transform.localPosition = new Vector3(PinkyButton.transform.localPosition.x, PinkyButton.transform.localPosition.y, ((entry.Value == 0) ? 0.0f : -0.20f));
-                    SpawnIndicator(PinkyButton);
+                    SpawnIndicator(PinkyButton, entry.Value > 0);
                     break;
 
                 case "Buttons3":
                     PinkyLever.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 0.0f : -10.0f), PinkyLever.transform.localEulerAngles.y, PinkyLever.transform.localEulerAngles.z);
-                    SpawnIndicator(PinkyLever);
+                    SpawnIndicator(PinkyLever, entry.Value > 0);
                     break;
 
                 case "Buttons0":
                     Trigger.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 0.0f : 10.0f), Trigger.transform.localEulerAngles.y, Trigger.transform.localEulerAngles.z);
-                    SpawnIndicator(Trigger);
+                    SpawnIndicator(Trigger, entry.Value > 0);
                     break;
                 case "Buttons5":
                     Trigger.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 10.0f : 20.0f), Trigger.transform.localEulerAngles.y, Trigger.transform.localEulerAngles.z);
-                    SpawnIndicator(Trigger);
+                    SpawnIndicator(Trigger, entry.Value > 0);
                     break;
 
                 case "PointOfViewControllers0":
@@ -175,11 +176,11 @@ public class TMWarthogJoystick : MonoBehaviour {
         }
     }
 
-    private void SpawnIndicator(GameObject gimbal)
+    private void SpawnIndicator(GameObject gimbal, bool on = true)
     {
         if (ButtonIndicator)
         {
-            GameObject indicator = Instantiate(Particles, gimbal.transform) as GameObject;
+            GameObject indicator = on ? Instantiate(IndicatorOn, gimbal.transform) as GameObject : Instantiate(IndicatorOff, gimbal.transform) as GameObject;
             Transform parent = gimbal.GetComponentInChildren<MeshFilter>().transform;
             indicator.transform.position = parent.GetComponent<Renderer>().bounds.center;
             indicator.SetActive(true);

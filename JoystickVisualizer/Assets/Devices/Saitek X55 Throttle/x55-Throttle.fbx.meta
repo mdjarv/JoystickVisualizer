@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3938e89069101804c86ee241ce24d732
-timeCreated: 1520170576
+guid: 3fbafbb073c42c9479536f65ad82718f
+timeCreated: 1520196769
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -12,22 +12,23 @@ ModelImporter:
     100008: HAT 3
     100010: HAT 4
     100012: INF WHEEL
-    100014: Mouse
-    100016: RTY 1
-    100018: RTY 2
-    100020: RTY 3
-    100022: RTY 4
-    100024: SLD
-    100026: SW 1-2
-    100028: SW 3-4
-    100030: SW 5-6
-    100032: Throttle Left
-    100034: Throttle Right
-    100036: TLG 1
-    100038: TLG 2
-    100040: TLG 3
-    100042: TLG 4
-    100044: //RootNode
+    100014: Mode Selector
+    100016: Mouse
+    100018: RTY 1
+    100020: RTY 2
+    100022: RTY 3
+    100024: RTY 4
+    100026: SLD
+    100028: SW 1-2
+    100030: SW 3-4
+    100032: SW 5-6
+    100034: Throttle Left
+    100036: Throttle Right
+    100038: TLG 1
+    100040: TLG 2
+    100042: TLG 3
+    100044: TLG 4
+    100046: //RootNode
     400000: BTN E
     400002: BTN H
     400004: BTN I
@@ -35,22 +36,23 @@ ModelImporter:
     400008: HAT 3
     400010: HAT 4
     400012: INF WHEEL
-    400014: Mouse
-    400016: RTY 1
-    400018: RTY 2
-    400020: RTY 3
-    400022: RTY 4
-    400024: SLD
-    400026: SW 1-2
-    400028: SW 3-4
-    400030: SW 5-6
-    400032: Throttle Left
-    400034: Throttle Right
-    400036: TLG 1
-    400038: TLG 2
-    400040: TLG 3
-    400042: TLG 4
-    400044: //RootNode
+    400014: Mode Selector
+    400016: Mouse
+    400018: RTY 1
+    400020: RTY 2
+    400022: RTY 3
+    400024: RTY 4
+    400026: SLD
+    400028: SW 1-2
+    400030: SW 3-4
+    400032: SW 5-6
+    400034: Throttle Left
+    400036: Throttle Right
+    400038: TLG 1
+    400040: TLG 2
+    400042: TLG 3
+    400044: TLG 4
+    400046: //RootNode
     2300000: BTN E
     2300002: BTN H
     2300004: BTN I
@@ -58,22 +60,23 @@ ModelImporter:
     2300008: HAT 3
     2300010: HAT 4
     2300012: INF WHEEL
-    2300014: Mouse
-    2300016: RTY 1
-    2300018: RTY 2
-    2300020: RTY 3
-    2300022: RTY 4
-    2300024: SLD
-    2300026: SW 1-2
-    2300028: SW 3-4
-    2300030: SW 5-6
-    2300032: Throttle Left
-    2300034: Throttle Right
-    2300036: TLG 1
-    2300038: TLG 2
-    2300040: TLG 3
-    2300042: TLG 4
-    2300044: //RootNode
+    2300014: Mode Selector
+    2300016: Mouse
+    2300018: RTY 1
+    2300020: RTY 2
+    2300022: RTY 3
+    2300024: RTY 4
+    2300026: SLD
+    2300028: SW 1-2
+    2300030: SW 3-4
+    2300032: SW 5-6
+    2300034: Throttle Left
+    2300036: Throttle Right
+    2300038: TLG 1
+    2300040: TLG 2
+    2300042: TLG 3
+    2300044: TLG 4
+    2300046: //RootNode
     3300000: BTN E
     3300002: BTN H
     3300004: BTN I
@@ -81,51 +84,58 @@ ModelImporter:
     3300008: HAT 3
     3300010: HAT 4
     3300012: INF WHEEL
-    3300014: Mouse
-    3300016: RTY 1
-    3300018: RTY 2
-    3300020: RTY 3
-    3300022: RTY 4
-    3300024: SLD
-    3300026: SW 1-2
-    3300028: SW 3-4
-    3300030: SW 5-6
-    3300032: Throttle Left
-    3300034: Throttle Right
-    3300036: TLG 1
-    3300038: TLG 2
-    3300040: TLG 3
-    3300042: TLG 4
-    3300044: //RootNode
+    3300014: Mode Selector
+    3300016: Mouse
+    3300018: RTY 1
+    3300020: RTY 2
+    3300022: RTY 3
+    3300024: RTY 4
+    3300026: SLD
+    3300028: SW 1-2
+    3300030: SW 3-4
+    3300032: SW 5-6
+    3300034: Throttle Left
+    3300036: Throttle Right
+    3300038: TLG 1
+    3300040: TLG 2
+    3300042: TLG 3
+    3300044: TLG 4
+    3300046: //RootNode
     4300000: Throttle Base
-    4300002: SW 1-2
-    4300004: RTY 4
-    4300006: RTY 3
-    4300008: SW 3-4
-    4300010: SW 5-6
-    4300012: TLG 1
-    4300014: TLG 2
-    4300016: TLG 3
-    4300018: TLG 4
-    4300020: Throttle Right
-    4300022: BTN H
-    4300024: HAT 3
-    4300026: Mouse
-    4300028: BTN E
-    4300030: SLD
-    4300032: RTY 1
-    4300034: RTY 2
-    4300036: HAT 4
-    4300038: BTN I
-    4300040: Throttle Left
-    4300042: INF WHEEL
-    4300044: BTN KI
+    4300002: Mode Selector
+    4300004: SW 1-2
+    4300006: RTY 4
+    4300008: RTY 3
+    4300010: SW 3-4
+    4300012: SW 5-6
+    4300014: TLG 1
+    4300016: TLG 2
+    4300018: TLG 3
+    4300020: TLG 4
+    4300022: Throttle Right
+    4300024: BTN H
+    4300026: HAT 3
+    4300028: Mouse
+    4300030: BTN E
+    4300032: SLD
+    4300034: RTY 1
+    4300036: RTY 2
+    4300038: HAT 4
+    4300040: BTN I
+    4300042: Throttle Left
+    4300044: INF WHEEL
+    4300046: BTN KI
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 38128a05324326b4db7885cb4ad84395, type: 2}
+      name: Buttons
+    second: {fileID: 2100000, guid: 25501af91d0a234449dec0b5e0c14ce3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 0e6cb5fb27976d4488ae4bdd7d45504a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
