@@ -43,10 +43,10 @@ public class SaitekX55Throttle : MonoBehaviour {
 
                 case "X": // Left brake
                     // Rotate Z between 0 and 20
-                    LeftThrottle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 0, 40), 0, 0);
+                    LeftThrottle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, 0), 0, 0);
                     break;
                 case "Y": // Right brake
-                    RightThrottle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 0, 40), 0, 0);
+                    RightThrottle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, 0), 0, 0);
                     break;
             }
         }
