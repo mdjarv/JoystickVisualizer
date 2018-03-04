@@ -19,6 +19,7 @@ namespace JoystickProxy
     {
         private bool Debug = true;
         private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
+        private static Dictionary<Guid, string> InstanceGuidToUsbIdLookup = new Dictionary<Guid, string>();
         private static IPAddress host;
         private static int port;
 
@@ -37,6 +38,11 @@ namespace JoystickProxy
 
             foreach(KeyData supportedDevice in data["Devices"])
             {
+                if(supportedDevice.KeyName.StartsWith("#"))
+                {
+                    continue;
+                }
+
                 SupportedDevices.Add(supportedDevice.KeyName, supportedDevice.Value);
                 Console.WriteLine(" * " + supportedDevice.Value);
             }
@@ -46,7 +52,7 @@ namespace JoystickProxy
             new Program();
         }
 
-        private ConcurrentDictionary<string, Joystick> connectedJoysticks = new ConcurrentDictionary<string, Joystick>();
+        private ConcurrentDictionary<Guid, Joystick> connectedJoysticks = new ConcurrentDictionary<Guid, Joystick>();
 
         private string GuidToUsbID(Guid guid)
         {
@@ -124,6 +130,11 @@ namespace JoystickProxy
 
         }
 
+        private void SendEvent(Socket sock, IPEndPoint endPoint, Guid instanceGuid, List<string> events)
+        {
+            SendEvent(sock, endPoint, InstanceGuidToUsbIdLookup[instanceGuid], events);
+        }
+
         private void SendEvent(Socket sock, IPEndPoint endPoint, string usbID, List<string> events)
         {
             if (sock == null || endPoint == null)
@@ -145,43 +156,69 @@ namespace JoystickProxy
 
         private void ScanJoysticks()
         {
-            Dictionary<string, Joystick> foundJoysticks = new Dictionary<string, Joystick>();
+            bool changesMade = false;
+            Dictionary<Guid, Joystick> foundJoysticks = new Dictionary<Guid, Joystick>();
 
             foreach (DeviceInstance device in di.GetDevices())
             {
                 string usbId = GuidToUsbID(device.ProductGuid);
 
+                //Console.WriteLine("Found DirectInput device " + usbId + ": " + device.InstanceName);
+
                 if (SupportedDevices.ContainsKey(usbId))
                 {
-                    foundJoysticks.Add(usbId, new Joystick(di, device.ProductGuid));
+                    try
+                    {
+                        InstanceGuidToUsbIdLookup[device.InstanceGuid] = usbId;
+                        //Console.WriteLine("Registering device " + device.InstanceName+ " " + usbId + " | " + device.InstanceGuid);
+                        foundJoysticks.Add(device.InstanceGuid, new Joystick(di, device.InstanceGuid));
+                    } catch(ArgumentException e)
+                    {
+                        Console.WriteLine("Failed to register device " + device.InstanceName + " " + usbId + " | " + device.InstanceGuid, e);
+                    }
                 }
             }
 
             // Find removed devices
-            foreach(string removed in connectedJoysticks.Keys.Except(foundJoysticks.Keys))
+            foreach(Guid removed in connectedJoysticks.Keys.Except(foundJoysticks.Keys))
             {
+                changesMade = true;
                 connectedJoysticks[removed].Unacquire();
 
                 connectedJoysticks.TryRemove(removed, out Joystick ignored);
-                Console.WriteLine(SupportedDevices[removed] + " disconnected");
-                List<string> events = new List<string>();
-                events.Add("Connected=0");
+                Console.WriteLine(SupportedDevices[InstanceGuidToUsbIdLookup[removed]] + " disconnected");
+                List<string> events = new List<string>
+                {
+                    "Connected=0"
+                };
                 SendEvent(sock, endPoint, removed, events);
             }
 
             // Find added devices
 
-            foreach (string added in foundJoysticks.Keys.Except(connectedJoysticks.Keys))
+            foreach (Guid added in foundJoysticks.Keys.Except(connectedJoysticks.Keys))
             {
+                changesMade = true;
                 foundJoysticks[added].Properties.BufferSize = 32;
                 foundJoysticks[added].Acquire();
 
                 if (connectedJoysticks.TryAdd(added, foundJoysticks[added]))
                 {
-                    Console.WriteLine(SupportedDevices[added] + " connected");
-                    List<string> events = new List<string>();
-                    events.Add("Connected=1");
+                    Console.WriteLine(SupportedDevices[InstanceGuidToUsbIdLookup[added]] + " connected");
+                    List<string> events = new List<string>
+                    {
+                        "Connected=1"
+                    };
                     SendEvent(sock, endPoint, added, events);
+                }
+            }
+
+            if(changesMade)
+            {
+                Console.WriteLine("Connected devices:");
+                foreach(Joystick joystick in connectedJoysticks.Values)
+                {
+                    Console.WriteLine(" * " + joystick.Information.InstanceName + " (" + joystick.Information.InstanceGuid + ")");
                 }
             }
         }
