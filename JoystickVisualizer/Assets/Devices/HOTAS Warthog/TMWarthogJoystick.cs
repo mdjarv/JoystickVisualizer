@@ -2,9 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TMWarthogJoystick : MonoBehaviour {
     public const string USB_ID = "044f:0402";
+
+    public Boolean ButtonIndicator = false;
+
+    public GameObject Particles;
 
     public GameObject Model;
     public GameObject StickGimbal;
@@ -61,15 +66,19 @@ public class TMWarthogJoystick : MonoBehaviour {
 
                 case "Buttons10":
                     DMS.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 0.0f : 10.0f), DMS.transform.localEulerAngles.y, DMS.transform.localEulerAngles.z);
+                    SpawnIndicator(DMS);
                     break;
                 case "Buttons11":
                     DMS.transform.localEulerAngles = new Vector3(DMS.transform.localEulerAngles.x, ((entry.Value == 0) ? 0.0f : -10.0f), DMS.transform.localEulerAngles.z);
+                    SpawnIndicator(DMS);
                     break;
                 case "Buttons12":
                     DMS.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 0.0f : -10.0f), DMS.transform.localEulerAngles.y, DMS.transform.localEulerAngles.z);
+                    SpawnIndicator(DMS);
                     break;
                 case "Buttons13":
                     DMS.transform.localEulerAngles = new Vector3(DMS.transform.localEulerAngles.x, ((entry.Value == 0) ? 0.0f : 10.0f), DMS.transform.localEulerAngles.z);
+                    SpawnIndicator(DMS);
                     break;
 
                 case "Buttons14":
@@ -103,25 +112,31 @@ public class TMWarthogJoystick : MonoBehaviour {
 
                 case "Buttons1":
                     Pickle.transform.localPosition = new Vector3(Pickle.transform.localPosition.x, Pickle.transform.localPosition.y, ((entry.Value == 0) ? 0.0f : 0.25f));
+                    SpawnIndicator(Pickle);
                     break;
 
                 case "Buttons4":
                     MasterMode.transform.localPosition = new Vector3(((entry.Value == 0) ? 0.0f : -0.20f), MasterMode.transform.localPosition.y, MasterMode.transform.localPosition.z);
+                    SpawnIndicator(MasterMode);
                     break;
 
                 case "Buttons2":
                     PinkyButton.transform.localPosition = new Vector3(PinkyButton.transform.localPosition.x, PinkyButton.transform.localPosition.y, ((entry.Value == 0) ? 0.0f : -0.20f));
+                    SpawnIndicator(PinkyButton);
                     break;
 
                 case "Buttons3":
                     PinkyLever.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 0.0f : -10.0f), PinkyLever.transform.localEulerAngles.y, PinkyLever.transform.localEulerAngles.z);
+                    SpawnIndicator(PinkyLever);
                     break;
 
                 case "Buttons0":
                     Trigger.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 0.0f : 10.0f), Trigger.transform.localEulerAngles.y, Trigger.transform.localEulerAngles.z);
+                    SpawnIndicator(Trigger);
                     break;
                 case "Buttons5":
                     Trigger.transform.localEulerAngles = new Vector3(((entry.Value == 0) ? 10.0f : 20.0f), Trigger.transform.localEulerAngles.y, Trigger.transform.localEulerAngles.z);
+                    SpawnIndicator(Trigger);
                     break;
 
                 case "PointOfViewControllers0":
@@ -157,6 +172,18 @@ public class TMWarthogJoystick : MonoBehaviour {
                     }
                     break;
             }
+        }
+    }
+
+    private void SpawnIndicator(GameObject gimbal)
+    {
+        if (ButtonIndicator)
+        {
+            GameObject indicator = Instantiate(Particles, gimbal.transform) as GameObject;
+            Transform parent = gimbal.GetComponentInChildren<MeshFilter>().transform;
+            indicator.transform.position = parent.GetComponent<Renderer>().bounds.center;
+            indicator.SetActive(true);
+            Destroy(indicator, 1);
         }
     }
 

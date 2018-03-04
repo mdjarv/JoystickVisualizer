@@ -9,7 +9,7 @@ using Assets;
 
 public class UDPListener : MonoBehaviour {
 
-    public int Port = 11000;
+    public int Port = 11011;
 
     public delegate void StickEvent (JoystickState state);
 	public static event StickEvent StickEventListener;
