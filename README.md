@@ -55,6 +55,10 @@ The Visualizer was created in Unity3D, and the Proxy is a normal C# application 
 
 * https://3dwarehouse.sketchup.com/model.html?id=1870c8e3d1267a38c023ee32d47e2fa9
 
+3D model of the Saitek X55 RHINO stick and throttle were made by By-Jokese
+
+* https://byjokese.com
+
 ## Contact
 
 You can find me on:
