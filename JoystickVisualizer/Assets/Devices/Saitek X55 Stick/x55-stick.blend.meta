@@ -1,76 +1,77 @@
 fileFormatVersion: 2
-guid: 544c9701c8fbf7b4aa15775478178412
-timeCreated: 1520197068
+guid: a09a950c90f24634882cf1aabf755e36
+timeCreated: 1520778453
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: BTN A
-    100002: BTN B
-    100004: BTN C
-    100006: BTN D
-    100008: HAT 1
-    100010: HAT 2
+    100000: BTN_A
+    100002: BTN_B
+    100004: BTN_C
+    100006: BTN_D
+    100008: HAT_1
+    100010: HAT_2
     100012: Pinky
     100014: POV
-    100016: Stick
-    100018: //RootNode
-    400000: BTN A
-    400002: BTN B
-    400004: BTN C
-    400006: BTN D
-    400008: HAT 1
-    400010: HAT 2
+    100016: shoot_BTN
+    100018: Stick
+    100020: //RootNode
+    400000: BTN_A
+    400002: BTN_B
+    400004: BTN_C
+    400006: BTN_D
+    400008: HAT_1
+    400010: HAT_2
     400012: Pinky
     400014: POV
-    400016: Stick
-    400018: //RootNode
-    2300000: BTN A
-    2300002: BTN B
-    2300004: BTN C
-    2300006: BTN D
-    2300008: HAT 1
-    2300010: HAT 2
+    400016: shoot_BTN
+    400018: Stick
+    400020: //RootNode
+    2100000: Material_001__stick_PNG
+    2100002: Material_001
+    2100004: Red_Buttons
+    2100006: Buttons
+    2300000: BTN_A
+    2300002: BTN_B
+    2300004: BTN_C
+    2300006: BTN_D
+    2300008: HAT_1
+    2300010: HAT_2
     2300012: Pinky
     2300014: POV
-    2300016: Stick
-    2300018: //RootNode
-    3300000: BTN A
-    3300002: BTN B
-    3300004: BTN C
-    3300006: BTN D
-    3300008: HAT 1
-    3300010: HAT 2
+    2300016: shoot_BTN
+    2300018: Stick
+    2300020: //RootNode
+    3300000: BTN_A
+    3300002: BTN_B
+    3300004: BTN_C
+    3300006: BTN_D
+    3300008: HAT_1
+    3300010: HAT_2
     3300012: Pinky
     3300014: POV
-    3300016: Stick
-    3300018: //RootNode
-    4300000: Stick Base
+    3300016: shoot_BTN
+    3300018: Stick
+    3300020: //RootNode
+    4300000: Stick_Base
     4300002: Stick
-    4300004: HAT 2
-    4300006: HAT 1
-    4300008: BTN A
-    4300010: POV
-    4300012: Pinky
-    4300014: BTN C
-    4300016: BTN D
-    4300018: BTN B
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 3a37910269fea304aa78ebf21f4db1d4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: b26ec0d6b8d500f48b4c12b5b4ce218c, type: 2}
+    4300004: shoot_BTN
+    4300006: HAT_2
+    4300008: HAT_1
+    4300010: BTN_A
+    4300012: POV
+    4300014: Pinky
+    4300016: BTN_C
+    4300018: BTN_D
+    4300020: BTN_B
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -108,6 +109,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -137,7 +140,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

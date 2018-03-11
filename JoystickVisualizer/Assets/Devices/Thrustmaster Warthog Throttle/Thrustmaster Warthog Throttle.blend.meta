@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: c8574dba2fc61b843b90393d20a8927c
+timeCreated: 1520539947
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Cylinder
+    100002: Left_Throttle
+    100004: Right_Throttle
+    100006: //RootNode
+    100008: Mic_Switch
+    100010: Base
+    100012: Air_Brake
+    100014: Boat_Switch
+    100016: China_Hat
+    100018: China_Hat_Connector
+    100020: Boat_Switch_Base
+    100022: China_Hat_Base
+    100024: Cylinder_001
+    100026: Air_Brakes_Base
+    100028: Air_Brakes_Base_001
+    400000: Cylinder
+    400002: Left_Throttle
+    400004: Right_Throttle
+    400006: //RootNode
+    400008: Mic_Switch
+    400010: Base
+    400012: Air_Brake
+    400014: Boat_Switch
+    400016: China_Hat
+    400018: China_Hat_Connector
+    400020: Boat_Switch_Base
+    400022: China_Hat_Base
+    400024: Cylinder_001
+    400026: Air_Brakes_Base
+    400028: Air_Brakes_Base_001
+    2300000: Cylinder
+    2300002: Left_Throttle
+    2300004: Right_Throttle
+    2300006: Mic_Switch
+    2300008: //RootNode
+    2300010: Base
+    2300012: Air_Brake
+    2300014: Boat_Switch
+    2300016: China_Hat
+    2300018: China_Hat_Connector
+    2300020: Boat_Switch_Base
+    2300022: China_Hat_Base
+    2300024: Cylinder_001
+    2300026: Air_Brakes_Base
+    2300028: Air_Brakes_Base_001
+    3300000: Cylinder
+    3300002: Left_Throttle
+    3300004: Right_Throttle
+    3300006: Mic_Switch
+    3300008: //RootNode
+    3300010: Base
+    3300012: Air_Brake
+    3300014: Boat_Switch
+    3300016: China_Hat
+    3300018: China_Hat_Connector
+    3300020: Boat_Switch_Base
+    3300022: China_Hat_Base
+    3300024: Cylinder_001
+    3300026: Air_Brakes_Base
+    3300028: Air_Brakes_Base_001
+    4300000: Cylinder
+    4300002: Left_Throttle
+    4300004: Right_Throttle
+    4300006: Mic_Switch
+    4300008: Base
+    4300010: Air_Brake
+    4300012: China_Hat
+    4300014: Boat_Switch
+    4300016: China_Hat_Connector
+    4300018: China_Hat_Base
+    4300020: Boat_Switch_Base
+    4300022: Cylinder_001
+    4300024: Air_Brakes_Base
+    4300026: Air_Brakes_Base_001
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black_Plastic
+    second: {fileID: 2100000, guid: b40a7754d3364b547985cbb1e15fe22c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grey_Plastic
+    second: {fileID: 2100000, guid: 3d7c8108ac9ca7b4ea53b184e2e4231c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: ec6d4993acb1e8a40b16ea82ac2b6527, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_001
+    second: {fileID: 2100000, guid: f122c048c7a3f594289366e7a09cd120, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red_Plastic
+    second: {fileID: 2100000, guid: 88f64a94b4bac8642aec8e23d19564e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: unnamed
+    second: {fileID: 2100000, guid: 13315ce0cceb2fd4d8fcfbc2d4b6429e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

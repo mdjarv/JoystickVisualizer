@@ -1,0 +1,213 @@
+fileFormatVersion: 2
+guid: cca2215315bf549468869641f956310f
+timeCreated: 1520775470
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: BTN_E
+    100002: BTN_H
+    100004: BTN_I
+    100006: BTN_KI
+    100008: HAT_3
+    100010: HAT_4
+    100012: INF_WHEEL
+    100014: Mode_Selector
+    100016: Mouse
+    100018: RTY_1
+    100020: RTY_2
+    100022: RTY_3
+    100024: RTY_4
+    100026: SLD
+    100028: SW_1-2
+    100030: SW_3-4
+    100032: SW_5-6
+    100034: Throttle_Left
+    100036: Throttle_Right
+    100038: TLG_1
+    100040: TLG_2
+    100042: TLG_3
+    100044: TLG_4
+    100046: //RootNode
+    400000: BTN_E
+    400002: BTN_H
+    400004: BTN_I
+    400006: BTN_KI
+    400008: HAT_3
+    400010: HAT_4
+    400012: INF_WHEEL
+    400014: Mode_Selector
+    400016: Mouse
+    400018: RTY_1
+    400020: RTY_2
+    400022: RTY_3
+    400024: RTY_4
+    400026: SLD
+    400028: SW_1-2
+    400030: SW_3-4
+    400032: SW_5-6
+    400034: Throttle_Left
+    400036: Throttle_Right
+    400038: TLG_1
+    400040: TLG_2
+    400042: TLG_3
+    400044: TLG_4
+    400046: //RootNode
+    2100000: Material__throttle_png
+    2100002: Buttons__throttle_png
+    2100004: Buttons
+    2100006: Material
+    2300000: BTN_E
+    2300002: BTN_H
+    2300004: BTN_I
+    2300006: BTN_KI
+    2300008: HAT_3
+    2300010: HAT_4
+    2300012: INF_WHEEL
+    2300014: Mode_Selector
+    2300016: Mouse
+    2300018: RTY_1
+    2300020: RTY_2
+    2300022: RTY_3
+    2300024: RTY_4
+    2300026: SLD
+    2300028: SW_1-2
+    2300030: SW_3-4
+    2300032: SW_5-6
+    2300034: Throttle_Left
+    2300036: Throttle_Right
+    2300038: TLG_1
+    2300040: TLG_2
+    2300042: TLG_3
+    2300044: TLG_4
+    2300046: //RootNode
+    3300000: BTN_E
+    3300002: BTN_H
+    3300004: BTN_I
+    3300006: BTN_KI
+    3300008: HAT_3
+    3300010: HAT_4
+    3300012: INF_WHEEL
+    3300014: Mode_Selector
+    3300016: Mouse
+    3300018: RTY_1
+    3300020: RTY_2
+    3300022: RTY_3
+    3300024: RTY_4
+    3300026: SLD
+    3300028: SW_1-2
+    3300030: SW_3-4
+    3300032: SW_5-6
+    3300034: Throttle_Left
+    3300036: Throttle_Right
+    3300038: TLG_1
+    3300040: TLG_2
+    3300042: TLG_3
+    3300044: TLG_4
+    3300046: //RootNode
+    4300000: Throttle_Base
+    4300002: Mode_Selector
+    4300004: SW_1-2
+    4300006: RTY_4
+    4300008: RTY_3
+    4300010: SW_3-4
+    4300012: SW_5-6
+    4300014: TLG_1
+    4300016: TLG_2
+    4300018: TLG_3
+    4300020: TLG_4
+    4300022: Throttle_Right
+    4300024: BTN_H
+    4300026: HAT_3
+    4300028: Mouse
+    4300030: BTN_E
+    4300032: SLD
+    4300034: RTY_1
+    4300036: RTY_2
+    4300038: HAT_4
+    4300040: BTN_I
+    4300042: Throttle_Left
+    4300044: INF_WHEEL
+    4300046: BTN_KI
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
