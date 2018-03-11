@@ -66,7 +66,7 @@ public class SaitekX55Throttle : MonoBehaviour {
                     break;
 
                 case "RotationZ":
-                    RTY3.transform.localEulerAngles = new Vector3(0, 0, ConvertRange(entry.Value, 0, 65535, -150, 150));
+                    RTY4.transform.localEulerAngles = new Vector3(0, 0, ConvertRange(entry.Value, 0, 65535, -150, 150));
                     break;
 
                 case "Buttons5":
