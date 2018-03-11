@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TMWarthogThrottle : MonoBehaviour {
     public const string USB_ID = "044f:0404";
+
     private const float FLIP_SWITCH_ROTATION = 20.0f;
     public GameObject Model;
 

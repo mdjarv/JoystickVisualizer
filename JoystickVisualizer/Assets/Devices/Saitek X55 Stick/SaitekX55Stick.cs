@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SaitekX55Stick : MonoBehaviour {
-    //public const string USB_ID = "0738:2215";
-    public const string USB_ID = "044f:0402";
+    public const string USB_ID = "0738:2215";
+    //public const string USB_ID = "044f:0402";
 
     public GameObject Model;
 
