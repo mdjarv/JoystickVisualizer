@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SaitekX55Throttle : MonoBehaviour {
-    public const string USB_ID = "0738:a215";
-    //public const string USB_ID = "044f:0404";
+    //public const string USB_ID = "0738:a215";
+    public const string USB_ID = "044f:0404";
 
     public GameObject Model;
 
