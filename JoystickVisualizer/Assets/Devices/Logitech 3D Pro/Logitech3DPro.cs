@@ -6,6 +6,7 @@ using UnityEngine;
 public class Logitech3DPro: MonoBehaviour {
     public const string USB_ID = "046d:c215";
     //public const string USB_ID = "044f:0402";
+    //public const string USB_ID = "044f:0404";
 
     public GameObject Model;
     public GameObject Joystick;
@@ -44,6 +45,10 @@ public class Logitech3DPro: MonoBehaviour {
                     break;
                 case "Y":
                     Joystick.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), Joystick.transform.localEulerAngles.y, Joystick.transform.localEulerAngles.z);
+                    break;
+
+                case "RotationZ":
+                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, Joystick.transform.localEulerAngles.y, ConvertRange(entry.Value, 0, 65535, -30, 30));
                     break;
             }
         }
