@@ -43,13 +43,23 @@ public class SaitekProFlightThrottleQuadrant : MonoBehaviour {
                     break;
 
                 case "X":
-                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -90, 0), 0, 0);
+                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -75, 0), 0, 0);
                     break;
                 case "Y":
-                    Mixture.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -90, 0), 0, 0);
+                    Mixture.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -75, 0), 0, 0);
                     break;
                 case "Z":
-                    Prop.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -90, 0), 0, 0);
+                    Prop.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -75, 0), 0, 0);
+                    break;
+
+                case "Buttons6":
+                    Throttle.transform.localEulerAngles = new Vector3(entry.Value == 0 ? -75 : -90, 0, 0);
+                    break;
+                case "Buttons7":
+                    Mixture.transform.localEulerAngles = new Vector3(entry.Value == 0 ? -75 : -90, 0, 0);
+                    break;
+                case "Buttons8":
+                    Prop.transform.localEulerAngles = new Vector3(entry.Value == 0 ? -75 : -90, 0, 0);
                     break;
             }
         }
