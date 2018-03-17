@@ -11,7 +11,7 @@ public class SaitekProFlightThrottleQuadrant : MonoBehaviour {
 
     public GameObject Throttle;
     public GameObject Mixture;
-    public GameObject Flaps;
+    public GameObject Prop;
 
     // Use this for initialization
     void Start()
@@ -43,13 +43,13 @@ public class SaitekProFlightThrottleQuadrant : MonoBehaviour {
                     break;
 
                 case "X":
-                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, 0), 0, 0);
+                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -90, 0), 0, 0);
                     break;
                 case "Y":
-                    Mixture.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, 0), 0, 0);
+                    Mixture.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -90, 0), 0, 0);
                     break;
                 case "Z":
-                    Flaps.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, 0), 0, 0);
+                    Prop.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -90, 0), 0, 0);
                     break;
             }
         }

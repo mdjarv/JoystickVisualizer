@@ -1,95 +1,84 @@
 fileFormatVersion: 2
-guid: 39fb169c8757c784d81a1611e1d50950
-timeCreated: 1520978685
+guid: 913375e9f4ab9c542bcff55bdba8bd7e
+timeCreated: 1521284199
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Base
-    100002: Gimbal_Center
-    100004: Hole
-    100006: //RootNode
-    100008: Cylinder
-    100010: Circle
-    100012: Stick
-    100014: Buttons
-    100016: Gimbal_Rubber
-    100018: Stick_001
-    100020: Sphere
-    100022: Stick_Buttons
-    100024: Hat
-    100026: Side_Button
-    100028: Trigger
-    100030: Throttle
+    100002: Empty
+    100004: //RootNode
+    100006: Mixture
+    100008: Mixture_Handle
+    100010: Prop
+    100012: Prop_Handle
+    100014: Throttle
+    100016: Throttle_Handle
+    100018: T1-T2
+    100020: T3-T4
+    100022: T5-T6
+    100024: Cylinder
+    100026: Sideplates
     400000: Base
-    400002: Gimbal_Center
-    400004: Hole
-    400006: //RootNode
-    400008: Cylinder
-    400010: Circle
-    400012: Stick
-    400014: Buttons
-    400016: Gimbal_Rubber
-    400018: Stick_001
-    400020: Sphere
-    400022: Stick_Buttons
-    400024: Hat
-    400026: Side_Button
-    400028: Trigger
-    400030: Throttle
-    2100000: Grey_Plastic_002
-    2100002: Grey_Plastic_001
-    2100004: Black_Plastic_001
-    2100006: Black_Plastic
-    2100008: Grey_Plastic
-    2100010: Very_Black_Plastic
+    400002: Empty
+    400004: //RootNode
+    400006: Mixture
+    400008: Mixture_Handle
+    400010: Prop
+    400012: Prop_Handle
+    400014: Throttle
+    400016: Throttle_Handle
+    400018: T1-T2
+    400020: T3-T4
+    400022: T5-T6
+    400024: Cylinder
+    400026: Sideplates
+    2100000: unnamed
+    2100002: Black_Plastic
+    2100004: Red_Plastic
+    2100006: Glossy_Black
+    2100008: Blue_Plastic
+    2100010: Glossy_Black_001
+    2100012: Glossy_Black_004
+    2100014: Glossy_Black_005
     2300000: Base
-    2300002: Gimbal_Center
-    2300004: Hole
-    2300006: //RootNode
-    2300008: Cylinder
-    2300010: Circle
-    2300012: Stick
-    2300014: Buttons
-    2300016: Gimbal_Rubber
-    2300018: Stick_001
-    2300020: Sphere
-    2300022: Stick_Buttons
-    2300024: Hat
-    2300026: Side_Button
-    2300028: Trigger
-    2300030: Throttle
+    2300002: Mixture
+    2300004: Mixture_Handle
+    2300006: Prop
+    2300008: Prop_Handle
+    2300010: Throttle
+    2300012: Throttle_Handle
+    2300014: //RootNode
+    2300016: T1-T2
+    2300018: T3-T4
+    2300020: T5-T6
+    2300022: Cylinder
+    2300024: Sideplates
     3300000: Base
-    3300002: Gimbal_Center
-    3300004: Hole
-    3300006: //RootNode
-    3300008: Cylinder
-    3300010: Circle
-    3300012: Stick
-    3300014: Buttons
-    3300016: Gimbal_Rubber
-    3300018: Stick_001
-    3300020: Sphere
-    3300022: Stick_Buttons
-    3300024: Hat
-    3300026: Side_Button
-    3300028: Trigger
-    3300030: Throttle
-    4300000: Hole
-    4300002: Base
-    4300004: Gimbal_Center
-    4300006: Cylinder
-    4300008: Stick
-    4300010: Circle
-    4300012: Buttons
-    4300014: Gimbal_Rubber
-    4300016: Stick_001
-    4300018: Sphere
-    4300020: Stick_Buttons
-    4300022: Hat
-    4300024: Side_Button
-    4300026: Trigger
-    4300028: Throttle
+    3300002: Mixture
+    3300004: Mixture_Handle
+    3300006: Prop
+    3300008: Prop_Handle
+    3300010: Throttle
+    3300012: Throttle_Handle
+    3300014: //RootNode
+    3300016: T1-T2
+    3300018: T3-T4
+    3300020: T5-T6
+    3300022: Cylinder
+    3300024: Sideplates
+    4300000: Base
+    4300002: Mixture
+    4300004: Mixture_Handle
+    4300006: Throttle
+    4300008: Throttle_Handle
+    4300010: Prop
+    4300012: Prop_Handle
+    4300014: T1-T2
+    4300016: T3-T4
+    4300018: T5-T6
+    4300020: Cylinder
+    4300022: Sideplates
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
@@ -97,17 +86,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Black_Plastic
-    second: {fileID: 2100000, guid: 71e604bc7c7a53e48b7417465013be5c, type: 2}
+    second: {fileID: 2100000, guid: 6f2d7b6069e1a7445a450852a79681b5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Grey_Plastic
-    second: {fileID: 2100000, guid: dccb4d31ce8a6e74aaaa5dcd3365a0ca, type: 2}
+      name: Blue_Plastic
+    second: {fileID: 2100000, guid: 0cd4a9fe937029e4e9cf8fd36d40af23, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Very_Black_Plastic
-    second: {fileID: 2100000, guid: 9c1809435f7ffb04c88934d7f159adfb, type: 2}
+      name: Glossy_Black
+    second: {fileID: 2100000, guid: e3c52a350af569c47ac73267285fef56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red_Plastic
+    second: {fileID: 2100000, guid: eadd1f9338876a34f85721169eb6f188, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -145,7 +139,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -158,7 +152,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
+    normalSmoothAngle: 82
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
