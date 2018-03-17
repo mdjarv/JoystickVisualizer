@@ -20,6 +20,7 @@ ModelImporter:
     100024: Hat
     100026: Side_Button
     100028: Trigger
+    100030: Throttle
     400000: Base
     400002: Gimbal_Center
     400004: Hole
@@ -35,6 +36,7 @@ ModelImporter:
     400024: Hat
     400026: Side_Button
     400028: Trigger
+    400030: Throttle
     2100000: Grey_Plastic_002
     2100002: Grey_Plastic_001
     2100004: Black_Plastic_001
@@ -56,6 +58,7 @@ ModelImporter:
     2300024: Hat
     2300026: Side_Button
     2300028: Trigger
+    2300030: Throttle
     3300000: Base
     3300002: Gimbal_Center
     3300004: Hole
@@ -71,6 +74,7 @@ ModelImporter:
     3300024: Hat
     3300026: Side_Button
     3300028: Trigger
+    3300030: Throttle
     4300000: Hole
     4300002: Base
     4300004: Gimbal_Center
@@ -85,6 +89,7 @@ ModelImporter:
     4300022: Hat
     4300024: Side_Button
     4300026: Trigger
+    4300028: Throttle
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
