@@ -41,6 +41,8 @@ ModelImporter:
     2100010: Glossy_Black_001
     2100012: Glossy_Black_004
     2100014: Glossy_Black_005
+    2100016: Black_Plastic__Throttle_Quadrant_Reference_Images_png
+    2100018: Glossy_Black__Throttle_Quadrant_Reference_Images_png
     2300000: Base
     2300002: Mixture
     2300004: Mixture_Handle
@@ -90,12 +92,22 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Black_Plastic__Throttle_Quadrant_Reference_Images_png
+    second: {fileID: 2100000, guid: 6f2d7b6069e1a7445a450852a79681b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Blue_Plastic
     second: {fileID: 2100000, guid: 0cd4a9fe937029e4e9cf8fd36d40af23, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Glossy_Black
+    second: {fileID: 2100000, guid: e3c52a350af569c47ac73267285fef56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glossy_Black__Throttle_Quadrant_Reference_Images_png
     second: {fileID: 2100000, guid: e3c52a350af569c47ac73267285fef56, type: 2}
   - first:
       type: UnityEngine:Material
