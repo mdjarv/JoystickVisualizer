@@ -13,6 +13,11 @@ public class SaitekProFlightThrottleQuadrant : MonoBehaviour {
     public GameObject Mixture;
     public GameObject Prop;
 
+    public GameObject T1_T2;
+    public GameObject T3_T4;
+    public GameObject T5_T6;
+
+
     // Use this for initialization
     void Start()
     {
@@ -45,21 +50,40 @@ public class SaitekProFlightThrottleQuadrant : MonoBehaviour {
                 case "X":
                     Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -75, 0), 0, 0);
                     break;
-                case "Y":
-                    Prop.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -75, 0), 0, 0);
-                    break;
                 case "Z":
                     Mixture.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -75, 0), 0, 0);
+                    break;
+                case "Y":
+                    Prop.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 65535, 0, -75, 0), 0, 0);
                     break;
 
                 case "Buttons6":
                     Throttle.transform.localEulerAngles = new Vector3(entry.Value == 0 ? -75 : -90, 0, 0);
                     break;
-                case "Buttons7":
+                case "Buttons8":
                     Mixture.transform.localEulerAngles = new Vector3(entry.Value == 0 ? -75 : -90, 0, 0);
                     break;
-                case "Buttons8":
+                case "Buttons7":
                     Prop.transform.localEulerAngles = new Vector3(entry.Value == 0 ? -75 : -90, 0, 0);
+                    break;
+
+                case "Buttons0":
+                    T1_T2.transform.localEulerAngles = new Vector3(entry.Value == 0 ? 0 : 15, 0, 0);
+                    break;
+                case "Buttons1":
+                    T1_T2.transform.localEulerAngles = new Vector3(entry.Value == 0 ? 0 : -15, 0, 0);
+                    break;
+                case "Buttons2":
+                    T3_T4.transform.localEulerAngles = new Vector3(entry.Value == 0 ? 0 : 15, 0, 0);
+                    break;
+                case "Buttons3":
+                    T3_T4.transform.localEulerAngles = new Vector3(entry.Value == 0 ? 0 : -15, 0, 0);
+                    break;
+                case "Buttons4":
+                    T5_T6.transform.localEulerAngles = new Vector3(entry.Value == 0 ? 0 : 15, 0, 0);
+                    break;
+                case "Buttons5":
+                    T5_T6.transform.localEulerAngles = new Vector3(entry.Value == 0 ? 0 : -15, 0, 0);
                     break;
             }
         }
