@@ -2,7 +2,7 @@
 
 Show your stick and throttle movement as an overlay while streaming or recording videos.
 
-## **[Download latest release here](https://github.com/mdjarv/JoystickVisualizer/releases)**
+### **[Download latest release here](https://github.com/mdjarv/JoystickVisualizer/releases)**
 
 This software will read buttons and axis input from supported devices and visualize them using 3D models on top of a flat colored background making it easy to apply chroma key and placing them as overlays using streaming software like OBS or XSplit
 
