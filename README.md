@@ -1,6 +1,26 @@
 # Joystick Visualizer
 
-Joystick Visualizer shows a 3D view of the Thrustmaster Warthog joystick and throttle that moves with the real joystick connected to the computer. The idea is to use this for some nice visuals when streaming games or record instructional videos for flight simulators.
+Show your stick and throttle movement as an overlay while streaming or recording videos.
+
+## **[Download latest release here](https://github.com/mdjarv/JoystickVisualizer/releases)**
+
+This software will read buttons and axis input from supported devices and visualize them using 3D models on top of a flat colored background making it easy to apply chroma key and placing them as overlays using streaming software like OBS or XSplit
+
+![Preview of Joystick Visualizer](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/Preview1.png)
+
+Currently supported devices:
+
+* CH Pro Pedals
+* Logitech 3D Pro
+* Saitek X52 HOTAS (Using Warthog 3D model)
+* Saitek X52 Pro HOTAS (Using Warthog 3D model)
+* Saitek X55 Throttle
+* Saitek X55 Joystick
+* Saitek Pro Flight Throttle Quadrant
+* Thrustmaster Warthog Joystick
+* Thrustmaster Warthog Throttle
+* Thrustmaster T16000M
+* VKB Gunfighter (Using Warthog 3D model)
 
 If you want to contact me the best way would be to hop on my [Discord](https://discord.gg/4nc3XtQ) server and say hello.
 
@@ -38,9 +58,7 @@ If you for some reason want to run the visualizer on another PC you can change t
 
 ### Joystick Visualizer
 
-The Visualizer part is the graphical frontend, built using Unity3D to show a 3D model moving. Using Color Key in OBS you can then remove the background and add it as an overlay to your stream like in the image below.
-
-![Preview of Joystick Visualizer](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/Preview1.png)
+The Visualizer part is the graphical frontend, built using Unity3D to show a 3D model moving.
 
 ## Credits
 
