@@ -18,6 +18,14 @@ ModelImporter:
     100020: Handle_SAITEK_X52_throtle_v2_MeshPart9
     100022: Roller_SAITEK_X52_throtle_v1
     100024: //RootNode
+    100026: Base
+    100028: Base_SAITEK_X52_throtle_v2
+    100030: Front_Wheel
+    100032: Handle
+    100034: Handle_Mount
+    100036: Sides
+    100038: Sphere
+    100040: Top_Knob
     400000: Handle_SAITEK_X52_throtle_v2
     400002: Handle_SAITEK_X52_throtle_v2_MeshPart0
     400004: Handle_SAITEK_X52_throtle_v2_MeshPart1
@@ -31,6 +39,14 @@ ModelImporter:
     400020: Handle_SAITEK_X52_throtle_v2_MeshPart9
     400022: Roller_SAITEK_X52_throtle_v1
     400024: //RootNode
+    400026: Base
+    400028: Base_SAITEK_X52_throtle_v2
+    400030: Front_Wheel
+    400032: Handle
+    400034: Handle_Mount
+    400036: Sides
+    400038: Sphere
+    400040: Top_Knob
     2300000: Handle_SAITEK_X52_throtle_v2_MeshPart0
     2300002: Handle_SAITEK_X52_throtle_v2_MeshPart1
     2300004: Handle_SAITEK_X52_throtle_v2_MeshPart2
@@ -44,6 +60,14 @@ ModelImporter:
     2300020: Roller_SAITEK_X52_throtle_v1
     2300022: //RootNode
     2300024: Handle_SAITEK_X52_throtle_v2
+    2300026: Base
+    2300028: Base_SAITEK_X52_throtle_v2
+    2300030: Front_Wheel
+    2300032: Handle
+    2300034: Handle_Mount
+    2300036: Sides
+    2300038: Sphere
+    2300040: Top_Knob
     3300000: Handle_SAITEK_X52_throtle_v2_MeshPart0
     3300002: Handle_SAITEK_X52_throtle_v2_MeshPart1
     3300004: Handle_SAITEK_X52_throtle_v2_MeshPart2
@@ -57,6 +81,14 @@ ModelImporter:
     3300020: Roller_SAITEK_X52_throtle_v1
     3300022: //RootNode
     3300024: Handle_SAITEK_X52_throtle_v2
+    3300026: Base
+    3300028: Base_SAITEK_X52_throtle_v2
+    3300030: Front_Wheel
+    3300032: Handle
+    3300034: Handle_Mount
+    3300036: Sides
+    3300038: Sphere
+    3300040: Top_Knob
     4300000: Base_SAITEK_X52_throtle_v2
     4300002: Handle_SAITEK_X52_throtle_v2_MeshPart0
     4300004: Handle_SAITEK_X52_throtle_v2_MeshPart1
@@ -70,9 +102,41 @@ ModelImporter:
     4300020: Handle_SAITEK_X52_throtle_v2_MeshPart9
     4300022: Roller_SAITEK_X52_throtle_v1
     4300024: Handle_SAITEK_X52_throtle_v2
+    4300026: Sphere
+    4300028: Base
+    4300030: Handle_Mount
+    4300032: Handle
+    4300034: Top_Knob
+    4300036: Front_Wheel
+    4300038: Sides
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 300318906e083184598003a2817d286d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_001
+    second: {fileID: 2100000, guid: f98a102248c9b9d4b98dd70944245e75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_002
+    second: {fileID: 2100000, guid: 1f1cc082ea484414199fb75f9a637ed6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_003
+    second: {fileID: 2100000, guid: 46fb99357f45d8644b849e8fd0acf741, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Transparent
+    second: {fileID: 2100000, guid: 2cfa57d79437e0643b1bc6a49c9c2a8d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -120,6 +184,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
