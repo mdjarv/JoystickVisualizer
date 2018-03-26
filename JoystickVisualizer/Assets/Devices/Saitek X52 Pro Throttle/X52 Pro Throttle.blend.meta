@@ -26,6 +26,8 @@ ModelImporter:
     100036: Sides
     100038: Sphere
     100040: Top_Knob
+    100042: Buttons
+    100044: Cube
     400000: Handle_SAITEK_X52_throtle_v2
     400002: Handle_SAITEK_X52_throtle_v2_MeshPart0
     400004: Handle_SAITEK_X52_throtle_v2_MeshPart1
@@ -47,6 +49,8 @@ ModelImporter:
     400036: Sides
     400038: Sphere
     400040: Top_Knob
+    400042: Buttons
+    400044: Cube
     2300000: Handle_SAITEK_X52_throtle_v2_MeshPart0
     2300002: Handle_SAITEK_X52_throtle_v2_MeshPart1
     2300004: Handle_SAITEK_X52_throtle_v2_MeshPart2
@@ -68,6 +72,8 @@ ModelImporter:
     2300036: Sides
     2300038: Sphere
     2300040: Top_Knob
+    2300042: Buttons
+    2300044: Cube
     3300000: Handle_SAITEK_X52_throtle_v2_MeshPart0
     3300002: Handle_SAITEK_X52_throtle_v2_MeshPart1
     3300004: Handle_SAITEK_X52_throtle_v2_MeshPart2
@@ -89,6 +95,8 @@ ModelImporter:
     3300036: Sides
     3300038: Sphere
     3300040: Top_Knob
+    3300042: Buttons
+    3300044: Cube
     4300000: Base_SAITEK_X52_throtle_v2
     4300002: Handle_SAITEK_X52_throtle_v2_MeshPart0
     4300004: Handle_SAITEK_X52_throtle_v2_MeshPart1
@@ -109,6 +117,8 @@ ModelImporter:
     4300034: Top_Knob
     4300036: Front_Wheel
     4300038: Sides
+    4300040: Buttons
+    4300042: Cube
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
@@ -132,6 +142,31 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Material_003
     second: {fileID: 2100000, guid: 46fb99357f45d8644b849e8fd0acf741, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_Brushed
+    second: {fileID: 2100000, guid: 8a83c4b5dda05ff4383513b20c22363d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic_Black
+    second: {fileID: 2100000, guid: 0f88421bc5ce94f4fbdffb5fdf874f0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic_Blue
+    second: {fileID: 2100000, guid: 6b9434d9d1bf5664eaab3b1bcbb4141e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic_Grey
+    second: {fileID: 2100000, guid: 2fe1f8f3049d3dc4ba463ef2d987a523, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Screen_Glow
+    second: {fileID: 2100000, guid: 5fd0d853481897b4194cdf7eea8e1729, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

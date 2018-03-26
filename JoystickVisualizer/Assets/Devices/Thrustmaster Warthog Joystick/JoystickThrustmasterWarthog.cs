@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaitekX52Throttle : MonoBehaviour {
-    public const string USB_ID = "06a3:075c";
+public class JoystickThrustmasterWarthog : MonoBehaviour {
+    public const string USB_ID = "044f:0402";
     //public const string USB_ID = "044f:0404";
 
     public GameObject Model;
-
-    public GameObject Throttle;
+    public GameObject Joystick;
 
     // Use this for initialization
     void Start()
@@ -28,13 +27,22 @@ public class SaitekX52Throttle : MonoBehaviour {
             return;
         }
 
+        Model.SetActive(true);
+
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
             switch (entry.Key)
             {
-                case "Z": // Throttle
-                    Model.SetActive(true);
-                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 30, -20), Throttle.transform.localEulerAngles.y, Throttle.transform.localEulerAngles.z);
+                case "Connected":
+                    if (Model.activeInHierarchy)
+                        Model.SetActive(entry.Value == 1);
+                    break;
+
+                case "X":
+                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, -20, 20), Joystick.transform.localEulerAngles.z);
+                    break;
+                case "Y":
+                    Joystick.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -20, 20), Joystick.transform.localEulerAngles.y, Joystick.transform.localEulerAngles.z);
                     break;
             }
         }
@@ -48,5 +56,4 @@ public class SaitekX52Throttle : MonoBehaviour {
         double scale = (double)(newEnd - newStart) / (originalEnd - originalStart);
         return (float)(newStart + ((value - originalStart) * scale));
     }
-
 }
