@@ -28,6 +28,9 @@ ModelImporter:
     100040: Top_Knob
     100042: Buttons
     100044: Cube
+    100046: Button_Left
+    100048: Button_Middle
+    100050: Button_Right
     400000: Handle_SAITEK_X52_throtle_v2
     400002: Handle_SAITEK_X52_throtle_v2_MeshPart0
     400004: Handle_SAITEK_X52_throtle_v2_MeshPart1
@@ -51,6 +54,10 @@ ModelImporter:
     400040: Top_Knob
     400042: Buttons
     400044: Cube
+    400046: Button_Left
+    400048: Button_Middle
+    400050: Button_Right
+    2100000: unnamed
     2300000: Handle_SAITEK_X52_throtle_v2_MeshPart0
     2300002: Handle_SAITEK_X52_throtle_v2_MeshPart1
     2300004: Handle_SAITEK_X52_throtle_v2_MeshPart2
@@ -74,6 +81,9 @@ ModelImporter:
     2300040: Top_Knob
     2300042: Buttons
     2300044: Cube
+    2300046: Button_Left
+    2300048: Button_Middle
+    2300050: Button_Right
     3300000: Handle_SAITEK_X52_throtle_v2_MeshPart0
     3300002: Handle_SAITEK_X52_throtle_v2_MeshPart1
     3300004: Handle_SAITEK_X52_throtle_v2_MeshPart2
@@ -97,6 +107,9 @@ ModelImporter:
     3300040: Top_Knob
     3300042: Buttons
     3300044: Cube
+    3300046: Button_Left
+    3300048: Button_Middle
+    3300050: Button_Right
     4300000: Base_SAITEK_X52_throtle_v2
     4300002: Handle_SAITEK_X52_throtle_v2_MeshPart0
     4300004: Handle_SAITEK_X52_throtle_v2_MeshPart1
@@ -119,6 +132,9 @@ ModelImporter:
     4300038: Sides
     4300040: Buttons
     4300042: Cube
+    4300044: Button_Middle
+    4300046: Button_Left
+    4300048: Button_Right
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
@@ -146,42 +162,37 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Metal_Brushed
-    second: {fileID: 2100000, guid: 8a83c4b5dda05ff4383513b20c22363d, type: 2}
+    second: {fileID: 2100000, guid: 42bbcce40eac02946bb5d7a03be05f2a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Plastic_Black
-    second: {fileID: 2100000, guid: 0f88421bc5ce94f4fbdffb5fdf874f0b, type: 2}
+    second: {fileID: 2100000, guid: e63adfd1f416b8c41b63b2397b5cfcda, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Plastic_Blue
-    second: {fileID: 2100000, guid: 6b9434d9d1bf5664eaab3b1bcbb4141e, type: 2}
+    second: {fileID: 2100000, guid: e70fbc1da7d8f9e40bbcb775a23cacb6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Plastic_Grey
-    second: {fileID: 2100000, guid: 2fe1f8f3049d3dc4ba463ef2d987a523, type: 2}
+    second: {fileID: 2100000, guid: 47db6730d56292c48bb199ba27bdfd69, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Screen_Glow
-    second: {fileID: 2100000, guid: 5fd0d853481897b4194cdf7eea8e1729, type: 2}
+    second: {fileID: 2100000, guid: 451c811a18a6c01448b3aa0347abd5ce, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Transparent
     second: {fileID: 2100000, guid: 2cfa57d79437e0643b1bc6a49c9c2a8d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: unnamed
-    second: {fileID: 2100000, guid: 2e4b66167b568144390b927f1bc94be0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
