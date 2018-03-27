@@ -34,7 +34,7 @@ public class SaitekX52Throttle : MonoBehaviour {
             {
                 case "Z": // Throttle
                     Model.SetActive(true);
-                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 30, -20), Throttle.transform.localEulerAngles.y, Throttle.transform.localEulerAngles.z);
+                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -30, 20), Throttle.transform.localEulerAngles.y, Throttle.transform.localEulerAngles.z);
                     break;
             }
         }

@@ -12,11 +12,14 @@ using System.Linq.Expressions;
 using IniParser;
 using IniParser.Model;
 using System.Collections.Concurrent;
+using System.Diagnostics;
 
 namespace JoystickProxy
 {
     class Program
     {
+        private static int FPS = 30;
+        private static int FrameTime;
         private bool Debug = true;
         private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
         private static Dictionary<Guid, string> InstanceGuidToUsbIdLookup = new Dictionary<Guid, string>();
@@ -30,6 +33,7 @@ namespace JoystickProxy
 
             host = IPAddress.Parse(data["Config"]["Host"]);
             port = Int32.Parse(data["Config"]["Port"]);
+            FrameTime = 1000 / Int32.Parse(data["Config"]["FPS"]);
 
             Console.WriteLine("JoystickProxy");
             Console.WriteLine("=============");
@@ -84,8 +88,10 @@ namespace JoystickProxy
 
                 while (true)
                 {
-                    foreach(Joystick joystick in connectedJoysticks.Values)
+                    Stopwatch sw = new Stopwatch();
+                    foreach (Joystick joystick in connectedJoysticks.Values)
                     {
+                        sw.Start();
                         try
                         {
                             joystick.Poll();
@@ -108,8 +114,12 @@ namespace JoystickProxy
                         {}
 
                     }
-
-                    Thread.Sleep(20);
+                    sw.Stop();
+                    int sleepTime = FrameTime - (int)sw.ElapsedMilliseconds;
+                    if (sleepTime > 0)
+                    {
+                        Thread.Sleep(sleepTime);
+                    }
                 }
             }
             catch (Exception e)
