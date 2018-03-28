@@ -43,8 +43,8 @@ public class ThrustmasterTFlightRudderCarMode : MonoBehaviour {
                     break;
 
                 case "Sliders0":
-                    LeftPedal.transform.localPosition = new Vector3(LeftPedal.transform.localPosition.x, ConvertRange(entry.Value, 0, 65535, 0, -1.2), LeftPedal.transform.localPosition.z);
-                    RightPedal.transform.localPosition = new Vector3(RightPedal.transform.localPosition.x, ConvertRange(entry.Value, 0, 65535, 0, 1.2), RightPedal.transform.localPosition.z);
+                    LeftPedal.transform.localPosition = new Vector3(LeftPedal.transform.localPosition.x, ConvertRange(entry.Value, 0, 65535, -1.2, 0), LeftPedal.transform.localPosition.z);
+                    RightPedal.transform.localPosition = new Vector3(RightPedal.transform.localPosition.x, ConvertRange(entry.Value, 0, 65535, 1.2, 0), RightPedal.transform.localPosition.z);
                     break;
                 case "Z": // Left brake
                     LeftPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -20, 0), 0, 0);
