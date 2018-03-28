@@ -19,6 +19,7 @@ Currently supported devices:
 * Saitek Pro Flight Throttle Quadrant
 * Thrustmaster Warthog Joystick
 * Thrustmaster Warthog Throttle
+* Thrustmaster T.Flight Rudder
 * Thrustmaster T16000M
 * VKB Gunfighter (Using Warthog 3D model)
 
