@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SaitekX45Throttle : MonoBehaviour {
     public const string USB_ID = "06a3:2541";
+    public const string USB_ID_2 = "06a3:053c";
     //public const string USB_ID = "044f:0404";
 
     public GameObject Model;
@@ -23,7 +24,7 @@ public class SaitekX45Throttle : MonoBehaviour {
 
     void StickEvent(JoystickState state)
     {
-        if (state.UsbID != USB_ID)
+        if (state.UsbID != USB_ID && state.UsbID != USB_ID_2)
         {
             return;
         }
