@@ -1,12 +1,14 @@
 # Joystick Visualizer
 
+[![Donate](https://img.shields.io/badge/Tip%20Jar-PayPal-green.svg)](http://paypal.me/mdjarv)
+
 Show your stick and throttle movement as an overlay while streaming or recording videos.
 
 ### **[Download latest release here](https://github.com/mdjarv/JoystickVisualizer/releases)**
 
 This software will read buttons and axis input from supported devices and visualize them using 3D models on top of a flat colored background making it easy to apply chroma key and placing them as overlays using streaming software like OBS or XSplit
 
-![Preview of Joystick Visualizer](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/Preview1.png)
+![Preview of Joystick Visualizer](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/preview_image.png)
 
 Currently supported devices:
 
@@ -25,41 +27,51 @@ Currently supported devices:
 
 If you want to contact me the best way would be to hop on my [Discord](https://discord.gg/4nc3XtQ) server and say hello.
 
-## Usage
+## Setting it up
 
-If you just want to use the software, make sure you download a prebuilt release under the [Releases](https://github.com/mdjarv/JoystickVisualizer/releases) page instead of using the green "Clone or download" button which will get you the source code instead.
+### Start the Software
 
-### Starting the Software
+* Start `JoystickProxy.exe`, if you see a lot of numbers on the screen when you move your controllers then it should be ready
 
-For normal usage start the two applications, the Proxy and the Visualizer. In the Proxy window you can check that its found your stick and throttle by moving them around.
+![Proxy Window](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/proxy_window.png)
 
-In the Visualizer window you select the window resolution you want and then when the application is running you move your devices around and they will show up.
+* Start `JoystickVisualizer.exe`, select your resolution and make sure to run in Windowed Mode
+
+![Visualizer Window](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/visualizer_window.png)
+
+Your devices should show up in the Visualizer when you start moving them
+
+### Configure OBS
+
+1. In OBS add a `Window Capture` source, give it a useful name like "Joystick Visualizer"
+
+![Add Window Capture Source](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_1_add_window_capture.png)
+
+2. Make sure you select `JoystickVisualizer.exe` and you can also uncheck "Capture Cursor"
+
+![Select Inner Window](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_2_add_window_capture.png)
+
+3. Right click on the Source you just created and select `Filters`
+
+![Add filter to source](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_3_sources.png)
+
+4. By clicking the + in the bottom left, add a `Color Key` filter. Change the `Key Color Type` to `Custom Color`
+
+![Setup Color Key filter](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_4_window_capture_filter.png)
+
+5. Click `Select color` and enter `#1e3d5d` in the HTML field
+
+![Select color](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_5_custom_color.png)
+
+6. Save and close the filter settings and you should have an overlay with transparent background to move around your Scene
+
+![Placement](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_6_placement.png)
 
 ### Controlling the camera
 
 The camera in the Visualizer can be moved around by right-clicking and dragging, and the view can be zoomed using the mouse wheel.
 
 There are also three camera presets that can be accessed with the `1`, `2` and `3` keys on the keyboard.
-
-### Setup OBS
-
-In OBS add a Window Capture source, give it a useful name like Joystick Visualizer, select Inner Window, enable Color Key and set the color to ```#1E3D5D``` or RGB: ```31,62,93``` and save your changes.
-
-Then click on Preview Stream to get a video preview of how it will look. Click on Edit Scene, select the Joystick Visualizer source and move and scale it, and move it so that the UI camera buttons are hidden outside of the visual field.
-
-## Overview
-
-Unfortunately, because of the way Unity handles joystick input by not reading it if the window is not in focus, the software is divided into two parts: The Joystick Visualizer and the Joystick Proxy.
-
-### Joystick Proxy
-
-This application will read the USB device input via DirectInput and send the events over UDP. The `settings.ini` file is used to configure host and port of the computer running the visualizer. If it has detected your joystick and/or throttle it should print event values for movement and button pushes.
-
-If you for some reason want to run the visualizer on another PC you can change the host and port in the `settings.ini` file.
-
-### Joystick Visualizer
-
-The Visualizer part is the graphical frontend, built using Unity3D to show a 3D model moving.
 
 ## Credits
 
