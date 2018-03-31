@@ -33,11 +33,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.devicesDataGridView = new System.Windows.Forms.DataGridView();
             this.refreshDevicesTimer = new System.Windows.Forms.Timer(this.components);
+            this.refreshButton = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.inputBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.readInputTimer = new System.Windows.Forms.Timer(this.components);
+            this.InputName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InputValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uSBIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.controllerDeviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.refreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.devicesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.controllerDeviceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,8 +53,9 @@
             this.devicesDataGridView.AllowUserToAddRows = false;
             this.devicesDataGridView.AllowUserToDeleteRows = false;
             this.devicesDataGridView.AllowUserToResizeRows = false;
-            this.devicesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.devicesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.devicesDataGridView.AutoGenerateColumns = false;
             this.devicesDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.devicesDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -61,35 +69,15 @@
             this.devicesDataGridView.Name = "devicesDataGridView";
             this.devicesDataGridView.RowHeadersVisible = false;
             this.devicesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.devicesDataGridView.Size = new System.Drawing.Size(1101, 585);
+            this.devicesDataGridView.Size = new System.Drawing.Size(793, 585);
             this.devicesDataGridView.TabIndex = 0;
+            this.devicesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.devicesDataGridView_CellFormatting);
+            this.devicesDataGridView.SelectionChanged += new System.EventHandler(this.devicesDataGridView_SelectionChanged);
             // 
             // refreshDevicesTimer
             // 
             this.refreshDevicesTimer.Interval = 2000;
             this.refreshDevicesTimer.Tick += new System.EventHandler(this.refreshDevicesTimer_Tick);
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // uSBIDDataGridViewTextBoxColumn
-            // 
-            this.uSBIDDataGridViewTextBoxColumn.DataPropertyName = "UsbId";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uSBIDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.uSBIDDataGridViewTextBoxColumn.HeaderText = "USB ID";
-            this.uSBIDDataGridViewTextBoxColumn.Name = "uSBIDDataGridViewTextBoxColumn";
-            this.uSBIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.uSBIDDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // controllerDeviceBindingSource
-            // 
-            this.controllerDeviceBindingSource.DataSource = typeof(Joystick_Proxy.ControllerDevice);
             // 
             // refreshButton
             // 
@@ -101,16 +89,82 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.InputName,
+            this.InputValue});
+            this.dataGridView1.DataSource = this.inputBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(811, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(302, 585);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // readInputTimer
+            // 
+            this.readInputTimer.Interval = 10;
+            this.readInputTimer.Tick += new System.EventHandler(this.readInputTimer_Tick);
+            // 
+            // InputName
+            // 
+            this.InputName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.InputName.DataPropertyName = "Name";
+            this.InputName.FillWeight = 50F;
+            this.InputName.HeaderText = "Input";
+            this.InputName.Name = "InputName";
+            // 
+            // InputValue
+            // 
+            this.InputValue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.InputValue.DataPropertyName = "Value";
+            this.InputValue.FillWeight = 50F;
+            this.InputValue.HeaderText = "Value";
+            this.InputValue.Name = "InputValue";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.FillWeight = 80F;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // uSBIDDataGridViewTextBoxColumn
+            // 
+            this.uSBIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.uSBIDDataGridViewTextBoxColumn.DataPropertyName = "UsbId";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uSBIDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.uSBIDDataGridViewTextBoxColumn.FillWeight = 20F;
+            this.uSBIDDataGridViewTextBoxColumn.HeaderText = "USB ID";
+            this.uSBIDDataGridViewTextBoxColumn.Name = "uSBIDDataGridViewTextBoxColumn";
+            this.uSBIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // controllerDeviceBindingSource
+            // 
+            this.controllerDeviceBindingSource.DataSource = typeof(Joystick_Proxy.ControllerDevice);
+            // 
             // Form1
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1125, 638);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.devicesDataGridView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "DirectInput Device List";
             ((System.ComponentModel.ISupportInitialize)(this.devicesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.controllerDeviceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -121,9 +175,14 @@
         private System.Windows.Forms.DataGridView devicesDataGridView;
         private System.Windows.Forms.Timer refreshDevicesTimer;
         private System.Windows.Forms.BindingSource controllerDeviceBindingSource;
+        private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn uSBIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.BindingSource inputBindingSource;
+        private System.Windows.Forms.Timer readInputTimer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InputName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InputValue;
     }
 }
 
