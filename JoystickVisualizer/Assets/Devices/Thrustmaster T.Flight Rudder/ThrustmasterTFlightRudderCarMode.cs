@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ThrustmasterTFlightRudderCarMode : MonoBehaviour {
     public const string USB_ID = "044f:b678";
+    //public const string USB_ID = "06a3:0764";
 
     public GameObject Model;
 

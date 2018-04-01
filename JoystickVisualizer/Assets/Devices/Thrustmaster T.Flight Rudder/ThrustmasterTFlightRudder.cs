@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ThrustmasterTFlightRudder : MonoBehaviour {
     public const string USB_ID = "044f:b679";
+    //public const string USB_ID = "06a3:0764";
 
     public GameObject Model;
+
+    public GameObject CenterIndicator;
 
     public GameObject LeftPedal;
     public GameObject RightPedal;
@@ -43,8 +46,9 @@ public class ThrustmasterTFlightRudder : MonoBehaviour {
                     break;
 
                 case "Z":
-                    LeftPedal.transform.localPosition = new Vector3(LeftPedal.transform.localPosition.x, ConvertRange(entry.Value, 0, 65535, 1.2, -1.2), LeftPedal.transform.localPosition.z);
-                    RightPedal.transform.localPosition = new Vector3(RightPedal.transform.localPosition.x, ConvertRange(entry.Value, 0, 65535, -1.2, 1.2), RightPedal.transform.localPosition.z);
+                    LeftPedal.transform.localPosition = new Vector3(LeftPedal.transform.localPosition.x, ConvertRange(entry.Value, 0, 65535, 2.0, -1.2), LeftPedal.transform.localPosition.z);
+                    RightPedal.transform.localPosition = new Vector3(RightPedal.transform.localPosition.x, ConvertRange(entry.Value, 0, 65535, -1.2, 2.0), RightPedal.transform.localPosition.z);
+                    CenterIndicator.transform.localEulerAngles = new Vector3(0, 0, ConvertRange(entry.Value, 0, 65535, 30, -30));
                     break;
                 case "Y": // Left brake
                     LeftPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -20, 0), 0, 0);
