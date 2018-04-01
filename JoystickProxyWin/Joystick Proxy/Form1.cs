@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using IniParser;
+using IniParser.Model;
 using SharpDX.DirectInput;
 
 namespace Joystick_Proxy
@@ -13,12 +14,23 @@ namespace Joystick_Proxy
         private DirectInput directInput = new DirectInput();
         private BindingList<ControllerDevice> _devices;
         private BindingList<ControllerInput> _input;
-        private List<string> supportedDevices = new List<string>();
+        private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
 
         public Form1()
         {
-            supportedDevices.Add("044f:0402");
-            supportedDevices.Add("044f:0404");
+            var parser = new FileIniDataParser();
+            IniData data = parser.ReadFile("settings.ini");
+
+            foreach (KeyData supportedDevice in data["Devices"])
+            {
+                if (supportedDevice.KeyName.StartsWith("#"))
+                {
+                    continue;
+                }
+
+                SupportedDevices.Add(supportedDevice.KeyName, supportedDevice.Value);
+                Console.WriteLine(" * " + supportedDevice.Value);
+            }
 
             InitializeComponent();
             _devices = new BindingList<ControllerDevice>();
@@ -83,10 +95,9 @@ namespace Joystick_Proxy
         private void devicesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             foreach (DataGridViewRow row in devicesDataGridView.Rows)
-            {            //Here 2 cell is target value and 1 cell is Volume
+            {
                 ControllerDevice cd = (ControllerDevice)row.DataBoundItem;
-
-                if(!supportedDevices.Contains(cd.UsbId))
+                if(!SupportedDevices.ContainsKey(cd.UsbId))
                     row.DefaultCellStyle.BackColor = Color.LightGray;
             }
         }
