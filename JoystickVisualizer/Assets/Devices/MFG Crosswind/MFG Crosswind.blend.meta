@@ -1,89 +1,87 @@
 fileFormatVersion: 2
-guid: a7282aa2b125b8c40b2e603aae778ec5
-timeCreated: 1522590972
+guid: dd85a7f9a2398c14382adf28484c0317
+timeCreated: 1522965011
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Base
-    100002: Center_Indicator
-    100004: Empty
-    100006: Empty_001
-    100008: Empty_002
-    100010: Left_Pedal
-    100012: Left_Pedal_Base
-    100014: Rails
-    100016: Right_Pedal
-    100018: Right_Pedal_Base
-    100020: //RootNode
-    400000: Base
-    400002: Center_Indicator
-    400004: Empty
-    400006: Empty_001
-    400008: Empty_002
-    400010: Left_Pedal
-    400012: Left_Pedal_Base
-    400014: Rails
-    400016: Right_Pedal
-    400018: Right_Pedal_Base
-    400020: //RootNode
-    2100000: Black_Plastic
-    2100002: Black_Plastic__HQcgVOe_jpg
-    2100004: Material
-    2100006: Glossy_Black_Plastic
-    2100008: Chrome
-    2100010: Black_Plastic_Gloss
-    2300000: Base
-    2300002: Center_Indicator
-    2300004: Left_Pedal
-    2300006: Left_Pedal_Base
-    2300008: Rails
-    2300010: Right_Pedal
-    2300012: Right_Pedal_Base
-    2300014: //RootNode
-    3300000: Base
-    3300002: Center_Indicator
-    3300004: Left_Pedal
-    3300006: Left_Pedal_Base
-    3300008: Rails
-    3300010: Right_Pedal
-    3300012: Right_Pedal_Base
-    3300014: //RootNode
+    100000: Bearing_Back
+    100002: Bearing_Front
+    100004: Left_Brake
+    100006: Left_Pedal
+    100008: //RootNode
+    100010: Right_Brake
+    100012: Right_Pedal
+    400000: Bearing_Back
+    400002: Bearing_Front
+    400004: Left_Brake
+    400006: Left_Pedal
+    400008: //RootNode
+    400010: Right_Brake
+    400012: Right_Pedal
+    2100000: Composite
+    2100002: Composite_Sides
+    2100004: Metal
+    2100006: Metal_Spring__PedalUV
+    2100008: Metal__p7JVeAc_jpg
+    2100010: Composite_Sides__p7JVeAc_jpg
+    2100012: Composite__p7JVeAc_jpg
+    2100014: CompositeSides
+    2100016: MetalSpring
+    2300000: Bearing_Back
+    2300002: Bearing_Front
+    2300004: Left_Brake
+    2300006: Left_Pedal
+    2300008: //RootNode
+    2300010: Right_Brake
+    2300012: Right_Pedal
+    3300000: Bearing_Back
+    3300002: Bearing_Front
+    3300004: Left_Brake
+    3300006: Left_Pedal
+    3300008: //RootNode
+    3300010: Right_Brake
+    3300012: Right_Pedal
     4300000: Base
-    4300002: Right_Pedal_Base
+    4300002: Bearing_Front
     4300004: Right_Pedal
-    4300006: Rails
-    4300008: Left_Pedal_Base
-    4300010: Left_Pedal
-    4300012: Center_Indicator
+    4300006: Right_Brake
+    4300008: Left_Pedal
+    4300010: Left_Brake
+    4300012: Bearing_Back
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Black_Plastic
-    second: {fileID: 2100000, guid: e63adfd1f416b8c41b63b2397b5cfcda, type: 2}
+      name: Composite
+    second: {fileID: 2100000, guid: e6115142cc31b2040aef44caae3b9b03, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Black_Plastic_Gloss
-    second: {fileID: 2100000, guid: 0483d5b29586fd243901cff3799e0f98, type: 2}
+      name: CompositeSides
+    second: {fileID: 2100000, guid: 7b13f9f4a3162664dad034b1e9830eba, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Black_Plastic__HQcgVOe_jpg
-    second: {fileID: 2100000, guid: 0483d5b29586fd243901cff3799e0f98, type: 2}
+      name: Composite_Sides
+    second: {fileID: 2100000, guid: c9aaeccbbd66ed54bbed811c635bbe72, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Chrome
-    second: {fileID: 2100000, guid: 4def05dcadd394d4da09417f75d74969, type: 2}
+      name: Metal
+    second: {fileID: 2100000, guid: 6b57e0d336602b44993930e017c2ae6b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Glossy_Black_Plastic
-    second: {fileID: 2100000, guid: e63adfd1f416b8c41b63b2397b5cfcda, type: 2}
+      name: MetalSpring
+    second: {fileID: 2100000, guid: c999145d5b6ff1240811631ecc25ac82, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_Spring
+    second: {fileID: 2100000, guid: 7a8189015651d3542b46a70c61db93c0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

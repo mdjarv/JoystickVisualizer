@@ -15,8 +15,8 @@ SketchUpImporter:
   fileUnit: 0
   sketchUpImportData:
     defaultCamera:
-      position: {x: 2.0418458, y: 34.0978, z: -31.082167}
-      lookAt: {x: 1.9765826, y: 26.718374, z: -24.316967}
+      position: {x: 1.6077527, y: 26.848661, z: -24.474148}
+      lookAt: {x: 1.5563643, y: 21.03809, z: -19.147217}
       up: {x: -0.0071104215, y: 0.6757812, z: 0.737068}
       fov: 35
       aspectRatio: 0
@@ -208,13 +208,43 @@ SketchUpImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: '[Color_002]'
+    second: {fileID: 2100000, guid: d43c3938f80691a4d93c378e98d92747, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: '[Color_007]1'
     second: {fileID: 2100000, guid: 1eb882c85320bff43a55d5b49da8d4d4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: '[Color_008]'
+    second: {fileID: 2100000, guid: 8b3dd7d6a52cc0d4c9c4245f4d10dbf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Color_009]'
+    second: {fileID: 2100000, guid: 69680770f6c6edb468b62661a98085ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Color_A06]'
+    second: {fileID: 2100000, guid: c2df0c4e91fcd0342b3362ecedf41a70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Metal_Corrogated_Shiny]'
+    second: {fileID: 2100000, guid: c5912994a7aa96645a27ca9cf3b4d276, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: '[Metal_Corrogated_Shiny]1'
     second: {fileID: 2100000, guid: f331755604fa805448d47fa0582e4270, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Metal_Embossed]'
+    second: {fileID: 2100000, guid: f0c95a3747101694cb53a41317527c68, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -262,6 +292,8 @@ SketchUpImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
