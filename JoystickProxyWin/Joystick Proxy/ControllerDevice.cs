@@ -29,6 +29,7 @@ namespace Joystick_Proxy
         private SortedDictionary<string, JoystickUpdate> _inputStateDictionary = new SortedDictionary<string, JoystickUpdate>();
 
         public DeviceInstance DeviceInstance { get => _deviceInstance; }
+        public bool Supported { get; internal set; }
 
         private DeviceInstance _deviceInstance;
         private Joystick _joystick;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -26,8 +27,6 @@ namespace Joystick_Proxy
         private IPEndPoint _endPoint;
 
         private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
-        private static int FPS = 30;
-        private static int _frameTime;
         private static IPAddress _host;
         private static int _port;
 
@@ -73,6 +72,11 @@ namespace Joystick_Proxy
         {
             List<ControllerDevice> foundDevices = _directInput.GetDevices().ToList().ConvertAll(device => new ControllerDevice(_directInput,  device));
 
+            if(ShowAllDevicesCheckBox.Checked == false)
+            {
+                foundDevices = foundDevices.Where(d => SupportedDevices.ContainsKey(d.UsbId)).ToList();
+            }
+
             var removedDevices = _devices.Except(foundDevices).ToList();
             var addedDevices = foundDevices.Except(_devices).ToList();
 
@@ -88,12 +92,12 @@ namespace Joystick_Proxy
                 if (SupportedDevices.ContainsKey(device.UsbId))
                 {
                     device.OnStateUpdated += Device_OnStateUpdated;
+                    device.Supported = true;
                     device.Enabled = true;
                 }
 
                 device.Acquire();
                 _devices.Add(device);
-                //SendEvent(device, "Connected=1");
             }
         }
 
@@ -198,6 +202,16 @@ namespace Joystick_Proxy
                 devicesDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 this.devicesDataGridView.Rows[e.RowIndex].Cells[0].Value = ((bool)this.devicesDataGridView.CurrentCell.Value == true);
             }
+        }
+
+        private void TipJar_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://paypal.me/mdjarv");
+        }
+
+        private void ShowAllDevicesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            refreshDevicesTimer_Tick(sender, e);
         }
     }
 }
