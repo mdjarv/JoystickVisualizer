@@ -4,13 +4,13 @@
 
 Show your stick and throttle movement as an overlay while streaming or recording videos.
 
-### **[Download latest release here](https://github.com/mdjarv/JoystickVisualizer/releases)**
+### **[Download latest release here](https://github.com/mdjarv/JoystickVisualizer/releases/latest)**
 
 This software will read buttons and axis input from supported devices and visualize them using 3D models on top of a flat colored background making it easy to apply chroma key and placing them as overlays using streaming software like OBS or XSplit
 
 ![Preview of Joystick Visualizer](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/preview_image.png)
 
-Currently supported devices:
+### Supported Devices
 
 * CH Pro Pedals
 * Logitech 3D Pro
@@ -30,13 +30,13 @@ Currently supported devices:
 * Thrustmaster T16000M
 * VKB Gunfighter (Using Warthog 3D model)
 
-If you want to contact me the best way would be to hop on my [Discord](https://discord.gg/4nc3XtQ) server and say hello.
+If you want to get in contact with me hop on my [Discord](https://discord.gg/4nc3XtQ) server and say hello or tweet me [@papapiishu](https://twitter.com/papapiishu)
 
 ## Setting it up
 
 ### Start the Software
 
-* Start `JoystickProxy.exe`, if you see a lot of numbers on the screen when you move your controllers then it should be ready
+* Start `JoystickProxy.exe`, you will see a list of found devices. If your device is in the [Supported Devices](#supported-devices) list but does not show, check the "`Show all devices`" checkbox and contact me so that we can figure out what the issue is.
 
 ![Proxy Window](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/proxy_window.png)
 
@@ -103,5 +103,5 @@ You can find me on:
 
 * Discord: https://discord.gg/4nc3XtQ
 * GitHub: https://github.com/mdjarv
-* Twitter: [@mdjarv](https://twitter.com/mdjarv "@mdjarv on twitter")
+* Twitter: [@papapiishu](https://twitter.com/papapiishu "@papapiishu on twitter")
 * Twitch: [papapiishu](http://www.twitch.tv/papapiishu "papapiishu on Twitch")
