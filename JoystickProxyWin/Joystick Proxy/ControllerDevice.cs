@@ -5,35 +5,95 @@ using System.Text.RegularExpressions;
 
 namespace Joystick_Proxy
 {
-    class ControllerDevice
+    public class ControllerDevice : IEquatable<ControllerDevice>
     {
-        public string Name { get { return _controllerDevice.InstanceName; } }
-        public string UsbId { get { return Regex.Replace(_controllerDevice.ProductGuid.ToString(), @"(^....)(....).*$", "$2:$1"); } }
+        public delegate void DeviceStateUpdateHandler(object sender, DeviceStateUpdateEventArgs e);
+        public event DeviceStateUpdateHandler OnStateUpdated;
+
+        public string Name { get { return _deviceInstance.InstanceName; } }
+        public string Guid { get { return _deviceInstance.InstanceGuid.ToString();  } }
+        public string UsbId { get => _usbId; }
+
         public Joystick Joystick { get => _joystick; set => _joystick = value; }
-        public SortedDictionary<string, JoystickUpdate> CurrentState { get => inputStateDict; }
+        public SortedDictionary<string, JoystickUpdate> CurrentState { get => _inputStateDictionary; }
+        private SortedDictionary<string, JoystickUpdate> _inputStateDictionary = new SortedDictionary<string, JoystickUpdate>();
 
-        private SortedDictionary<string, JoystickUpdate> inputStateDict = new SortedDictionary<string, JoystickUpdate>();
+        public DeviceInstance DeviceInstance { get => _deviceInstance; }
 
-        private DeviceInstance _controllerDevice;
+        private DeviceInstance _deviceInstance;
         private Joystick _joystick;
+        private string _usbId;
 
-        public ControllerDevice(DirectInput di, DeviceInstance dev)
+
+
+        public ControllerDevice(DirectInput di, DeviceInstance deviceInstance)
         {
-            _controllerDevice = dev;
-            Joystick = new Joystick(di, dev.InstanceGuid);
+            _deviceInstance = deviceInstance;
+            _usbId = Regex.Replace(_deviceInstance.ProductGuid.ToString(), @"(^....)(....).*$", "$2:$1");
+            _joystick = new Joystick(di, deviceInstance.InstanceGuid);
+
             Joystick.Properties.BufferSize = 32;
-            Joystick.Acquire();
         }
 
-        public SortedDictionary<string, JoystickUpdate> Update() {
+        ~ControllerDevice()
+        {
+            try { Joystick.Unacquire(); } catch (Exception) {}
+        }
+
+        public void Update() {
             Joystick.Poll();
+
+            List<JoystickUpdate> updatedStates = new List<JoystickUpdate>();
 
             foreach (JoystickUpdate joystickUpdate in Joystick.GetBufferedData())
             {
-                inputStateDict[joystickUpdate.Offset.ToString()] = joystickUpdate;
+                _inputStateDictionary[joystickUpdate.Offset.ToString()] = joystickUpdate;
+                updatedStates.Add(joystickUpdate);
             }
 
-            return inputStateDict;
+            if(updatedStates.Count > 0)
+                UpdateState(updatedStates);
+        }
+
+        private void UpdateState(List<JoystickUpdate> updatedStates)
+        {
+            // Make sure someone is listening to event
+            if (OnStateUpdated == null) return;
+
+            DeviceStateUpdateEventArgs args = new DeviceStateUpdateEventArgs(this, updatedStates);
+            OnStateUpdated(this, args);
+        }
+
+        public override int GetHashCode()
+        {
+            return _deviceInstance.InstanceGuid.GetHashCode();
+        }
+
+        public bool Equals(ControllerDevice other)
+        {
+            return _deviceInstance.InstanceGuid == other.DeviceInstance.InstanceGuid;
+        }
+
+        internal void Unacquire()
+        {
+            try { Joystick.Unacquire(); } catch (Exception) { }
+        }
+
+        internal void Acquire()
+        {
+            Joystick.Acquire();
+        }
+    }
+
+    public class DeviceStateUpdateEventArgs
+    {
+        public List<JoystickUpdate> UpdatedStates { get; set; }
+        public ControllerDevice Device { get; set; }
+
+        public DeviceStateUpdateEventArgs(ControllerDevice device, List<JoystickUpdate> updatedStates)
+        {
+            this.Device = device;
+            this.UpdatedStates = updatedStates;
         }
     }
 }
