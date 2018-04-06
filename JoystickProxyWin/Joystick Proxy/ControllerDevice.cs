@@ -24,7 +24,7 @@ namespace Joystick_Proxy
         private Joystick _joystick;
         private string _usbId;
 
-
+        private bool NotPollable = false;
 
         public ControllerDevice(DirectInput di, DeviceInstance deviceInstance)
         {
@@ -35,13 +35,19 @@ namespace Joystick_Proxy
             Joystick.Properties.BufferSize = 32;
         }
 
-        ~ControllerDevice()
-        {
-            try { Joystick.Unacquire(); } catch (Exception) {}
-        }
-
         public void Update() {
-            Joystick.Poll();
+            if (NotPollable)
+                return;
+
+            try
+            {
+                Joystick.Poll();
+            }
+            catch (Exception)
+            {
+                NotPollable = true;
+                return;
+            }
 
             List<JoystickUpdate> updatedStates = new List<JoystickUpdate>();
 

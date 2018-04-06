@@ -161,7 +161,10 @@ namespace Joystick_Proxy
         {
             foreach(ControllerDevice device in _devices)
             {
-                try { device.Update(); } catch(Exception) {}
+                try { device.Update(); } catch(Exception ex) {
+                    Debug("Failure when running device Update()");
+                    Debug(ex.Message);
+                }
             }
 
             ControllerDevice selectedDevice = (ControllerDevice)devicesDataGridView.CurrentRow.DataBoundItem;
