@@ -14,7 +14,12 @@ Currently supported devices:
 
 * CH Pro Pedals
 * Logitech 3D Pro
-* Saitek X52 HOTAS (Using Warthog 3D model)
+* MFG Crosswind
+* Saitek Rudder Pedals
+* Saitek Combat Rudder Pedals
+* Saitek X45 HOTAS (Using Warthog 3D model)
+* Saitek X52 Throttle
+* Saitek X52 Joystick (Using Warthog 3D model)
 * Saitek X52 Pro HOTAS (Using Warthog 3D model)
 * Saitek X55 Throttle
 * Saitek X55 Joystick

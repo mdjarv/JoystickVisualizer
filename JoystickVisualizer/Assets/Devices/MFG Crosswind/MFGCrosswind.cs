@@ -54,10 +54,10 @@ public class MFGCrosswind : MonoBehaviour
                     RightPedal.transform.eulerAngles = new Vector3(RightPedal.transform.eulerAngles.x, 0, RightPedal.transform.eulerAngles.z);
                     LeftPedal.transform.eulerAngles = new Vector3(LeftPedal.transform.eulerAngles.x, 0, LeftPedal.transform.eulerAngles.z);
                     break;
-                case "RotationX":
+                case "X":
                     LeftPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -40, -10), 0, 0);
                     break;
-                case "RotationY":
+                case "Y":
                     RightPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -40, -10), 0, 0);
                     break;
             }
