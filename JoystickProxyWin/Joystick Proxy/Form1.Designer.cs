@@ -38,6 +38,7 @@
             this.InputValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inputBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.readInputTimer = new System.Windows.Forms.Timer(this.components);
+            this.deviceEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uSBIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.controllerDeviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -60,6 +61,7 @@
             this.devicesDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.devicesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.devicesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.deviceEnabled,
             this.nameDataGridViewTextBoxColumn,
             this.uSBIDDataGridViewTextBoxColumn});
             this.devicesDataGridView.DataSource = this.controllerDeviceBindingSource;
@@ -70,6 +72,7 @@
             this.devicesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.devicesDataGridView.Size = new System.Drawing.Size(793, 614);
             this.devicesDataGridView.TabIndex = 0;
+            this.devicesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.devicesDataGridView_CellContentClick);
             this.devicesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.devicesDataGridView_CellFormatting);
             this.devicesDataGridView.SelectionChanged += new System.EventHandler(this.DevicesDataGridView_SelectionChanged);
             // 
@@ -115,8 +118,17 @@
             // 
             // readInputTimer
             // 
-            this.readInputTimer.Interval = 20;
+            this.readInputTimer.Interval = 12;
             this.readInputTimer.Tick += new System.EventHandler(this.ReadInputTimer_Tick);
+            // 
+            // deviceEnabled
+            // 
+            this.deviceEnabled.DataPropertyName = "Enabled";
+            this.deviceEnabled.FalseValue = "false";
+            this.deviceEnabled.HeaderText = "Enabled";
+            this.deviceEnabled.IndeterminateValue = "";
+            this.deviceEnabled.Name = "deviceEnabled";
+            this.deviceEnabled.TrueValue = "true";
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -150,7 +162,7 @@
             this.Controls.Add(this.devicesDataGridView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "DirectInput Device List";
+            this.Text = "Joystick Proxy";
             ((System.ComponentModel.ISupportInitialize)(this.devicesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputBindingSource)).EndInit();
@@ -165,12 +177,13 @@
         private System.Windows.Forms.Timer refreshDevicesTimer;
         private System.Windows.Forms.BindingSource controllerDeviceBindingSource;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uSBIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource inputBindingSource;
         private System.Windows.Forms.Timer readInputTimer;
         private System.Windows.Forms.DataGridViewTextBoxColumn InputName;
         private System.Windows.Forms.DataGridViewTextBoxColumn InputValue;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn deviceEnabled;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uSBIDDataGridViewTextBoxColumn;
     }
 }
 

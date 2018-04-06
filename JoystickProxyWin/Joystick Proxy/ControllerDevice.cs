@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Joystick_Proxy
 {
-    public class ControllerDevice : IEquatable<ControllerDevice>
+    class ControllerDevice : IEquatable<ControllerDevice>
     {
         public delegate void DeviceStateUpdateHandler(object sender, DeviceStateUpdateEventArgs e);
         public event DeviceStateUpdateHandler OnStateUpdated;
@@ -13,6 +13,16 @@ namespace Joystick_Proxy
         public string Name { get { return _deviceInstance.InstanceName; } }
         public string Guid { get { return _deviceInstance.InstanceGuid.ToString();  } }
         public string UsbId { get => _usbId; }
+        public bool Enabled
+        {
+            get => _enabled;
+            set
+            {
+                _enabled = value;
+
+                UpdateState(new List<ControllerInput> { new ControllerInput(_enabled) } );
+            }
+        }
 
         public Joystick Joystick { get => _joystick; set => _joystick = value; }
         public SortedDictionary<string, JoystickUpdate> CurrentState { get => _inputStateDictionary; }
@@ -24,6 +34,7 @@ namespace Joystick_Proxy
         private Joystick _joystick;
         private string _usbId;
 
+        private bool _enabled = false;
         private bool NotPollable = false;
 
         public ControllerDevice(DirectInput di, DeviceInstance deviceInstance)
@@ -36,7 +47,7 @@ namespace Joystick_Proxy
         }
 
         public void Update() {
-            if (NotPollable)
+            if (NotPollable || _enabled == false)
                 return;
 
             try
@@ -49,19 +60,19 @@ namespace Joystick_Proxy
                 return;
             }
 
-            List<JoystickUpdate> updatedStates = new List<JoystickUpdate>();
+            List<ControllerInput> updatedStates = new List<ControllerInput>();
 
             foreach (JoystickUpdate joystickUpdate in Joystick.GetBufferedData())
             {
                 _inputStateDictionary[joystickUpdate.Offset.ToString()] = joystickUpdate;
-                updatedStates.Add(joystickUpdate);
+                updatedStates.Add(new ControllerInput(joystickUpdate));
             }
 
             if(updatedStates.Count > 0)
                 UpdateState(updatedStates);
         }
 
-        private void UpdateState(List<JoystickUpdate> updatedStates)
+        private void UpdateState(List<ControllerInput> updatedStates)
         {
             // Make sure someone is listening to event
             if (OnStateUpdated == null) return;
@@ -91,12 +102,12 @@ namespace Joystick_Proxy
         }
     }
 
-    public class DeviceStateUpdateEventArgs
+    internal class DeviceStateUpdateEventArgs
     {
-        public List<JoystickUpdate> UpdatedStates { get; set; }
+        public List<ControllerInput> UpdatedStates { get; set; }
         public ControllerDevice Device { get; set; }
 
-        public DeviceStateUpdateEventArgs(ControllerDevice device, List<JoystickUpdate> updatedStates)
+        public DeviceStateUpdateEventArgs(ControllerDevice device, List<ControllerInput> updatedStates)
         {
             this.Device = device;
             this.UpdatedStates = updatedStates;

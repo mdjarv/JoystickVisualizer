@@ -55,7 +55,7 @@ namespace Joystick_Proxy
 
             _host = IPAddress.Parse(data["Config"]["Host"]);
             _port = Int32.Parse(data["Config"]["Port"]);
-            _frameTime = 1000 / Int32.Parse(data["Config"]["FPS"]);
+            //_frameTime = 1000 / Int32.Parse(data["Config"]["FPS"]);
 
             foreach (KeyData supportedDevice in data["Devices"])
             {
@@ -65,7 +65,7 @@ namespace Joystick_Proxy
                 }
 
                 SupportedDevices.Add(supportedDevice.KeyName, supportedDevice.Value);
-                Console.WriteLine(" * " + supportedDevice.Value);
+                Debug(" * " + supportedDevice.Value);
             }
         }
 
@@ -88,17 +88,19 @@ namespace Joystick_Proxy
                 if (SupportedDevices.ContainsKey(device.UsbId))
                 {
                     device.OnStateUpdated += Device_OnStateUpdated;
+                    device.Enabled = true;
                 }
 
                 device.Acquire();
                 _devices.Add(device);
-                SendEvent(device, "Connected=1");
+                //SendEvent(device, "Connected=1");
             }
         }
 
         private void Device_OnStateUpdated(object sender, DeviceStateUpdateEventArgs e)
         {
             Debug("State updated for " + e.Device.Name + " with " + e.UpdatedStates.Count + " events");
+            SendEvents(e.Device, e.UpdatedStates.Select(ev => ev.ToString()).ToList());
         }
 
         private void SendEvents(ControllerDevice device, List<string> events)
@@ -118,7 +120,7 @@ namespace Joystick_Proxy
             Debug(outgoingString);
         }
 
-        private void Debug(string outgoingString)
+        private static void Debug(string outgoingString)
         {
             if (_debug)
             {
@@ -182,7 +184,19 @@ namespace Joystick_Proxy
             {
                 ControllerDevice cd = (ControllerDevice)row.DataBoundItem;
                 if(!SupportedDevices.ContainsKey(cd.UsbId))
+                {
                     row.DefaultCellStyle.BackColor = Color.LightGray;
+                    //row.Cells[0].ReadOnly = true;
+                }
+            }
+        }
+
+        private void devicesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+            {
+                devicesDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                this.devicesDataGridView.Rows[e.RowIndex].Cells[0].Value = ((bool)this.devicesDataGridView.CurrentCell.Value == true);
             }
         }
     }

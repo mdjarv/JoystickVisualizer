@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MFGCrosswind : MonoBehaviour
 {
-    public const string USB_ID = "????:????";
+    public const string USB_ID = "16d0:0a38";
     //public const string USB_ID = "06a3:0764";
 
     public GameObject Model;
@@ -54,10 +54,10 @@ public class MFGCrosswind : MonoBehaviour
                     RightPedal.transform.eulerAngles = new Vector3(RightPedal.transform.eulerAngles.x, 0, RightPedal.transform.eulerAngles.z);
                     LeftPedal.transform.eulerAngles = new Vector3(LeftPedal.transform.eulerAngles.x, 0, LeftPedal.transform.eulerAngles.z);
                     break;
-                case "X": // Left brake
+                case "RotationX":
                     LeftPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -40, -10), 0, 0);
                     break;
-                case "Y": // Right brake
+                case "RotationY":
                     RightPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -40, -10), 0, 0);
                     break;
             }

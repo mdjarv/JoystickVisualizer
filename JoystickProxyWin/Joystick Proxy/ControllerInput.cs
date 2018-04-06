@@ -11,10 +11,21 @@ namespace Joystick_Proxy
         private string _name;
         private int _value;
 
+        public ControllerInput(bool connected)
+        {
+            Name = "Connected";
+            Value = connected ? 1 : 0;
+        }
+
         public ControllerInput(JoystickUpdate joystickUpdate)
         {
             Name = joystickUpdate.Offset.ToString();
             Value = joystickUpdate.Value;
+        }
+
+        public override string ToString()
+        {
+            return Name + "=" + Value;
         }
     }
 }
