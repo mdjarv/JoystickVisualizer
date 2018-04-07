@@ -88,12 +88,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Black_Plastic
-    second: {fileID: 2100000, guid: 6f2d7b6069e1a7445a450852a79681b5, type: 2}
+    second: {fileID: 2100000, guid: e63adfd1f416b8c41b63b2397b5cfcda, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Black_Plastic__Throttle_Quadrant_Reference_Images_png
-    second: {fileID: 2100000, guid: 6f2d7b6069e1a7445a450852a79681b5, type: 2}
+    second: {fileID: 2100000, guid: e63adfd1f416b8c41b63b2397b5cfcda, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

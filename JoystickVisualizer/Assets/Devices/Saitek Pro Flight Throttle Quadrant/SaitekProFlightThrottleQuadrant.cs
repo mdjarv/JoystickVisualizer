@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SaitekProFlightThrottleQuadrant : MonoBehaviour {
-    public const string USB_ID = "06a3:0c2d";
-    //public const string USB_ID = "044f:0404";
+    //public const string USB_ID = "06a3:0c2d";
+    public const string USB_ID = "044f:0404";
 
     public GameObject Model;
 

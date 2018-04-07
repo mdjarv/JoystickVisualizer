@@ -27,15 +27,15 @@ namespace Joystick_Proxy
         private IPEndPoint _endPoint;
 
         private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
-        private static IPAddress _host;
-        private static int _port;
 
         public Form1()
         {
             LoadConfig();
 
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            _endPoint = new IPEndPoint(_host, _port);
+
+            UpdateEndpoint(Properties.Settings.Default.Host, Properties.Settings.Default.Port);
+
             _devices = new BindingList<ControllerDevice>();
             _input = new BindingList<ControllerInput>();
 
@@ -44,17 +44,37 @@ namespace Joystick_Proxy
             controllerDeviceBindingSource.DataSource = _devices;
             inputBindingSource.DataSource = _input;
 
+            visualizerHostTextBox.Text = Properties.Settings.Default.Host;
+
             ScanJoysticks();
+        }
+
+        private void UpdateEndpoint(string host, int port)
+        {
+            IPAddress hostIp = IPAddress.Loopback;
+            foreach(IPAddress ip in Dns.GetHostAddresses(host))
+            {
+                if(ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    hostIp = ip;
+                    break;
+                }
+            }
+
+            if(_endPoint == null)
+            {
+                _endPoint = new IPEndPoint(hostIp, port);
+            } else
+            {
+                _endPoint.Address = hostIp;
+                _endPoint.Port = port;
+            }
         }
 
         private static void LoadConfig()
         {
             var parser = new FileIniDataParser();
             IniData data = parser.ReadFile("settings.ini");
-
-            _host = IPAddress.Parse(data["Config"]["Host"]);
-            _port = Int32.Parse(data["Config"]["Port"]);
-            //_frameTime = 1000 / Int32.Parse(data["Config"]["FPS"]);
 
             foreach (KeyData supportedDevice in data["Devices"])
             {
@@ -212,6 +232,21 @@ namespace Joystick_Proxy
         private void ShowAllDevicesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             refreshDevicesTimer_Tick(sender, e);
+        }
+
+        private void visualizerHostTextBox_Leave(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Host = visualizerHostTextBox.Text;
+            Properties.Settings.Default.Save();
+            UpdateEndpoint(visualizerHostTextBox.Text, Properties.Settings.Default.Port);
+        }
+
+        private void visualizerHostTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                this.ActiveControl = null;
+            }
         }
     }
 }

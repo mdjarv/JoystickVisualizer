@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.devicesDataGridView = new System.Windows.Forms.DataGridView();
+            this.deviceEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.refreshDevicesTimer = new System.Windows.Forms.Timer(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.InputName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,10 +41,11 @@
             this.readInputTimer = new System.Windows.Forms.Timer(this.components);
             this.TipJarImage = new System.Windows.Forms.PictureBox();
             this.ShowAllDevicesCheckBox = new System.Windows.Forms.CheckBox();
-            this.controllerDeviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.deviceEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.visualizerHostTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uSBIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.controllerDeviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.devicesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputBindingSource)).BeginInit();
@@ -78,6 +80,18 @@
             this.devicesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.devicesDataGridView_CellContentClick);
             this.devicesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.devicesDataGridView_CellFormatting);
             this.devicesDataGridView.SelectionChanged += new System.EventHandler(this.DevicesDataGridView_SelectionChanged);
+            // 
+            // deviceEnabled
+            // 
+            this.deviceEnabled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.deviceEnabled.DataPropertyName = "Enabled";
+            this.deviceEnabled.FalseValue = "false";
+            this.deviceEnabled.FillWeight = 10F;
+            this.deviceEnabled.HeaderText = "Enabled";
+            this.deviceEnabled.IndeterminateValue = "";
+            this.deviceEnabled.Name = "deviceEnabled";
+            this.deviceEnabled.ToolTipText = "Enable device input polling";
+            this.deviceEnabled.TrueValue = "true";
             // 
             // refreshDevicesTimer
             // 
@@ -139,8 +153,9 @@
             // 
             // ShowAllDevicesCheckBox
             // 
+            this.ShowAllDevicesCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ShowAllDevicesCheckBox.AutoSize = true;
-            this.ShowAllDevicesCheckBox.Location = new System.Drawing.Point(13, 380);
+            this.ShowAllDevicesCheckBox.Location = new System.Drawing.Point(13, 383);
             this.ShowAllDevicesCheckBox.Name = "ShowAllDevicesCheckBox";
             this.ShowAllDevicesCheckBox.Size = new System.Drawing.Size(106, 17);
             this.ShowAllDevicesCheckBox.TabIndex = 4;
@@ -148,21 +163,25 @@
             this.ShowAllDevicesCheckBox.UseVisualStyleBackColor = true;
             this.ShowAllDevicesCheckBox.CheckedChanged += new System.EventHandler(this.ShowAllDevicesCheckBox_CheckedChanged);
             // 
-            // controllerDeviceBindingSource
+            // visualizerHostTextBox
             // 
-            this.controllerDeviceBindingSource.DataSource = typeof(Joystick_Proxy.ControllerDevice);
+            this.visualizerHostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.visualizerHostTextBox.Location = new System.Drawing.Point(666, 377);
+            this.visualizerHostTextBox.Name = "visualizerHostTextBox";
+            this.visualizerHostTextBox.Size = new System.Drawing.Size(115, 20);
+            this.visualizerHostTextBox.TabIndex = 5;
+            this.visualizerHostTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.visualizerHostTextBox_KeyPress);
+            this.visualizerHostTextBox.Leave += new System.EventHandler(this.visualizerHostTextBox_Leave);
             // 
-            // deviceEnabled
+            // label1
             // 
-            this.deviceEnabled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.deviceEnabled.DataPropertyName = "Enabled";
-            this.deviceEnabled.FalseValue = "false";
-            this.deviceEnabled.FillWeight = 10F;
-            this.deviceEnabled.HeaderText = "Enabled";
-            this.deviceEnabled.IndeterminateValue = "";
-            this.deviceEnabled.Name = "deviceEnabled";
-            this.deviceEnabled.ToolTipText = "Enable device input polling";
-            this.deviceEnabled.TrueValue = "true";
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(581, 380);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Visualizer Host:";
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -184,10 +203,16 @@
             this.uSBIDDataGridViewTextBoxColumn.Name = "uSBIDDataGridViewTextBoxColumn";
             this.uSBIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // controllerDeviceBindingSource
+            // 
+            this.controllerDeviceBindingSource.DataSource = typeof(Joystick_Proxy.ControllerDevice);
+            // 
             // Form1
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(891, 409);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.visualizerHostTextBox);
             this.Controls.Add(this.ShowAllDevicesCheckBox);
             this.Controls.Add(this.TipJarImage);
             this.Controls.Add(this.dataGridView1);
@@ -221,6 +246,8 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn deviceEnabled;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn uSBIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox visualizerHostTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 

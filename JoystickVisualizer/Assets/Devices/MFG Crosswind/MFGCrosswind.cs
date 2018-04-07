@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MFGCrosswind : MonoBehaviour
 {
-    public const string USB_ID = "16d0:0a38";
-    //public const string USB_ID = "06a3:0764";
+    //public const string USB_ID = "16d0:0a38";
+    public const string USB_ID = "06a3:0764";
 
     public GameObject Model;
 
