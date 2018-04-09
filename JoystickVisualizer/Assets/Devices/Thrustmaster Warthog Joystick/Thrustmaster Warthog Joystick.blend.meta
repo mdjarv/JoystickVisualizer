@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 68d61c24dc1a32241abfb7da089651db
-timeCreated: 1521375812
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -10,29 +8,40 @@ ModelImporter:
     100004: //RootNode
     100006: Gimbal
     100008: Stick
+    100010: Stick_Side
+    100012: Stick_Side_001
     400000: Base
     400002: Sphere
     400004: //RootNode
     400006: Gimbal
     400008: Stick
+    400010: Stick_Side
+    400012: Stick_Side_001
     2100000: Plastic_Black_Matte
     2100002: Brushed_Aluminium
     2100004: Plastic_Black_Glossy
     2100006: Aluminium_Matte
+    2100008: unnamed
     2300000: Base
     2300002: Sphere
     2300004: Gimbal
     2300006: Stick
     2300008: //RootNode
+    2300010: Stick_Side
+    2300012: Stick_Side_001
     3300000: Base
     3300002: Sphere
     3300004: Gimbal
     3300006: Stick
     3300008: //RootNode
+    3300010: Stick_Side
+    3300012: Stick_Side_001
     4300000: Sphere
     4300002: Base
     4300004: Gimbal
     4300006: Stick
+    4300008: Stick_Side_001
+    4300010: Stick_Side
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -54,6 +63,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5

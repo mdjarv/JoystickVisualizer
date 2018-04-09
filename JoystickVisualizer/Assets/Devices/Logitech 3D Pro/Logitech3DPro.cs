@@ -10,6 +10,7 @@ public class Logitech3DPro: MonoBehaviour {
 
     public GameObject Model;
     public GameObject Joystick;
+    public GameObject Throttle;
 
     // Use this for initialization
     void Start()
@@ -48,7 +49,11 @@ public class Logitech3DPro: MonoBehaviour {
                     break;
 
                 case "RotationZ":
-                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, Joystick.transform.localEulerAngles.y, ConvertRange(entry.Value, 0, 65535, -30, 30));
+                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, Joystick.transform.localEulerAngles.y, ConvertRange(entry.Value, 0, 65535, -20, 20));
+                    break;
+
+                case "Sliders0":
+                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -85, 30), Throttle.transform.localEulerAngles.y, Throttle.transform.localEulerAngles.z);
                     break;
             }
         }
