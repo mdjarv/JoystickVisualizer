@@ -53,7 +53,7 @@ public class Logitech3DPro: MonoBehaviour {
                     break;
 
                 case "Sliders0":
-                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -85, 30), Throttle.transform.localEulerAngles.y, Throttle.transform.localEulerAngles.z);
+                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 30, -85), Throttle.transform.localEulerAngles.y, Throttle.transform.localEulerAngles.z);
                     break;
             }
         }
