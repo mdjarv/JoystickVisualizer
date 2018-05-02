@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CHProPedals : MonoBehaviour {
     public const string USB_ID = "068e:00f2";
+    public const string USB_ID_2 = "068e:c0f2";
     // public const string USB_ID = "06a3:0764";
 
     public GameObject Model;
@@ -28,7 +29,7 @@ public class CHProPedals : MonoBehaviour {
 
     void StickEvent(JoystickState state)
     {
-        if (state.UsbID != USB_ID)
+        if (state.UsbID != USB_ID && state.UsbID != USB_ID_2)
         {
             return;
         }

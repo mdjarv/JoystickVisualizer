@@ -33,6 +33,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.devicesDataGridView = new System.Windows.Forms.DataGridView();
             this.deviceEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uSBIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.controllerDeviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.refreshDevicesTimer = new System.Windows.Forms.Timer(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.InputName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,14 +46,11 @@
             this.ShowAllDevicesCheckBox = new System.Windows.Forms.CheckBox();
             this.visualizerHostTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uSBIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.controllerDeviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.devicesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.controllerDeviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TipJarImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.controllerDeviceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // devicesDataGridView
@@ -92,6 +92,30 @@
             this.deviceEnabled.Name = "deviceEnabled";
             this.deviceEnabled.ToolTipText = "Enable device input polling";
             this.deviceEnabled.TrueValue = "true";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.FillWeight = 70F;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // uSBIDDataGridViewTextBoxColumn
+            // 
+            this.uSBIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.uSBIDDataGridViewTextBoxColumn.DataPropertyName = "UsbId";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uSBIDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.uSBIDDataGridViewTextBoxColumn.FillWeight = 20F;
+            this.uSBIDDataGridViewTextBoxColumn.HeaderText = "USB ID";
+            this.uSBIDDataGridViewTextBoxColumn.Name = "uSBIDDataGridViewTextBoxColumn";
+            this.uSBIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // controllerDeviceBindingSource
+            // 
+            this.controllerDeviceBindingSource.DataSource = typeof(Joystick_Proxy.ControllerDevice);
             // 
             // refreshDevicesTimer
             // 
@@ -142,7 +166,7 @@
             // 
             this.TipJarImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TipJarImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TipJarImage.Image = global::Joystick_Proxy.Properties.Resources.tipjar;
+            this.TipJarImage.Image = Joystick_Proxy.Properties.Resources.tipjar;
             this.TipJarImage.Location = new System.Drawing.Point(787, 377);
             this.TipJarImage.Name = "TipJarImage";
             this.TipJarImage.Size = new System.Drawing.Size(92, 20);
@@ -183,30 +207,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Visualizer Host:";
             // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.FillWeight = 70F;
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // uSBIDDataGridViewTextBoxColumn
-            // 
-            this.uSBIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.uSBIDDataGridViewTextBoxColumn.DataPropertyName = "UsbId";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uSBIDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.uSBIDDataGridViewTextBoxColumn.FillWeight = 20F;
-            this.uSBIDDataGridViewTextBoxColumn.HeaderText = "USB ID";
-            this.uSBIDDataGridViewTextBoxColumn.Name = "uSBIDDataGridViewTextBoxColumn";
-            this.uSBIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // controllerDeviceBindingSource
-            // 
-            this.controllerDeviceBindingSource.DataSource = typeof(Joystick_Proxy.ControllerDevice);
-            // 
             // Form1
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -222,10 +222,10 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Joystick Proxy";
             ((System.ComponentModel.ISupportInitialize)(this.devicesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.controllerDeviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TipJarImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.controllerDeviceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
