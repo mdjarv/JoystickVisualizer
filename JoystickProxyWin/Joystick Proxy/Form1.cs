@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -25,6 +26,8 @@ namespace Joystick_Proxy
 
         private Socket _socket;
         private IPEndPoint _endPoint;
+
+        private StreamWriter logFileStream = null;
 
         private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
 
@@ -134,12 +137,25 @@ namespace Joystick_Proxy
 
         private void SendEvent(ControllerDevice device, string e)
         {
-            if (_socket == null || _endPoint == null || !SupportedDevices.ContainsKey(device.UsbId))
+            if (_socket == null || _endPoint == null)
                 return;
 
-            string outgoingString = String.Format("{0},{1},{2}", device.UsbId, SupportedDevices[device.UsbId], e);
-            byte[] send_buffer = Encoding.ASCII.GetBytes(outgoingString);
-            _socket.SendTo(send_buffer, _endPoint);
+            bool supportedDevice = SupportedDevices.ContainsKey(device.UsbId);
+            string outgoingString = String.Format("{0},{1},{2}", device.UsbId, device.Name, e);
+
+            if (supportedDevice)
+            {
+                byte[] send_buffer = Encoding.ASCII.GetBytes(outgoingString);
+                _socket.SendTo(send_buffer, _endPoint);
+            }
+
+            if(logFileStream != null)
+            {
+                double timestamp = DateTime.UtcNow.ToUniversalTime()
+                    .Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc))
+                    .TotalMilliseconds;
+                logFileStream.WriteLine(Math.Round(timestamp) + "," + outgoingString);
+            }
 
             Debug(outgoingString);
         }
@@ -220,7 +236,15 @@ namespace Joystick_Proxy
             if (e.ColumnIndex == 0 && e.RowIndex >= 0)
             {
                 devicesDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                this.devicesDataGridView.Rows[e.RowIndex].Cells[0].Value = ((bool)this.devicesDataGridView.CurrentCell.Value == true);
+                bool enabled = (bool)this.devicesDataGridView.CurrentCell.Value == true;
+                this.devicesDataGridView.Rows[e.RowIndex].Cells[0].Value = enabled;
+
+                ControllerDevice selectedDevice = (ControllerDevice)this.devicesDataGridView.Rows[e.RowIndex].DataBoundItem;
+                if (enabled)
+                    selectedDevice.OnStateUpdated += Device_OnStateUpdated;
+                else
+                    selectedDevice.OnStateUpdated -= Device_OnStateUpdated;
+
             }
         }
 
@@ -246,6 +270,33 @@ namespace Joystick_Proxy
             if(e.KeyChar == (char)Keys.Enter)
             {
                 this.ActiveControl = null;
+            }
+        }
+
+        private void logToFileCheckbox_Click(object sender, EventArgs e)
+        {
+            if (logToFileCheckbox.Checked)
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (saveFileDialog.FileName != "")
+                    {
+                        logFileStream = new StreamWriter(saveFileDialog.FileName);
+                    }
+                }
+                else
+                {
+                    if (logFileStream != null)
+                        logFileStream.Close();
+                    logToFileCheckbox.Checked = false;
+                }
+            }
+            else
+            {
+                if (logFileStream != null)
+                    logFileStream.Close();
+
+                logFileStream = null;
             }
         }
     }

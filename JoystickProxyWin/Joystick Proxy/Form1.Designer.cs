@@ -46,6 +46,8 @@
             this.ShowAllDevicesCheckBox = new System.Windows.Forms.CheckBox();
             this.visualizerHostTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.logToFileCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.devicesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.controllerDeviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -166,7 +168,7 @@
             // 
             this.TipJarImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TipJarImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TipJarImage.Image = Joystick_Proxy.Properties.Resources.tipjar;
+            this.TipJarImage.Image = global::Joystick_Proxy.Properties.Resources.tipjar;
             this.TipJarImage.Location = new System.Drawing.Point(787, 377);
             this.TipJarImage.Name = "TipJarImage";
             this.TipJarImage.Size = new System.Drawing.Size(92, 20);
@@ -207,10 +209,26 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Visualizer Host:";
             // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "log";
+            // 
+            // logToFileCheckbox
+            // 
+            this.logToFileCheckbox.AutoSize = true;
+            this.logToFileCheckbox.Location = new System.Drawing.Point(125, 383);
+            this.logToFileCheckbox.Name = "logToFileCheckbox";
+            this.logToFileCheckbox.Size = new System.Drawing.Size(72, 17);
+            this.logToFileCheckbox.TabIndex = 7;
+            this.logToFileCheckbox.Text = "Log to file";
+            this.logToFileCheckbox.UseVisualStyleBackColor = true;
+            this.logToFileCheckbox.Click += new System.EventHandler(this.logToFileCheckbox_Click);
+            // 
             // Form1
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(891, 409);
+            this.Controls.Add(this.logToFileCheckbox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.visualizerHostTextBox);
             this.Controls.Add(this.ShowAllDevicesCheckBox);
@@ -248,6 +266,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn uSBIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox visualizerHostTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.CheckBox logToFileCheckbox;
     }
 }
 
