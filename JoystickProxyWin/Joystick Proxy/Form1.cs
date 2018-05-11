@@ -17,7 +17,7 @@ namespace Joystick_Proxy
 {
     public partial class Form1 : Form
     {
-        private static bool _debug = true;
+        private static bool _debug = false;
 
         private DirectInput _directInput = new DirectInput();
 
@@ -137,27 +137,34 @@ namespace Joystick_Proxy
 
         private void SendEvent(ControllerDevice device, string e)
         {
-            if (_socket == null || _endPoint == null)
-                return;
-
-            bool supportedDevice = SupportedDevices.ContainsKey(device.UsbId);
-            string outgoingString = String.Format("{0},{1},{2}", device.UsbId, device.Name, e);
-
-            if (supportedDevice)
+            try
             {
-                byte[] send_buffer = Encoding.ASCII.GetBytes(outgoingString);
-                _socket.SendTo(send_buffer, _endPoint);
-            }
+                if (_socket == null || _endPoint == null)
+                    return;
 
-            if(logFileStream != null)
+                bool supportedDevice = SupportedDevices.ContainsKey(device.UsbId);
+                string outgoingString = String.Format("{0},{1},{2}", device.UsbId, device.Name, e);
+
+                if (supportedDevice)
+                {
+                    byte[] send_buffer = Encoding.ASCII.GetBytes(outgoingString);
+                    _socket.SendTo(send_buffer, _endPoint);
+                }
+
+                if (logFileStream != null)
+                {
+                    double timestamp = DateTime.UtcNow.ToUniversalTime()
+                        .Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc))
+                        .TotalMilliseconds;
+                    logFileStream.WriteLine(Math.Round(timestamp) + "," + outgoingString);
+                }
+
+                Debug(outgoingString);
+            }
+            catch (Exception ex)
             {
-                double timestamp = DateTime.UtcNow.ToUniversalTime()
-                    .Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc))
-                    .TotalMilliseconds;
-                logFileStream.WriteLine(Math.Round(timestamp) + "," + outgoingString);
+                Console.WriteLine(ex);
             }
-
-            Debug(outgoingString);
         }
 
         private static void Debug(string outgoingString)

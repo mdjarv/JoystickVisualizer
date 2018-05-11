@@ -45,7 +45,7 @@ public class ThrustmasterTFlightHOTASXStick : MonoBehaviour {
                     Joystick.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), Joystick.transform.localEulerAngles.y, Joystick.transform.localEulerAngles.z);
                     break;
                 case "RotationZ":
-                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, 30, -30), Joystick.transform.localEulerAngles.z);
+                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, -30, 30), Joystick.transform.localEulerAngles.z);
                     break;
             }
         }
