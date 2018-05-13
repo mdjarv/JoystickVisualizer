@@ -121,6 +121,7 @@ namespace Joystick_Proxy
 
                 device.Acquire();
                 _devices.Add(device);
+                SendEvent(device, "Connected=1");
             }
         }
 

@@ -6,6 +6,7 @@ using System;
 
 public class TMWarthogJoystick : MonoBehaviour {
     public const string USB_ID = "044f:0402";
+    public const string USB_ID_COMBINED = "044f:ffff";
 
     public Boolean ButtonIndicator = false;
 
@@ -38,28 +39,30 @@ public class TMWarthogJoystick : MonoBehaviour {
 
     void StickEvent(JoystickState state)
     {
-        if (state.UsbID != USB_ID)
+        if (state.UsbID != USB_ID && state.UsbID != USB_ID_COMBINED)
         {
             return;
         }
 
-        Model.SetActive(true);
+        //Model.SetActive(true);
 
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
             switch (entry.Key)
             {
                 case "Connected":
-                    if (Model.activeInHierarchy)
+                    if (state.UsbID == USB_ID && Model.activeInHierarchy)
                         Model.SetActive(entry.Value == 1);
                     break;
 
                 case "X":
                     // Rotate Z between -30 and 30
+                    Model.SetActive(true);
                     StickGimbal.transform.eulerAngles = new Vector3(StickGimbal.transform.eulerAngles.x, StickGimbal.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, 20, -20));
                     break;
                 case "Y":
                     // Rotate X between -30 and 30
+                    Model.SetActive(true);
                     StickGimbal.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), StickGimbal.transform.eulerAngles.y, StickGimbal.transform.eulerAngles.z);
                     break;
 

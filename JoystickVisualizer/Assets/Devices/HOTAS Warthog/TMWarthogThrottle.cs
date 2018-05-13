@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TMWarthogThrottle : MonoBehaviour {
     public const string USB_ID = "044f:0404";
+    public const string USB_ID_COMBINED = "044f:ffff";
 
     private const float FLIP_SWITCH_ROTATION = 20.0f;
     public GameObject Model;
@@ -48,29 +49,29 @@ public class TMWarthogThrottle : MonoBehaviour {
 
     void StickEvent(JoystickState state)
     {
-        if (state.UsbID != USB_ID)
+        if (state.UsbID != USB_ID && state.UsbID != USB_ID_COMBINED)
         {
             return;
         }
-
-        Model.SetActive(true);
 
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
             switch (entry.Key)
             {
                 case "Connected":
-                    if(Model.activeInHierarchy)
+                    if(state.UsbID == USB_ID && Model.activeInHierarchy)
                         Model.SetActive(entry.Value == 1);
                     break;
 
                 case "RotationZ": // Left Throttle
                     // Rotate Z between -30 and 30
+                    Model.SetActive(true);
                     GimbalLeft.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
                     break;
 
                 case "Z": // Right Throttle
                     // Rotate X between -30 and 30
+                    Model.SetActive(true);
                     GimbalRight.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
                     break;
                     
