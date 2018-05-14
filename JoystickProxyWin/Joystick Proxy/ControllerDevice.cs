@@ -41,10 +41,15 @@ namespace Joystick_Proxy
         public ControllerDevice(DirectInput di, DeviceInstance deviceInstance)
         {
             _deviceInstance = deviceInstance;
-            _usbId = Regex.Replace(_deviceInstance.ProductGuid.ToString(), @"(^....)(....).*$", "$2:$1");
+            _usbId = ProductGuidToUSBID(_deviceInstance.ProductGuid);
             _joystick = new Joystick(di, deviceInstance.InstanceGuid);
 
             Joystick.Properties.BufferSize = 32;
+        }
+
+        public static string ProductGuidToUSBID(Guid guid)
+        {
+            return Regex.Replace(guid.ToString(), @"(^....)(....).*$", "$2:$1");
         }
 
         public void Update() {

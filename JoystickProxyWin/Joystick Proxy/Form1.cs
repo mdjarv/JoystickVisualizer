@@ -93,36 +93,63 @@ namespace Joystick_Proxy
 
         private void ScanJoysticks()
         {
-            List<ControllerDevice> foundDevices = _directInput.GetDevices().ToList().ConvertAll(device => new ControllerDevice(_directInput,  device));
+            List<ControllerDevice> removedDevices = new List<ControllerDevice>();
+            List<ControllerDevice> addedDevices = new List<ControllerDevice>(); //_directInput.GetDevices().ToList().ConvertAll(device => new ControllerDevice(_directInput, device));
 
-            if(ShowAllDevicesCheckBox.Checked == false)
+            List<DeviceInstance> foundDeviceInstances = _directInput.GetDevices().ToList(); //.ToDictionary(d => d.InstanceGuid, d => d);
+
+            foreach(DeviceInstance deviceInstance in foundDeviceInstances)
             {
-                foundDevices = foundDevices.Where(d => SupportedDevices.ContainsKey(d.UsbId)).ToList();
+                if (_devices.Where(d => d.DeviceInstance.InstanceGuid == deviceInstance.InstanceGuid).Count() == 0)
+                {
+                    if (ShowAllDevicesCheckBox.Checked == true || SupportedDevices.ContainsKey(ControllerDevice.ProductGuidToUSBID(deviceInstance.ProductGuid)))
+                        addedDevices.Add(new ControllerDevice(_directInput, deviceInstance));
+                }
             }
 
-            var removedDevices = _devices.Except(foundDevices).ToList();
-            var addedDevices = foundDevices.Except(_devices).ToList();
-
+            foreach(ControllerDevice device in _devices)
+            {
+                bool match = false;
+                if (SupportedDevices.ContainsKey(device.UsbId) || ShowAllDevicesCheckBox.Checked)
+                {
+                    match = foundDeviceInstances.ConvertAll(d => d.InstanceGuid.ToString()).Contains(device.Guid);
+                }
+                if(!match)
+                {
+                    // Remove device
+                    removedDevices.Add(device);
+                }
+            }
+            
             foreach(ControllerDevice device in removedDevices)
             {
-                device.Unacquire();
-                _devices.Remove(device);
-                SendEvent(device, "Connected=0");
+                RemoveDevice(device);
             }
 
             foreach (ControllerDevice device in addedDevices)
             {
-                if (SupportedDevices.ContainsKey(device.UsbId))
-                {
-                    device.OnStateUpdated += Device_OnStateUpdated;
-                    device.Supported = true;
-                    device.Enabled = true;
-                }
-
-                device.Acquire();
-                _devices.Add(device);
-                SendEvent(device, "Connected=1");
+                AddDevice(device);
             }
+        }
+
+        private void AddDevice(ControllerDevice addedDevice)
+        {
+            if (SupportedDevices.ContainsKey(addedDevice.UsbId))
+            {
+                addedDevice.OnStateUpdated += Device_OnStateUpdated;
+                addedDevice.Supported = true;
+                addedDevice.Enabled = true;
+            }
+            addedDevice.Acquire();
+            _devices.Add(addedDevice);
+            SendEvent(addedDevice, "Connected=1");
+        }
+
+        private void RemoveDevice(ControllerDevice removedDevice)
+        {
+            removedDevice.Unacquire();
+            _devices.Remove(removedDevice);
+            SendEvent(removedDevice, "Connected=0");
         }
 
         private void Device_OnStateUpdated(object sender, DeviceStateUpdateEventArgs e)
