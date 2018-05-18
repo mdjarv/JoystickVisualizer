@@ -1,6 +1,7 @@
 # Joystick Visualizer
 [![GitHub release](https://img.shields.io/github/release/mdjarv/joystickvisualizer.svg)](https://github.com/mdjarv/JoystickVisualizer/releases/latest)
 [![Donate](https://img.shields.io/badge/Tip%20Jar-PayPal-green.svg)](http://paypal.me/mdjarv)
+[![Discord](https://img.shields.io/badge/Discord-Chat-blue.svg)](https://discord.gg/4nc3XtQ)
 
 Show your stick and throttle movement as an overlay while streaming or recording videos.
 
