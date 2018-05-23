@@ -96,7 +96,10 @@ namespace Joystick_Proxy
             List<ControllerDevice> removedDevices = new List<ControllerDevice>();
             List<ControllerDevice> addedDevices = new List<ControllerDevice>(); //_directInput.GetDevices().ToList().ConvertAll(device => new ControllerDevice(_directInput, device));
 
-            List<DeviceInstance> foundDeviceInstances = _directInput.GetDevices().ToList(); //.ToDictionary(d => d.InstanceGuid, d => d);
+            List<DeviceInstance> oldDeviceInstances = _devices.ToList().ConvertAll(d => d.DeviceInstance);
+            List<DeviceInstance> foundDeviceInstances = _directInput.GetDevices().ToList();
+
+            //List<DeviceInstance> removedDeviceInstances = oldDeviceInstances.Except(foundDeviceInstances).Where(d => !IsSupported(d)).ToList();
 
             foreach(DeviceInstance deviceInstance in foundDeviceInstances)
             {
@@ -106,7 +109,7 @@ namespace Joystick_Proxy
                         addedDevices.Add(new ControllerDevice(_directInput, deviceInstance));
                 }
             }
-
+            
             foreach(ControllerDevice device in _devices)
             {
                 bool match = false;
@@ -130,6 +133,16 @@ namespace Joystick_Proxy
             {
                 AddDevice(device);
             }
+        }
+
+        private bool IsSupported(DeviceInstance deviceInstance)
+        {
+            return IsSupported(ControllerDevice.ProductGuidToUSBID(deviceInstance.ProductGuid));
+        }
+
+        private bool IsSupported(string usbId)
+        {
+            return SupportedDevices.ContainsKey(usbId);
         }
 
         private void AddDevice(ControllerDevice addedDevice)
