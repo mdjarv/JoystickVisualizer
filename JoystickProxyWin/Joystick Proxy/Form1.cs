@@ -29,6 +29,8 @@ namespace Joystick_Proxy
 
         private StreamWriter logFileStream = null;
 
+        private int pollingRate = 12;
+
         private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
 
         public Form1()
@@ -74,7 +76,7 @@ namespace Joystick_Proxy
             }
         }
 
-        private static void LoadConfig()
+        private void LoadConfig()
         {
             var parser = new FileIniDataParser();
             IniData data = parser.ReadFile("settings.ini");
@@ -88,6 +90,18 @@ namespace Joystick_Proxy
 
                 SupportedDevices.Add(supportedDevice.KeyName, supportedDevice.Value);
                 Debug(" * " + supportedDevice.Value);
+            }
+
+            foreach (KeyData option in data["Options"])
+            {
+                switch (option.KeyName)
+                {
+                    case "pollingRate":
+                        this.pollingRate = int.Parse(option.Value);
+                        break;
+                }
+                Debug(" * " + option.Value);
+
             }
         }
 
