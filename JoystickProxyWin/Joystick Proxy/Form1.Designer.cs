@@ -137,7 +137,7 @@
             // 
             // readInputTimer
             // 
-            this.readInputTimer.Interval = 12;
+            this.readInputTimer.Interval = this.pollingRate;
             this.readInputTimer.Tick += new System.EventHandler(this.ReadInputTimer_Tick);
             // 
             // TipJarImage
