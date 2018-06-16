@@ -44,10 +44,10 @@ namespace Joystick_Proxy
 
             InitializeComponent();
 
-            controllerDeviceBindingSource.DataSource = _devices;
-            inputBindingSource.DataSource = _input;
+            ControllerDeviceBindingSource.DataSource = _devices;
+            InputBindingSource.DataSource = _input;
 
-            visualizerHostTextBox.Text = Properties.Settings.Default.Host;
+            VisualizerHostTextBox.Text = Properties.Settings.Default.Host;
 
             ScanJoysticks();
         }
@@ -216,26 +216,26 @@ namespace Joystick_Proxy
             }
         }
 
-        private void refreshDevicesTimer_Tick(object sender, System.EventArgs e)
+        private void RefreshDevicesTimer_Tick(object sender, System.EventArgs e)
         {
             ControllerDevice selectedItem = null;
             int selectedCell = 0;
 
-            if (devicesDataGridView.SelectedCells.Count > 0)
+            if (DevicesDataGridView.SelectedCells.Count > 0)
             {
-                selectedItem = (ControllerDevice)devicesDataGridView.SelectedCells[0].OwningRow.DataBoundItem;
-                selectedCell = devicesDataGridView.SelectedCells[0].ColumnIndex;
+                selectedItem = (ControllerDevice)DevicesDataGridView.SelectedCells[0].OwningRow.DataBoundItem;
+                selectedCell = DevicesDataGridView.SelectedCells[0].ColumnIndex;
             }
 
             ScanJoysticks();
 
-            foreach (DataGridViewRow row in devicesDataGridView.Rows)
+            foreach (DataGridViewRow row in DevicesDataGridView.Rows)
             {
                 ControllerDevice rowObject = (ControllerDevice)row.DataBoundItem;
 
                 if (selectedItem != null && rowObject == selectedItem)
                 {
-                    devicesDataGridView.ClearSelection();
+                    DevicesDataGridView.ClearSelection();
                     row.Cells[selectedCell].Selected = true;
                     break;
                 }
@@ -244,7 +244,7 @@ namespace Joystick_Proxy
 
         private void DevicesDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            readInputTimer.Enabled = devicesDataGridView.CurrentRow != null;
+            ReadInputTimer.Enabled = DevicesDataGridView.CurrentRow != null;
         }
 
         private void ReadInputTimer_Tick(object sender, EventArgs e)
@@ -257,7 +257,7 @@ namespace Joystick_Proxy
                 }
             }
 
-            ControllerDevice selectedDevice = (ControllerDevice)devicesDataGridView.CurrentRow.DataBoundItem;
+            ControllerDevice selectedDevice = (ControllerDevice)DevicesDataGridView.CurrentRow.DataBoundItem;
 
             _input.Clear();
             foreach (JoystickUpdate inputState in selectedDevice.CurrentState.Values)
@@ -266,9 +266,9 @@ namespace Joystick_Proxy
             }
         }
 
-        private void devicesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DevicesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            foreach (DataGridViewRow row in devicesDataGridView.Rows)
+            foreach (DataGridViewRow row in DevicesDataGridView.Rows)
             {
                 ControllerDevice cd = (ControllerDevice)row.DataBoundItem;
                 if(!SupportedDevices.ContainsKey(cd.UsbId))
@@ -279,15 +279,15 @@ namespace Joystick_Proxy
             }
         }
 
-        private void devicesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DevicesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 0 && e.RowIndex >= 0)
             {
-                devicesDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                bool enabled = (bool)this.devicesDataGridView.CurrentCell.Value == true;
-                this.devicesDataGridView.Rows[e.RowIndex].Cells[0].Value = enabled;
+                DevicesDataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                bool enabled = (bool)this.DevicesDataGridView.CurrentCell.Value == true;
+                this.DevicesDataGridView.Rows[e.RowIndex].Cells[0].Value = enabled;
 
-                ControllerDevice selectedDevice = (ControllerDevice)this.devicesDataGridView.Rows[e.RowIndex].DataBoundItem;
+                ControllerDevice selectedDevice = (ControllerDevice)this.DevicesDataGridView.Rows[e.RowIndex].DataBoundItem;
                 if (enabled)
                     selectedDevice.OnStateUpdated += Device_OnStateUpdated;
                 else
@@ -303,17 +303,17 @@ namespace Joystick_Proxy
 
         private void ShowAllDevicesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            refreshDevicesTimer_Tick(sender, e);
+            RefreshDevicesTimer_Tick(sender, e);
         }
 
-        private void visualizerHostTextBox_Leave(object sender, EventArgs e)
+        private void VisualizerHostTextBox_Leave(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Host = visualizerHostTextBox.Text;
+            Properties.Settings.Default.Host = VisualizerHostTextBox.Text;
             Properties.Settings.Default.Save();
-            UpdateEndpoint(visualizerHostTextBox.Text, Properties.Settings.Default.Port);
+            UpdateEndpoint(VisualizerHostTextBox.Text, Properties.Settings.Default.Port);
         }
 
-        private void visualizerHostTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void VisualizerHostTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(e.KeyChar == (char)Keys.Enter)
             {
@@ -321,22 +321,22 @@ namespace Joystick_Proxy
             }
         }
 
-        private void logToFileCheckbox_Click(object sender, EventArgs e)
+        private void LogToFileCheckbox_Click(object sender, EventArgs e)
         {
-            if (logToFileCheckbox.Checked)
+            if (LogToFileCheckbox.Checked)
             {
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                if (SaveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (saveFileDialog.FileName != "")
+                    if (SaveFileDialog.FileName != "")
                     {
-                        logFileStream = new StreamWriter(saveFileDialog.FileName);
+                        logFileStream = new StreamWriter(SaveFileDialog.FileName);
                     }
                 }
                 else
                 {
                     if (logFileStream != null)
                         logFileStream.Close();
-                    logToFileCheckbox.Checked = false;
+                    LogToFileCheckbox.Checked = false;
                 }
             }
             else
@@ -348,19 +348,19 @@ namespace Joystick_Proxy
             }
         }
 
-        private void savePollRate()
+        private void SavePollRate()
         {
-            Properties.Settings.Default.PollingRate = (int)pollingRateInput.Value;
-            readInputTimer.Interval = (int)pollingRateInput.Value;
+            Properties.Settings.Default.PollingRate = (int)PollingRateInput.Value;
+            ReadInputTimer.Interval = (int)PollingRateInput.Value;
             Properties.Settings.Default.Save();
         }
 
-        private void pollingRateInput_ValueChanged(object sender, EventArgs e)
+        private void PollingRateInput_ValueChanged(object sender, EventArgs e)
         {
-            savePollRate();
+            SavePollRate();
         }
 
-        private void pollingRateInput_KeyPress(object sender, KeyPressEventArgs e)
+        private void PollingRateInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
@@ -368,7 +368,7 @@ namespace Joystick_Proxy
             }
         }
 
-        private void pollingRateInput_KeyDown(object sender, KeyEventArgs e)
+        private void PollingRateInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
