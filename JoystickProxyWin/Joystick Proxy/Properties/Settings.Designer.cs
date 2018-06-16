@@ -46,5 +46,17 @@ namespace Joystick_Proxy.Properties {
                 this["Port"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("34")]
+        public int PollingRate {
+            get {
+                return ((int)(this["PollingRate"]));
+            }
+            set {
+                this["PollingRate"] = value;
+            }
+        }
     }
 }
