@@ -8,5 +8,8 @@
     <Setting Name="Port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8888</Value>
     </Setting>
+    <Setting Name="PollingRate" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">34</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

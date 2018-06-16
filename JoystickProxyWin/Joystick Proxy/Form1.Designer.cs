@@ -41,18 +41,21 @@
             this.readInputTimer = new System.Windows.Forms.Timer(this.components);
             this.TipJarImage = new System.Windows.Forms.PictureBox();
             this.ShowAllDevicesCheckBox = new System.Windows.Forms.CheckBox();
-            this.visualizerHostTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.logToFileCheckbox = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uSBIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.controllerDeviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pollingRateInput = new System.Windows.Forms.NumericUpDown();
+            this.visualizerHostTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.devicesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TipJarImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.controllerDeviceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pollingRateInput)).BeginInit();
             this.SuspendLayout();
             // 
             // devicesDataGridView
@@ -137,7 +140,7 @@
             // 
             // readInputTimer
             // 
-            this.readInputTimer.Interval = 12;
+            this.readInputTimer.Interval = global::Joystick_Proxy.Properties.Settings.Default.PollingRate;
             this.readInputTimer.Tick += new System.EventHandler(this.ReadInputTimer_Tick);
             // 
             // TipJarImage
@@ -165,16 +168,6 @@
             this.ShowAllDevicesCheckBox.UseVisualStyleBackColor = true;
             this.ShowAllDevicesCheckBox.CheckedChanged += new System.EventHandler(this.ShowAllDevicesCheckBox_CheckedChanged);
             // 
-            // visualizerHostTextBox
-            // 
-            this.visualizerHostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.visualizerHostTextBox.Location = new System.Drawing.Point(657, 373);
-            this.visualizerHostTextBox.Name = "visualizerHostTextBox";
-            this.visualizerHostTextBox.Size = new System.Drawing.Size(115, 20);
-            this.visualizerHostTextBox.TabIndex = 5;
-            this.visualizerHostTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.visualizerHostTextBox_KeyPress);
-            this.visualizerHostTextBox.Leave += new System.EventHandler(this.visualizerHostTextBox_Leave);
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -201,6 +194,17 @@
             this.logToFileCheckbox.UseVisualStyleBackColor = true;
             this.logToFileCheckbox.Click += new System.EventHandler(this.logToFileCheckbox_Click);
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(440, 376);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Polling Rate:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -225,10 +229,41 @@
             // 
             this.controllerDeviceBindingSource.DataSource = typeof(Joystick_Proxy.ControllerDevice);
             // 
+            // pollingRateInput
+            // 
+            this.pollingRateInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pollingRateInput.Location = new System.Drawing.Point(513, 373);
+            this.pollingRateInput.Minimum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.pollingRateInput.Name = "pollingRateInput";
+            this.pollingRateInput.Size = new System.Drawing.Size(53, 20);
+            this.pollingRateInput.TabIndex = 9;
+            this.pollingRateInput.Value = (decimal)global::Joystick_Proxy.Properties.Settings.Default.PollingRate;
+            this.pollingRateInput.ValueChanged += new System.EventHandler(this.pollingRateInput_ValueChanged);
+            this.pollingRateInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pollingRateInput_KeyDown);
+            this.pollingRateInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pollingRateInput_KeyPress);
+            // 
+            // visualizerHostTextBox
+            // 
+            this.visualizerHostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.visualizerHostTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Joystick_Proxy.Properties.Settings.Default, "Host", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.visualizerHostTextBox.Location = new System.Drawing.Point(657, 373);
+            this.visualizerHostTextBox.Name = "visualizerHostTextBox";
+            this.visualizerHostTextBox.Size = new System.Drawing.Size(115, 20);
+            this.visualizerHostTextBox.TabIndex = 5;
+            this.visualizerHostTextBox.Text = global::Joystick_Proxy.Properties.Settings.Default.Host;
+            this.visualizerHostTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.visualizerHostTextBox_KeyPress);
+            this.visualizerHostTextBox.Leave += new System.EventHandler(this.visualizerHostTextBox_Leave);
+            // 
             // Form1
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(882, 405);
+            this.Controls.Add(this.pollingRateInput);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.logToFileCheckbox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.visualizerHostTextBox);
@@ -246,6 +281,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TipJarImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.controllerDeviceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pollingRateInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,6 +306,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.CheckBox logToFileCheckbox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown pollingRateInput;
     }
 }
 

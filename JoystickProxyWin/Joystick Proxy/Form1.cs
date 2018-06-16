@@ -347,5 +347,33 @@ namespace Joystick_Proxy
                 logFileStream = null;
             }
         }
+
+        private void savePollRate()
+        {
+            Properties.Settings.Default.PollingRate = (int)pollingRateInput.Value;
+            readInputTimer.Interval = (int)pollingRateInput.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void pollingRateInput_ValueChanged(object sender, EventArgs e)
+        {
+            savePollRate();
+        }
+
+        private void pollingRateInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                ActiveControl = null;
+            }
+        }
+
+        private void pollingRateInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ActiveControl = null;
+            }
+        }
     }
 }
