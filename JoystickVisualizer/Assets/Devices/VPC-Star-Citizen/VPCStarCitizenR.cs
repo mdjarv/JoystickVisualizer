@@ -39,10 +39,10 @@ public class VPCStarCitizenR : MonoBehaviour {
                     break;
 
                 case "X":
-                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, Joystick.transform.localEulerAngles.y, ConvertRange(entry.Value, 0, 65535, -20, 20));
+                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, Joystick.transform.localEulerAngles.y, ConvertRange(entry.Value, 0, 65535, 20, -20));
                     break;
                 case "Y":
-                    Joystick.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -20, 20), Joystick.transform.localEulerAngles.y, Joystick.transform.localEulerAngles.z);
+                    Joystick.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), Joystick.transform.localEulerAngles.y, Joystick.transform.localEulerAngles.z);
                     break;
             }
         }
