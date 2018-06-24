@@ -10,6 +10,21 @@ ModelImporter:
     100008: Stick
     100010: Stick_Side
     100012: Stick_Side_001
+    100014: CMS
+    100016: CMS_Plate
+    100018: DMS
+    100020: Handle
+    100022: Master_Mode
+    100024: Nosewheel_Steering
+    100026: Nosewheel_Steering_Plate
+    100028: Pinky_Lever
+    100030: Pinky_Lever_Button
+    100032: TMS
+    100034: Trigger
+    100036: Trim
+    100038: Trim_Plate
+    100040: Weapon_Release
+    100042: Weapon_Release_Plate
     400000: Base
     400002: Sphere
     400004: //RootNode
@@ -17,11 +32,30 @@ ModelImporter:
     400008: Stick
     400010: Stick_Side
     400012: Stick_Side_001
+    400014: CMS
+    400016: CMS_Plate
+    400018: DMS
+    400020: Handle
+    400022: Master_Mode
+    400024: Nosewheel_Steering
+    400026: Nosewheel_Steering_Plate
+    400028: Pinky_Lever
+    400030: Pinky_Lever_Button
+    400032: TMS
+    400034: Trigger
+    400036: Trim
+    400038: Trim_Plate
+    400040: Weapon_Release
+    400042: Weapon_Release_Plate
     2100000: Plastic_Black_Matte
     2100002: Brushed_Aluminium
     2100004: Plastic_Black_Glossy
     2100006: Aluminium_Matte
     2100008: unnamed
+    2100010: Black_Plastic
+    2100012: Aluminium
+    2100014: Red_Plastic
+    2100016: Grey_Plastic
     2300000: Base
     2300002: Sphere
     2300004: Gimbal
@@ -29,6 +63,21 @@ ModelImporter:
     2300008: //RootNode
     2300010: Stick_Side
     2300012: Stick_Side_001
+    2300014: CMS
+    2300016: CMS_Plate
+    2300018: DMS
+    2300020: Handle
+    2300022: Master_Mode
+    2300024: Nosewheel_Steering
+    2300026: Nosewheel_Steering_Plate
+    2300028: Pinky_Lever
+    2300030: Pinky_Lever_Button
+    2300032: TMS
+    2300034: Trigger
+    2300036: Trim
+    2300038: Trim_Plate
+    2300040: Weapon_Release
+    2300042: Weapon_Release_Plate
     3300000: Base
     3300002: Sphere
     3300004: Gimbal
@@ -36,15 +85,65 @@ ModelImporter:
     3300008: //RootNode
     3300010: Stick_Side
     3300012: Stick_Side_001
+    3300014: CMS
+    3300016: CMS_Plate
+    3300018: DMS
+    3300020: Handle
+    3300022: Master_Mode
+    3300024: Nosewheel_Steering
+    3300026: Nosewheel_Steering_Plate
+    3300028: Pinky_Lever
+    3300030: Pinky_Lever_Button
+    3300032: TMS
+    3300034: Trigger
+    3300036: Trim
+    3300038: Trim_Plate
+    3300040: Weapon_Release
+    3300042: Weapon_Release_Plate
     4300000: Sphere
     4300002: Base
     4300004: Gimbal
     4300006: Stick
     4300008: Stick_Side_001
     4300010: Stick_Side
+    4300012: Handle
+    4300014: Trigger
+    4300016: Master_Mode
+    4300018: Trim
+    4300020: Trim_Plate
+    4300022: Weapon_Release
+    4300024: Weapon_Release_Plate
+    4300026: TMS
+    4300028: DMS
+    4300030: CMS_Plate
+    4300032: CMS
+    4300034: Pinky_Lever_Button
+    4300036: Pinky_Lever
+    4300038: Nosewheel_Steering
+    4300040: Nosewheel_Steering_Plate
     7400000: Default Take
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Aluminium
+    second: {fileID: 2100000, guid: 42bbcce40eac02946bb5d7a03be05f2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black_Plastic
+    second: {fileID: 2100000, guid: e63adfd1f416b8c41b63b2397b5cfcda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grey_Plastic
+    second: {fileID: 2100000, guid: 47db6730d56292c48bb199ba27bdfd69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red_Plastic
+    second: {fileID: 2100000, guid: b342895d0efc4a747b84ccd120edd23c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

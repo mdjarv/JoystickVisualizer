@@ -39,7 +39,7 @@ public class JoystickThrustmasterWarthog : MonoBehaviour {
                     break;
                 case "X":
                     Model.SetActive(true);
-                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, -20, 20), Joystick.transform.localEulerAngles.z);
+                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, 20, -20), Joystick.transform.localEulerAngles.z);
                     break;
                 case "Y":
                     Model.SetActive(true);
