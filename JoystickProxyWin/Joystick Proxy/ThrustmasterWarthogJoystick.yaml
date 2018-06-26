@@ -1,0 +1,25 @@
+name:  "My Custom Stick"       # name of the mapping configuration
+
+usb_id: "1234:4567"          # (optional) automatically apply to devices with this usb id
+
+model: "tm_warthog_joystick" # model name, used in Visualizer to spawn the requested model
+                             # the model has a set of axis and buttons available for configuration
+
+axis:
+  x:        "X"  # generic name, followed by raw device name in quotes
+  y:        "-Y" # prefix axis with - to invert
+  rotation: "Z"
+  throttle: "RotationZ"
+
+buttons:
+  trigger: "Buttons0"
+  pickle: "Buttons5"
+
+hats:
+  hat1: # 4 or 8 way hats, raw values represented as buttons
+    - "Buttons10" # up
+    - "Buttons11" # right
+    - "Buttons12" # down
+    - "Buttons13" # left
+  hat2: # Pov hat, raw values are -1 for nothing and (angle * 100) for the 8 directions
+    pov: "PointOfViewControllers0"
