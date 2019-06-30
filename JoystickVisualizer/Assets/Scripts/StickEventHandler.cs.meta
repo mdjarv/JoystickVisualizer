@@ -5,7 +5,12 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - DeviceOrigin: {instanceID: 0}
-  - TMWHJ: {fileID: 1777651171890434812, guid: 21169271929fc6145b28a8b8efd89be4, type: 3}
+  - SaitekCombatRudderPedals: {fileID: 3465120424871957975, guid: b223e0fae2a25a147aee5de0dd6a0381,
+      type: 3}
+  - ThrustmasterWarthogJoystick: {fileID: 1777651171890434812, guid: 21169271929fc6145b28a8b8efd89be4,
+      type: 3}
+  - ThrustmasterWarthogThrottle: {fileID: 3563038698390828844, guid: 0e619f9f078a52e41b81c7e91fb78117,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
