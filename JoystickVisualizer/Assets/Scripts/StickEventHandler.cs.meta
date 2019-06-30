@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 44f39443149e64f4b8364b2a7d5a6abd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - DeviceOrigin: {instanceID: 0}
+  - TMWHJ: {fileID: 1777651171890434812, guid: 21169271929fc6145b28a8b8efd89be4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
