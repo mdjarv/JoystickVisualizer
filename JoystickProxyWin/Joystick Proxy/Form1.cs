@@ -184,7 +184,13 @@ namespace Joystick_Proxy
                     return;
 
                 bool supportedDevice = SupportedDevices.ContainsKey(device.UsbId);
-                string outgoingString = String.Format("{0},{1},{2}", device.UsbId, device.Name, e);
+                string id = device.UsbId;
+                if (id == "046d:c212")
+                {
+                    id = "046d:c215";
+                }
+
+                string outgoingString = String.Format("{0},{1},{2}", id, device.Name, e);
 
                 if (supportedDevice)
                 {

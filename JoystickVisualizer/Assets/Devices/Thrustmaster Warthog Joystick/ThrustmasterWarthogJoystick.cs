@@ -22,10 +22,10 @@ public class ThrustmasterWarthogJoystick: MonoBehaviour, IDeviceEventMessage
         switch (input)
         {
             case "X":
-                Handle.transform.localEulerAngles = new Vector3(Handle.transform.localEulerAngles.x, Convert.Range(value, 0, 65535, 20, -20), Handle.transform.localEulerAngles.z);
+                Handle.transform.localEulerAngles = new Vector3(Handle.transform.localEulerAngles.x, Handle.transform.localEulerAngles.y, Convert.Range(value, 0, 65535, 20, -20));
                 break;
             case "Y":
-                Handle.transform.localEulerAngles = new Vector3(Convert.Range(value, 0, 65535, -20, 20), Handle.transform.localEulerAngles.y, Handle.transform.localEulerAngles.z);
+                Handle.transform.localEulerAngles = new Vector3(Convert.Range(value, 0, 65535, 20, -20), Handle.transform.localEulerAngles.y, Handle.transform.localEulerAngles.z);
                 break;
             case "Buttons0":
                 Trigger.transform.localEulerAngles = new Vector3(((value == 0) ? 0.0f : -ButtonDistance), Trigger.transform.localEulerAngles.y, Trigger.transform.localEulerAngles.z);
@@ -99,28 +99,28 @@ public class ThrustmasterWarthogJoystick: MonoBehaviour, IDeviceEventMessage
                         Trim.transform.localEulerAngles = Vector3.zero;
                         break;
                     case 0: // up
-                        Trim.transform.localEulerAngles = Vector3.left * ButtonDistance;
+                        Trim.transform.localEulerAngles = Vector3.right * ButtonDistance;
                         break;
                     case 4500: // up/right
-                        Trim.transform.localEulerAngles = Vector3.left * ButtonDistance + Vector3.down * ButtonDistance;
+                        Trim.transform.localEulerAngles = Vector3.right * ButtonDistance + Vector3.down * ButtonDistance;
                         break;
                     case 9000: // right
                         Trim.transform.localEulerAngles = Vector3.down * ButtonDistance;
                         break;
                     case 13500: // down/right
-                        Trim.transform.localEulerAngles = Vector3.down * ButtonDistance + Vector3.right * ButtonDistance;
+                        Trim.transform.localEulerAngles = Vector3.down * ButtonDistance + Vector3.left * ButtonDistance;
                         break;
                     case 18000: // down
-                        Trim.transform.localEulerAngles = Vector3.right * ButtonDistance;
+                        Trim.transform.localEulerAngles = Vector3.left * ButtonDistance;
                         break;
                     case 22500: // down/left
-                        Trim.transform.localEulerAngles = Vector3.right * ButtonDistance + Vector3.up * ButtonDistance;
+                        Trim.transform.localEulerAngles = Vector3.left * ButtonDistance + Vector3.up * ButtonDistance;
                         break;
                     case 27000: // left
                         Trim.transform.localEulerAngles = Vector3.up * ButtonDistance;
                         break;
                     case 31500: // up/left
-                        Trim.transform.localEulerAngles = Vector3.up * ButtonDistance + Vector3.left * ButtonDistance;
+                        Trim.transform.localEulerAngles = Vector3.up * ButtonDistance + Vector3.right * ButtonDistance;
                         break;
                 }
                 break;
