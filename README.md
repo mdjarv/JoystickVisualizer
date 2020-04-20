@@ -1,3 +1,7 @@
+# This project is no longer maintained
+
+Issues will not be attended, the code is provided as is for anyone who wants to try and improve it themselves
+
 # Joystick Visualizer
 [![GitHub release](https://img.shields.io/github/release/mdjarv/joystickvisualizer.svg)](https://github.com/mdjarv/JoystickVisualizer/releases/latest)
 [![Donate](https://img.shields.io/badge/Tip%20Jar-PayPal-green.svg)](http://paypal.me/mdjarv)
