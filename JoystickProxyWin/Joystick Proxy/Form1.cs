@@ -48,6 +48,7 @@ namespace Joystick_Proxy
             InputBindingSource.DataSource = _input;
 
             VisualizerHostTextBox.Text = Properties.Settings.Default.Host;
+            PortInput.Value = Properties.Settings.Default.Port;
 
             ScanJoysticks();
         }
@@ -380,6 +381,14 @@ namespace Joystick_Proxy
             {
                 ActiveControl = null;
             }
+        }
+
+        private void PortInput_ValueChanged(object sender, EventArgs e)
+        {
+            var port = Convert.ToInt32(PortInput.Value);
+            Properties.Settings.Default.Port = port;
+            Properties.Settings.Default.Save();
+            UpdateEndpoint(VisualizerHostTextBox.Text, port);
         }
     }
 }
