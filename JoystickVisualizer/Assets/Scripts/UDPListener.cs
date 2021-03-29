@@ -27,13 +27,14 @@ public class UDPListener : MonoBehaviour {
         if (ControllerModels == null || ControllerModels.Length == 0)
             ControllerModels = GameObject.FindGameObjectsWithTag("ControllerModel");
 
+        Debug.Log("Disabling all models at startup");
         foreach(GameObject model in ControllerModels)
         {
             model.SetActive(false);
         }
 
     }
-	
+
 	// Update is called once per frame
 	void Update () {
         try
@@ -43,7 +44,7 @@ public class UDPListener : MonoBehaviour {
                 IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, Port);
                 Byte[] recieveBytes = listener.Receive(ref groupEP);
                 string[] message = Encoding.ASCII.GetString(recieveBytes).Split(',');
-                
+
                 // Debug.Log("Got packet: " + String.Join(",", message));
                 if (StickEventListener != null)
                 {
