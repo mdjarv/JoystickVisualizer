@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraControls : MonoBehaviour {
     public Transform target;
@@ -16,6 +17,7 @@ public class CameraControls : MonoBehaviour {
     float rotationXAxis = 0.0f;
     float velocityX = 0.0f;
     float velocityY = 0.0f;
+
     // Use this for initialization
     void Start()
     {
@@ -29,31 +31,37 @@ public class CameraControls : MonoBehaviour {
         }
     }
 
-    void LateUpdate()
+    void Update()
     {
         if (target)
         {
-            if (Input.GetMouseButton(1))
+            if (Mouse.current.rightButton.isPressed)
             {
-                velocityX += xSpeed * Input.GetAxis("Mouse X") * distance * 0.02f;
-                velocityY += ySpeed * Input.GetAxis("Mouse Y") * 0.02f;
+                var dx = Mouse.current.delta.x.ReadValue();
+                var dy = Mouse.current.delta.y.ReadValue();
+
+                velocityX += xSpeed * dx * 35f * 0.02f;
+                velocityY += ySpeed * dy * 0.5f * 0.02f;
             }
             rotationYAxis += velocityX;
             rotationXAxis -= velocityY;
 
-            if (Input.GetButton("Camera Front"))
+            Debug.Log("Kbd");
+            Debug.Log(Keyboard.current);
+
+            if (Keyboard.current.digit1Key.wasPressedThisFrame)
             {
                 rotationYAxis = 0;
                 rotationXAxis = 15;
             }
 
-            if (Input.GetButton("Camera Top"))
+            if (Keyboard.current.digit2Key.wasPressedThisFrame)
             {
                 rotationYAxis = 0;
                 rotationXAxis = 90;
             }
 
-            if (Input.GetButton("Camera Side"))
+            if (Keyboard.current.digit3Key.isPressed)
             {
                 rotationYAxis = 90;
                 rotationXAxis = 0;
@@ -64,7 +72,7 @@ public class CameraControls : MonoBehaviour {
             Quaternion toRotation = Quaternion.Euler(rotationXAxis, rotationYAxis, 0);
             Quaternion rotation = toRotation;
 
-            distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 100, distanceMin, distanceMax);
+            distance = Mathf.Clamp(distance - Mouse.current.scroll.y.ReadValue() * 0.1f, distanceMin, distanceMax);
             RaycastHit hit;
             if (Physics.Linecast(target.position, transform.position, out hit))
             {
