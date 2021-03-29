@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ThrustmasterPendularRudder : MonoBehaviour {
-    public const string USB_ID = "044f:b68f";
-    // public const string USB_ID = "054c:09cc";
+    // public const string USB_ID = "044f:b68f";
+    public const string USB_ID = "054c:09cc";
 
     public GameObject Model;
 
@@ -33,8 +33,6 @@ public class ThrustmasterPendularRudder : MonoBehaviour {
             return;
         }
 
-        Debug.Log("TPR Event");
-
         Model.SetActive(true);
 
         foreach (KeyValuePair<string, int> entry in state.Data)
@@ -51,10 +49,10 @@ public class ThrustmasterPendularRudder : MonoBehaviour {
                     RightPedal.transform.localPosition = new Vector3(RightPedal.transform.localPosition.x, RightPedal.transform.localPosition.y, ConvertRange(entry.Value, 0, 65535, 50.0f, -75.0f));
                     break;
                 case "Y": // Left brake
-                    LeftPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 0, -30), 0, 0);
+                    LeftPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -30, 0), 0, 0);
                     break;
                 case "X": // Right brake
-                    RightPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 0, -30), 0, 0);
+                    RightPedalBrake.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -30, 0), 0, 0);
                     break;
             }
         }
