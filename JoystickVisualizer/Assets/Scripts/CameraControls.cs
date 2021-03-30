@@ -29,6 +29,12 @@ public class CameraControls : MonoBehaviour {
         {
             GetComponent<Rigidbody>().freezeRotation = true;
         }
+
+        Color color;
+        if(ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Color", "#1F3E5D"), out color)) {
+            Camera cam = GetComponent<Camera>();
+            cam.backgroundColor = color;
+        }
     }
 
     void Update()
@@ -45,9 +51,6 @@ public class CameraControls : MonoBehaviour {
             }
             rotationYAxis += velocityX;
             rotationXAxis -= velocityY;
-
-            Debug.Log("Kbd");
-            Debug.Log(Keyboard.current);
 
             if (Keyboard.current.digit1Key.wasPressedThisFrame)
             {
