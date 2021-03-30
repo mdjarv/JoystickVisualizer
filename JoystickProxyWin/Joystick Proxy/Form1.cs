@@ -48,6 +48,7 @@ namespace Joystick_Proxy
             InputBindingSource.DataSource = _input;
 
             VisualizerHostTextBox.Text = Properties.Settings.Default.Host;
+            PortInput.Value = Properties.Settings.Default.Port;
 
             ScanJoysticks();
         }
@@ -184,7 +185,13 @@ namespace Joystick_Proxy
                     return;
 
                 bool supportedDevice = SupportedDevices.ContainsKey(device.UsbId);
-                string outgoingString = String.Format("{0},{1},{2}", device.UsbId, device.Name, e);
+                string id = device.UsbId;
+                if (id == "046d:c212")
+                {
+                    id = "046d:c215";
+                }
+
+                string outgoingString = String.Format("{0},{1},{2}", id, device.Name, e);
 
                 if (supportedDevice)
                 {
@@ -374,6 +381,14 @@ namespace Joystick_Proxy
             {
                 ActiveControl = null;
             }
+        }
+
+        private void PortInput_ValueChanged(object sender, EventArgs e)
+        {
+            var port = Convert.ToInt32(PortInput.Value);
+            Properties.Settings.Default.Port = port;
+            Properties.Settings.Default.Save();
+            UpdateEndpoint(VisualizerHostTextBox.Text, port);
         }
     }
 }
