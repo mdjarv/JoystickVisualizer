@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ThrustmasterPendularRudder : MonoBehaviour {
-    // public const string USB_ID = "044f:b68f";
-    public const string USB_ID = "054c:09cc";
+    public const string USB_ID = "044f:b68f";
+    // public const string USB_ID = "054c:09cc";
 
     public GameObject Model;
 
