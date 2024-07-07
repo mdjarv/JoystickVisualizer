@@ -1,15 +1,15 @@
-# This project is no longer maintained
+# This project is currently being maintained by Wolx Stein
+For request please post an issue
 
-Issues will not be attended, the code is provided as is for anyone who wants to try and improve it themselves
+# The original developer is papapiishu and the original GitHub is in here:
+[Original Joystick Visualizer v0.12.0](https://github.com/mdjarv/JoystickVisualizer)
 
 # Joystick Visualizer
-[![GitHub release](https://img.shields.io/github/release/mdjarv/joystickvisualizer.svg)](https://github.com/mdjarv/JoystickVisualizer/releases/latest)
-[![Donate](https://img.shields.io/badge/Tip%20Jar-PayPal-green.svg)](http://paypal.me/mdjarv)
-[![Discord](https://img.shields.io/badge/Discord-Chat-blue.svg)](https://discord.gg/4nc3XtQ)
+[![GitHub release](https://img.shields.io/github/release/WolxStein/joystickvisualizer.svg)](https://github.com/WolxStein/JoystickVisualizer/releases/latest)
 
 Show your stick and throttle movement as an overlay while streaming or recording videos.
 
-### **[Download latest release here](https://github.com/mdjarv/JoystickVisualizer/releases/latest)**
+### **[Download latest release here](https://github.com/WolxStein/JoystickVisualizer/releases/latest)**
 
 This software will read buttons and axis input from supported devices and visualize them using 3D models on top of a flat colored background making it easy to apply chroma key and placing them as overlays using streaming software like OBS or XSplit
 
@@ -33,11 +33,13 @@ This software will read buttons and axis input from supported devices and visual
 * Thrustmaster Warthog Throttle
 * Thrustmaster T.Flight Rudder
 * Thrustmaster T16000M
+* Thrustmaster T.Flight HOTAS 1 (Using Warthog 3D model)
+* Thrustmaster T.Flight HOTAS 4 (Using Warthog 3D model)
 * Thrustmaster T.Flight HOTAS X (Using Warthog 3D model)
 * VKB Gunfighter (Using Warthog 3D model)
 * Virpil Mongoos T-50 (Using Warthog 3D model)
 
-If you want to get in contact with me hop on my [Discord](https://discord.gg/4nc3XtQ) server and say hello or tweet me [@papapiishu](https://twitter.com/papapiishu)
+Contact me at [@wolx_stein](https://twitter.com/wolx_stein)
 
 ## Setting it up
 
@@ -45,11 +47,11 @@ If you want to get in contact with me hop on my [Discord](https://discord.gg/4nc
 
 * Start `JoystickProxy.exe`, you will see a list of found devices. If your device is in the [Supported Devices](#supported-devices) list but does not show, check the "`Show all devices`" checkbox and contact me so that we can figure out what the issue is.
 
-![Proxy Window](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/proxy_window.png)
+![Proxy Window](https://raw.githubusercontent.com/WolxStein/JoystickVisualizer/master/proxy_window.png)
 
 * Start `JoystickVisualizer.exe`, select your resolution and make sure to run in Windowed Mode
 
-![Visualizer Window](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/visualizer_window.png)
+![Visualizer Window](https://raw.githubusercontent.com/WolxStein/JoystickVisualizer/master/visualizer_window.png)
 
 Your devices should show up in the Visualizer when you start moving them
 
@@ -57,27 +59,27 @@ Your devices should show up in the Visualizer when you start moving them
 
 1. In OBS add a `Window Capture` source, give it a useful name like "Joystick Visualizer"
 
-![Add Window Capture Source](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_1_add_window_capture.png)
+![Add Window Capture Source](https://raw.githubusercontent.com/WolxStein/JoystickVisualizer/master/obs_1_add_window_capture.png)
 
 2. Make sure you select `JoystickVisualizer.exe` and you can also uncheck "Capture Cursor"
 
-![Select Inner Window](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_2_add_window_capture.png)
+![Select Inner Window](https://raw.githubusercontent.com/WolxStein/JoystickVisualizer/master/obs_2_add_window_capture.png)
 
 3. Right click on the Source you just created and select `Filters`
 
-![Add filter to source](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_3_sources.png)
+![Add filter to source](https://raw.githubusercontent.com/WolxStein/JoystickVisualizer/master/obs_3_sources.png)
 
 4. By clicking the + in the bottom left, add a `Color Key` filter. Change the `Key Color Type` to `Custom Color`
 
-![Setup Color Key filter](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_4_window_capture_filter.png)
+![Setup Color Key filter](https://raw.githubusercontent.com/WolxStein/JoystickVisualizer/master/obs_4_window_capture_filter.png)
 
 5. Click `Select color` and enter `#1e3d5d` in the HTML field
 
-![Select color](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_5_custom_color.png)
+![Select color](https://raw.githubusercontent.com/WolxStein/JoystickVisualizer/master/obs_5_custom_color.png)
 
 6. Save and close the filter settings and you should have an overlay with transparent background to move around your Scene
 
-![Placement](https://raw.githubusercontent.com/mdjarv/JoystickVisualizer/master/obs_6_placement.png)
+![Placement](https://raw.githubusercontent.com/WolxStein/JoystickVisualizer/master/obs_6_placement.png)
 
 ### Controlling the camera
 
@@ -106,9 +108,13 @@ The Visualizer was created in Unity3D, and the Proxy is a normal C# application 
 
 ## Contact
 
-You can find me on:
+You can find the original developer on:
 
-* Discord: https://discord.gg/4nc3XtQ
 * GitHub: https://github.com/mdjarv
 * Twitter: [@papapiishu](https://twitter.com/papapiishu "@papapiishu on twitter")
 * Twitch: [papapiishu](http://www.twitch.tv/papapiishu "papapiishu on Twitch")
+  
+You can find the Wolx Stein on:
+* GitHub: https://github.com/WolxStein
+* Twitter: [@wolx_stein](https://twitter.com/wolx_stein)
+* Twitch: [wolxstein](https://www.twitch.tv/wolxstein "wolxstein on Twitch")

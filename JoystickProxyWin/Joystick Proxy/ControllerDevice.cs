@@ -30,6 +30,8 @@ namespace Joystick_Proxy
 
         public DeviceInstance DeviceInstance { get => _deviceInstance; }
         public bool Supported { get; internal set; }
+        public Dictionary<string, string> AlterModels { get => _alterModels; }
+        public string SelectedModelUsbId { get => _selectedModelUsbId; set => _selectedModelUsbId = value; }
 
         private DeviceInstance _deviceInstance;
         private Joystick _joystick;
@@ -38,11 +40,16 @@ namespace Joystick_Proxy
         private bool _enabled = false;
         private bool NotPollable = false;
 
-        public ControllerDevice(DirectInput di, DeviceInstance deviceInstance)
+        private Dictionary<string, string> _alterModels;
+        private string _selectedModelUsbId;
+
+        public ControllerDevice(DirectInput di, DeviceInstance deviceInstance, Dictionary<string, string> alterModels = null)
         {
             _deviceInstance = deviceInstance;
             _usbId = ProductGuidToUSBID(_deviceInstance.ProductGuid);
             _joystick = new Joystick(di, deviceInstance.InstanceGuid);
+            _alterModels = alterModels;
+            _selectedModelUsbId = _usbId;
 
             Joystick.Properties.BufferSize = 32;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,6 +24,7 @@ namespace Joystick_Proxy
 
         private BindingList<ControllerDevice> _devices;
         private BindingList<ControllerInput> _input;
+        //private BindingList<ControllerDevice> _alterDevices;
 
         private Socket _socket;
         private IPEndPoint _endPoint;
@@ -41,16 +43,90 @@ namespace Joystick_Proxy
 
             _devices = new BindingList<ControllerDevice>();
             _input = new BindingList<ControllerInput>();
+            //_alterDevices = new BindingList<ControllerDevice>();
 
             InitializeComponent();
 
             ControllerDeviceBindingSource.DataSource = _devices;
             InputBindingSource.DataSource = _input;
+            //AlternateDeviceBindingSource.DataSource = _alterDevices;
 
             VisualizerHostTextBox.Text = Properties.Settings.Default.Host;
             PortInput.Value = Properties.Settings.Default.Port;
 
             ScanJoysticks();
+
+            DataGridViewComboBoxColumn modelColumn = new DataGridViewComboBoxColumn();
+            modelColumn.HeaderText = "Model";
+            modelColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            modelColumn.Name = "ModelComboBoxColumn";
+            modelColumn.FillWeight = 30F;
+            modelColumn.Width = 300;
+            modelColumn.DisplayMember = "Device_Name";
+            modelColumn.ValueMember = "Device_USB_ID";
+            modelColumn.ReadOnly = false;
+            DevicesDataGridView.Columns.Add(modelColumn);
+
+            DevicesDataGridView.RowsAdded += UpdateAlterModelsHandler;
+            DevicesDataGridView.RowsRemoved += UpdateAlterModelsHandler;
+            DevicesDataGridView.EditingControlShowing += EditingControlShowingHandler;
+        }
+
+        private void UpdateAlterModelsHandler(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            UpdateAlterModels();
+        }
+
+        private void UpdateAlterModelsHandler(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            UpdateAlterModels();
+        }
+
+        private void UpdateAlterModels()
+        {
+            foreach (DataGridViewRow row in DevicesDataGridView.Rows)
+            {
+                DataGridViewComboBoxCell comboBoxCell = (DataGridViewComboBoxCell)row.Cells["ModelComboBoxColumn"];
+                ControllerDevice cellDevice = (ControllerDevice)row.DataBoundItem;
+
+                comboBoxCell.DataSource = cellDevice.AlterModels.Select(m => new { Device_USB_ID = m.Key, Device_Name = m.Value }).ToList();
+
+                if (cellDevice.AlterModels.Any(m => m.Key == cellDevice.UsbId))
+                {
+                    comboBoxCell.Value = cellDevice.UsbId;
+                }
+                else
+                {
+                    comboBoxCell.Value = null;
+                }
+            }
+        }
+        private void EditingControlShowingHandler(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (DevicesDataGridView.CurrentCell.ColumnIndex == DevicesDataGridView.Columns["ModelComboBoxColumn"].Index && 
+                e.Control is ComboBox comboBox)
+            {
+                // Remove the existing event handler to avoid duplicate calls
+                comboBox.SelectedIndexChanged -= ModelColumn_SelectedIndexChangedHandler;
+                // Attach the event handler
+                comboBox.SelectedIndexChanged += ModelColumn_SelectedIndexChangedHandler;
+            }
+        }
+
+        private void ModelColumn_SelectedIndexChangedHandler(object sender, EventArgs e)
+        {
+            if (sender is ComboBox comboBox)
+            {
+                DataGridViewComboBoxEditingControl editingControl = comboBox as DataGridViewComboBoxEditingControl;
+                DataGridView dataGridView = editingControl.EditingControlDataGridView;
+                int rowIndex = dataGridView.CurrentCell.RowIndex;
+                ControllerDevice cellDevice = (ControllerDevice)dataGridView.Rows[rowIndex].DataBoundItem;
+
+                if (comboBox.SelectedValue != null)
+                {
+                    cellDevice.SelectedModelUsbId = comboBox.SelectedValue.ToString();
+                }
+            }
         }
 
         private void UpdateEndpoint(string host, int port)
@@ -107,7 +183,21 @@ namespace Joystick_Proxy
                 if (_devices.Where(d => d.DeviceInstance.InstanceGuid == deviceInstance.InstanceGuid).Count() == 0)
                 {
                     if (ShowAllDevicesCheckBox.Checked == true || SupportedDevices.ContainsKey(ControllerDevice.ProductGuidToUSBID(deviceInstance.ProductGuid)))
-                        addedDevices.Add(new ControllerDevice(_directInput, deviceInstance));
+                    {
+                        Dictionary<string, string> alterModels = new Dictionary<string, string>();
+                        foreach (KeyValuePair<string, string> devices in SupportedDevices)
+                        {
+                            /*if ((devices.Value.ToLower().Contains("joystick") && deviceInstance.InstanceName.ToLower().Contains("joystick")) ||
+                                (devices.Value.ToLower().Contains("throttle") && deviceInstance.InstanceName.ToLower().Contains("throttle")) ||
+                                (devices.Value.ToLower().Contains("hotas") && deviceInstance.InstanceName.ToLower().Contains("hotas")) || 
+                                (devices.Value.ToLower().Contains("pedals") && deviceInstance.InstanceName.ToLower().Contains("pedals")))
+                            {*/
+                                alterModels.Add(devices.Key, devices.Value);
+                            //}
+                        }
+                        addedDevices.Add(new ControllerDevice(_directInput, deviceInstance, alterModels));
+
+                    }
                 }
             }
             
@@ -191,7 +281,7 @@ namespace Joystick_Proxy
                     id = "046d:c215";
                 }
 
-                string outgoingString = String.Format("{0},{1},{2}", id, device.Name, e);
+                string outgoingString = String.Format("{0},{1},{2}", device.SelectedModelUsbId, device.AlterModels[device.SelectedModelUsbId], e);
 
                 if (supportedDevice)
                 {
