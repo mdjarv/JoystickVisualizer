@@ -42,7 +42,6 @@
             this.InputValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InputBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ReadInputTimer = new System.Windows.Forms.Timer(this.components);
-            this.TipJarImage = new System.Windows.Forms.PictureBox();
             this.ShowAllDevicesCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -56,7 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ControllerDeviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InputBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TipJarImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PollingRateInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PortInput)).BeginInit();
             this.SuspendLayout();
@@ -169,19 +167,6 @@
             // 
             this.ReadInputTimer.Interval = global::Joystick_Proxy.Properties.Settings.Default.PollingRate;
             this.ReadInputTimer.Tick += new System.EventHandler(this.ReadInputTimer_Tick);
-            // 
-            // TipJarImage
-            // 
-            this.TipJarImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.TipJarImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TipJarImage.Image = global::Joystick_Proxy.Properties.Resources.tipjar;
-            this.TipJarImage.Location = new System.Drawing.Point(778, 377);
-            this.TipJarImage.Name = "TipJarImage";
-            this.TipJarImage.Size = new System.Drawing.Size(92, 20);
-            this.TipJarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.TipJarImage.TabIndex = 3;
-            this.TipJarImage.TabStop = false;
-            this.TipJarImage.Click += new System.EventHandler(this.TipJar_Click);
             // 
             // ShowAllDevicesCheckBox
             // 
@@ -309,7 +294,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.VisualizerHostTextBox);
             this.Controls.Add(this.ShowAllDevicesCheckBox);
-            this.Controls.Add(this.TipJarImage);
             this.Controls.Add(this.DataGridView1);
             this.Controls.Add(this.DevicesDataGridView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -321,7 +305,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ControllerDeviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InputBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TipJarImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PollingRateInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PortInput)).EndInit();
             this.ResumeLayout(false);
@@ -339,7 +322,6 @@
         private System.Windows.Forms.Timer ReadInputTimer;
         private System.Windows.Forms.DataGridViewTextBoxColumn InputName;
         private System.Windows.Forms.DataGridViewTextBoxColumn InputValue;
-        private System.Windows.Forms.PictureBox TipJarImage;
         private System.Windows.Forms.CheckBox ShowAllDevicesCheckBox;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DeviceEnabled;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameDataGridViewTextBoxColumn;
